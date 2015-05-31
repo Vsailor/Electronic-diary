@@ -25,11 +25,12 @@ namespace ElectronicDiary
         {
             InitializeComponent();
             model=new ElectronicDiaryDBEntities();
+            //AdminPanelShow();
             Admin.Visibility = Visibility.Hidden;
-            Client.Visibility = Visibility.Hidden;
+            Client.Visibility=Visibility.Hidden;
             Logining.Visibility = Visibility.Visible;
+            
         }
 
- 
     }
 }

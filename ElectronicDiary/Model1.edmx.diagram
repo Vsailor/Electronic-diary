@@ -17,6 +17,9 @@
         <AssociationConnector Association="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers" />
         <AssociationConnector Association="ElectronicDiaryDBModel.FK_Students_Users" />
         <AssociationConnector Association="ElectronicDiaryDBModel.FK_Students_Groups" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Marks_Students" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Marks_Subjects" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Teachers_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

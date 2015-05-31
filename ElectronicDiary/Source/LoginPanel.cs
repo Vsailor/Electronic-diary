@@ -30,7 +30,7 @@ namespace ElectronicDiary
                 if (z.First().Role == role.administrator.ToString())
                 {
                     Logining.Visibility = Visibility.Hidden;
-                    Admin.Visibility = Visibility.Visible;
+                    AdminPanelShow();
                 }
                 else if (z.First().Role == role.student.ToString())
                 {

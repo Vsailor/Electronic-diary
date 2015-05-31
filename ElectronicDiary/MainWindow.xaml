@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ElectronicDiary.MainWindow"
         Title="Electronic diary" Height="483.052" Width="972.662">
     <Grid>
-        <Grid x:Name="Admin" HorizontalAlignment="Left" Height="443" VerticalAlignment="Top" Width="955" d:IsHidden="True">
-            <ComboBox HorizontalAlignment="Left" Margin="759,25,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"/>
+        <Grid x:Name="Admin" HorizontalAlignment="Left" Height="443" VerticalAlignment="Top" Width="955">
+            <ComboBox x:Name="AdminComboBox" HorizontalAlignment="Left" Margin="684,48,0,0" VerticalAlignment="Top" Width="206" SelectedIndex="0" SelectionChanged="AdminComboBox_SelectionChanged"/>
+            <DataGrid x:Name="AdminDataGrid" HorizontalAlignment="Left" Margin="26,48,0,0" VerticalAlignment="Top" Height="346" Width="562"/>
+            <Label x:Name="AdminStatusBar" Content="Administration panel" HorizontalAlignment="Left" Margin="0,418,0,0" VerticalAlignment="Top" Height="25" Width="945"/>
+            <Label x:Name="AdminHeaderLabel" Content="Users" HorizontalAlignment="Left" Margin="276,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+            <Label Content="Choose users type:" HorizontalAlignment="Left" Margin="742,17,0,0" VerticalAlignment="Top"/>
+            <Grid x:Name="AdminButtonsDataGrid" HorizontalAlignment="Left" Height="343" Margin="618,75,0,0" VerticalAlignment="Top" Width="327"/>
         </Grid>
         <Grid x:Name="Client" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
             <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" d:IsHidden="True"/>

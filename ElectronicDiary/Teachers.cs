@@ -12,9 +12,9 @@ namespace ElectronicDiary
     using System;
     using System.Collections.Generic;
     
-    public partial class Teacher
+    public partial class Teachers
     {
-        public Teacher()
+        public Teachers()
         {
             this.Subjects_Teachers = new HashSet<Subjects_Teachers>();
         }
@@ -25,6 +25,6 @@ namespace ElectronicDiary
         public int UserId { get; set; }
     
         public virtual ICollection<Subjects_Teachers> Subjects_Teachers { get; set; }
-        public virtual User User { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

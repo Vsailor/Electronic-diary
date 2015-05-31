@@ -12,19 +12,21 @@ namespace ElectronicDiary
     using System;
     using System.Collections.Generic;
     
-    public partial class Teacher
+    public partial class Students
     {
-        public Teacher()
+        public Students()
         {
-            this.Subjects_Teachers = new HashSet<Subjects_Teachers>();
+            this.Marks = new HashSet<Marks>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int UserId { get; set; }
+        public int Group_Id { get; set; }
+        public int User_Id { get; set; }
     
-        public virtual ICollection<Subjects_Teachers> Subjects_Teachers { get; set; }
-        public virtual User User { get; set; }
+        public virtual Groups Groups { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual ICollection<Marks> Marks { get; set; }
     }
 }
