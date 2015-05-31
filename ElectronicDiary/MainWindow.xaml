@@ -4,15 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ElectronicDiary.MainWindow"
         Title="Electronic diary" Height="483.052" Width="972.662">
     <Grid>
-        <Grid x:Name="Admin" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" d:IsHidden="True">
-            <Button Content="Schedules" HorizontalAlignment="Left" Margin="10,205,-95,-138" VerticalAlignment="Top" Width="185" Height="33"/>
-            <Button Content="Lessons" HorizontalAlignment="Left" Margin="10,154,-95,-87" VerticalAlignment="Top" Width="185" Height="33"/>
-            <Button Content="Teachers" HorizontalAlignment="Left" Margin="10,44,-95,0" VerticalAlignment="Top" Width="185" Height="33"/>
-            <Button Content="Students" HorizontalAlignment="Left" Margin="10,98,-95,-31" VerticalAlignment="Top" Width="185" Height="33"/>
+        <Grid x:Name="Admin" HorizontalAlignment="Left" Height="443" VerticalAlignment="Top" Width="955">
+            <ComboBox HorizontalAlignment="Left" Margin="759,25,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"/>
         </Grid>
         <Grid x:Name="Client" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" d:IsHidden="True">
-            <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
-            <Grid x:Name="Student" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+            <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" d:IsHidden="True"/>
+            <Grid x:Name="Student" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" d:IsHidden="True">
+                <DataGrid HorizontalAlignment="Left" Margin="89,45,-514,-261" VerticalAlignment="Top" Height="316" Width="525" d:IsHidden="True"/>
+                <Calendar HorizontalAlignment="Left" Margin="631,59,-710,-127" VerticalAlignment="Top" d:IsHidden="True"/>
+            </Grid>
         </Grid>
         <Grid x:Name="Logining" Margin="0,0,-409,-83" d:IsHidden="True">
 
@@ -28,7 +28,5 @@
 
 
         </Grid>
-        <DataGrid HorizontalAlignment="Left" Margin="89,45,0,0" VerticalAlignment="Top" Height="316" Width="525"/>
-        <Calendar HorizontalAlignment="Left" Margin="631,59,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
