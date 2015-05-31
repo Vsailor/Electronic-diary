@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ElectronicDiaryDBModelStoreContainer" CdmEntityContainer="ElectronicDiaryDBEntities">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ElectronicDiaryDBModelContainer" CdmEntityContainer="ElectronicDiaryDBEntities">
     <EntitySetMapping Name="Groups">
-      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Group">
+      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Groups">
         <MappingFragment StoreEntitySet="Groups">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -11,10 +11,10 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Marks">
-      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Mark">
+      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Marks">
         <MappingFragment StoreEntitySet="Marks">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Mark1" ColumnName="Mark" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
           <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
           <ScalarProperty Name="Student_Id" ColumnName="Student_Id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
@@ -22,7 +22,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Schedules">
+    <EntitySetMapping Name="Schedule">
       <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Schedule">
         <MappingFragment StoreEntitySet="Schedule">
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -36,7 +36,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Students">
-      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Student">
+      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Students">
         <MappingFragment StoreEntitySet="Students">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -47,7 +47,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Subjects">
-      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Subject">
+      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Subjects">
         <MappingFragment StoreEntitySet="Subjects">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -64,7 +64,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Teachers">
-      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Teacher">
+      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Teachers">
         <MappingFragment StoreEntitySet="Teachers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -73,7 +73,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.User">
+      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Users">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Login" ColumnName="Login" />

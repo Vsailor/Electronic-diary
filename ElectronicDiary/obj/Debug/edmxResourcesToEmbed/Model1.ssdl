@@ -1,18 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ElectronicDiaryDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Хранилище ElectronicDiaryDBModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Хранилище ElectronicDiaryDBModelContainer">
+    <EntitySet Name="Groups" EntityType="Хранилище ElectronicDiaryDBModel.Groups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Marks" EntityType="Хранилище ElectronicDiaryDBModel.Marks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Schedule" EntityType="Хранилище ElectronicDiaryDBModel.Schedule" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Students" EntityType="Хранилище ElectronicDiaryDBModel.Students" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subjects" EntityType="Хранилище ElectronicDiaryDBModel.Subjects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subjects_Teachers" EntityType="Хранилище ElectronicDiaryDBModel.Subjects_Teachers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Teachers" EntityType="Хранилище ElectronicDiaryDBModel.Teachers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Хранилище ElectronicDiaryDBModel.Users" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
   <EntityType Name="Groups">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Year" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Marks">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Mark" Type="int" Nullable="false" />
     <Property Name="Subject_Id" Type="int" Nullable="false" />
     <Property Name="Student_Id" Type="int" Nullable="false" />
@@ -23,11 +33,11 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Subjects_Id" Type="int" Nullable="false" />
     <Property Name="Groups_Id" Type="int" Nullable="false" />
     <Property Name="LessonNumber" Type="int" Nullable="false" />
-    <Property Name="WeekDay" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="WeekDay" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Teachers_Id" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="50" />
   </EntityType>
@@ -35,9 +45,9 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Group_Id" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -45,14 +55,14 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Subjects_Teachers">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Teachers_Id" Type="int" Nullable="false" />
     <Property Name="Subjects_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -60,27 +70,17 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Role" Type="varchar" Nullable="false" MaxLength="50" />
   </EntityType>
-  <EntityContainer Name="ElectronicDiaryDBModelStoreContainer">
-    <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Subjects_Teachers" EntityType="Self.Subjects_Teachers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-  </EntityContainer>
 </Schema>
