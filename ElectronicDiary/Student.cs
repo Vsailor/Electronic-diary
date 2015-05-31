@@ -19,5 +19,8 @@ namespace ElectronicDiary
         public string Surname { get; set; }
         public int Group_Id { get; set; }
         public int User_Id { get; set; }
+    
+        public virtual User User { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

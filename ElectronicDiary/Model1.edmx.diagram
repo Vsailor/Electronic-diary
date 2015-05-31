@@ -13,6 +13,10 @@
         <EntityTypeShape EntityType="ElectronicDiaryDBModel.Subjects_Teachers" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ElectronicDiaryDBModel.Teacher" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ElectronicDiaryDBModel.User" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Students_Users" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Students_Groups" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -36,7 +36,19 @@ namespace ElectronicDiary
                 {
                     Logining.Visibility = Visibility.Hidden;
                     Student.Visibility = Visibility.Visible;
-
+                    Client.Visibility = Visibility.Visible;
+                    int id = z.First().Id;
+                    SelectedStudent = (from st in model.Students
+                        where st.User_Id == id
+                        select st).First();
+                                            
+                    StudentName.Content = SelectedStudent.Name+" "+SelectedStudent.Surname;
+                    var groups = model.Groups.ToList();
+                    foreach (var @group in groups)
+                    {
+                        StudentGroupList.Items.Add(@group.Name);
+                    }
+                    StudentGroupList.SelectedItem=SelectedStudent.Group.Name;
 
                 }
                 else
