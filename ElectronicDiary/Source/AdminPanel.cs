@@ -22,6 +22,26 @@ namespace ElectronicDiary
                                          join users in model.Users on students.User_Id equals users.Id      
                                          select new { Name = students.Name, Surname = students.Surname, Group = groups.Name, Login = users.Login, Password = users.Password} ).ToList();
         }
+        private void ShowTeachers()
+        {
+
+            AdminDataGrid.ItemsSource = (from subject_techers
+                                             in model.Subjects_Teachers
+                                         select new {Name = subject_techers.Teachers.Name,
+                                         Surname = subject_techers.Teachers.Surname,
+                                         Subject = subject_techers.Subjects.Name}).ToList();
+
+        }
+        private void ShowGroups()
+        {
+            AdminDataGrid.ItemsSource = (from groups in model.Groups
+                                         select new { Name = groups.Name, Year = groups.Year }).ToList();
+        }
+        private void ShowSubjects()
+        { 
+            AdminDataGrid.ItemsSource = (from subjects in model.Subjects
+                                         select new {Name = subjects.Name}).ToList();
+        }
         private void AdminPanelShow()
         {
             Admin.Visibility = Visibility.Visible;
@@ -43,6 +63,15 @@ namespace ElectronicDiary
                     break;
                 case 1:
                     ShowStudents();
+                    break;
+                case 2:
+                    ShowTeachers();
+                    break;
+                case 3:
+                    ShowGroups();
+                    break;
+                case 4:
+                    ShowSubjects();
                     break;
             }
         }

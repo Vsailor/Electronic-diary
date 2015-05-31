@@ -7,8 +7,17 @@
     <EntitySet Name="Students" EntityType="ElectronicDiaryDBModel.Students" />
     <EntitySet Name="Subjects" EntityType="ElectronicDiaryDBModel.Subjects" />
     <EntitySet Name="Subjects_Teachers" EntityType="ElectronicDiaryDBModel.Subjects_Teachers" />
+    <EntitySet Name="sysdiagrams" EntityType="ElectronicDiaryDBModel.sysdiagrams" />
     <EntitySet Name="Teachers" EntityType="ElectronicDiaryDBModel.Teachers" />
     <EntitySet Name="Users" EntityType="ElectronicDiaryDBModel.Users" />
+    <AssociationSet Name="FK_Subjects_Teachers_Subjects" Association="ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Subjects_Teachers" EntitySet="Subjects_Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjects_Teachers_Teachers" Association="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Subjects_Teachers" EntitySet="Subjects_Teachers" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Groups">
     <Key>
@@ -57,6 +66,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Subjects_Teachers" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects" FromRole="Subjects" ToRole="Subjects_Teachers" />
   </EntityType>
   <EntityType Name="Subjects_Teachers">
     <Key>
@@ -65,6 +75,18 @@
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Teachers_Id" Type="Int32" Nullable="false" />
     <Property Name="Subjects_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Subjects" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects" FromRole="Subjects_Teachers" ToRole="Subjects" />
+    <NavigationProperty Name="Teachers" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers" FromRole="Subjects_Teachers" ToRole="Teachers" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Teachers">
     <Key>
@@ -73,6 +95,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Subjects_Teachers" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers" FromRole="Teachers" ToRole="Subjects_Teachers" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -83,4 +106,28 @@
     <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Role" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
   </EntityType>
+  <Association Name="FK_Subjects_Teachers_Subjects">
+    <End Role="Subjects" Type="ElectronicDiaryDBModel.Subjects" Multiplicity="1" />
+    <End Role="Subjects_Teachers" Type="ElectronicDiaryDBModel.Subjects_Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subjects_Teachers">
+        <PropertyRef Name="Subjects_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjects_Teachers_Teachers">
+    <End Role="Teachers" Type="ElectronicDiaryDBModel.Teachers" Multiplicity="1" />
+    <End Role="Subjects_Teachers" Type="ElectronicDiaryDBModel.Subjects_Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subjects_Teachers">
+        <PropertyRef Name="Teachers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

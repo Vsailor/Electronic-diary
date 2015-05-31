@@ -31,6 +31,7 @@ namespace ElectronicDiary
         public DbSet<Students> Students { get; set; }
         public DbSet<Subjects> Subjects { get; set; }
         public DbSet<Subjects_Teachers> Subjects_Teachers { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Teachers> Teachers { get; set; }
         public DbSet<Users> Users { get; set; }
     }

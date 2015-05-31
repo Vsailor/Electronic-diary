@@ -17,5 +17,8 @@ namespace ElectronicDiary
         public int Id { get; set; }
         public int Teachers_Id { get; set; }
         public int Subjects_Id { get; set; }
+    
+        public virtual Subjects Subjects { get; set; }
+        public virtual Teachers Teachers { get; set; }
     }
 }

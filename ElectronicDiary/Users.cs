@@ -14,9 +14,18 @@ namespace ElectronicDiary
     
     public partial class Users
     {
+        public Users()
+        {
+            this.Students = new HashSet<Students>();
+            this.Teachers = new HashSet<Teachers>();
+        }
+    
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
+    
+        public virtual ICollection<Students> Students { get; set; }
+        public virtual ICollection<Teachers> Teachers { get; set; }
     }
 }

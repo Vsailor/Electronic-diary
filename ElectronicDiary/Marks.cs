@@ -20,5 +20,8 @@ namespace ElectronicDiary
         public int Student_Id { get; set; }
         public System.DateTime Date { get; set; }
         public string Description { get; set; }
+    
+        public virtual Students Students { get; set; }
+        public virtual Subjects Subjects { get; set; }
     }
 }

@@ -7,8 +7,17 @@
     <EntitySet Name="Students" EntityType="Хранилище ElectronicDiaryDBModel.Students" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Subjects" EntityType="Хранилище ElectronicDiaryDBModel.Subjects" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Subjects_Teachers" EntityType="Хранилище ElectronicDiaryDBModel.Subjects_Teachers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="Хранилище ElectronicDiaryDBModel.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Teachers" EntityType="Хранилище ElectronicDiaryDBModel.Teachers" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Users" EntityType="Хранилище ElectronicDiaryDBModel.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Subjects_Teachers_Subjects" Association="Хранилище ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Subjects_Teachers" EntitySet="Subjects_Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjects_Teachers_Teachers" Association="Хранилище ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Subjects_Teachers" EntitySet="Subjects_Teachers" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Groups">
     <Key>
@@ -66,6 +75,16 @@
     <Property Name="Teachers_Id" Type="int" Nullable="false" />
     <Property Name="Subjects_Id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="Teachers">
     <Key>
       <PropertyRef Name="Id" />
@@ -83,4 +102,28 @@
     <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Role" Type="varchar" Nullable="false" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_Subjects_Teachers_Subjects">
+    <End Role="Subjects" Type="Хранилище ElectronicDiaryDBModel.Subjects" Multiplicity="1" />
+    <End Role="Subjects_Teachers" Type="Хранилище ElectronicDiaryDBModel.Subjects_Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subjects_Teachers">
+        <PropertyRef Name="Subjects_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjects_Teachers_Teachers">
+    <End Role="Teachers" Type="Хранилище ElectronicDiaryDBModel.Teachers" Multiplicity="1" />
+    <End Role="Subjects_Teachers" Type="Хранилище ElectronicDiaryDBModel.Subjects_Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subjects_Teachers">
+        <PropertyRef Name="Teachers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
