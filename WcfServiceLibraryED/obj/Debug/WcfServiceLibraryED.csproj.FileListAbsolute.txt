@@ -4,3 +4,9 @@ C:\Users\Иван\Desktop\Electronic-diary\WcfServiceLibraryED\bin\Debug\WcfServ
 C:\Users\Иван\Desktop\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.csprojResolveAssemblyReference.cache
 C:\Users\Иван\Desktop\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.dll
 C:\Users\Иван\Desktop\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.pdb
+C:\Users\datrax\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\WcfServiceLibraryED.dll.config
+C:\Users\datrax\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\WcfServiceLibraryED.dll
+C:\Users\datrax\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\WcfServiceLibraryED.pdb
+C:\Users\datrax\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.csprojResolveAssemblyReference.cache
+C:\Users\datrax\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.dll
+C:\Users\datrax\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.pdb
