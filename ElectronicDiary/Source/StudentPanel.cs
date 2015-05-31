@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.ServiceModel.Activation;
 using System.Text;
@@ -16,9 +17,8 @@ namespace ElectronicDiary
         {
             StudentDay.Columns.Clear();
             var DayOfWeek = ((Calendar)sender).SelectedDate.Value.DayOfWeek.ToString();
-            var lessons = model.Schedules.Where(a => a.WeekDay == DayOfWeek).ToList();
             var studentgroup = StudentGroupList.SelectedItem.ToString();
-            var View = from asd in model.Schedules
+            var View = from asd in model.Schedules 
                        join ast in model.Subjects on asd.Subjects_Id equals ast.Id
                        join ask in model.Teachers on asd.Teachers_Id equals ask.Id
                        join ass in model.Groups on asd.Groups_Id equals ass.Id
@@ -32,12 +32,21 @@ namespace ElectronicDiary
                            Group = ass.Name,
                         
                        };
-
-
-            StudentDay.ItemsSource = View.ToList();
-            DataGridColumn column = new DataGridTextColumn();
-            column.Header = "Your Marks";
-            StudentDay.Columns.Add(column);
+            StudentDay.ItemsSource = View.ToList().OrderBy(o=>o.Num);
+        }
+        private void ShowSubjects(object sender, SelectionChangedEventArgs e)
+        {
+            var name=SubjectList.SelectedItem.ToString();
+            var view = from m in model.Marks
+                where m.Subject.Name == name
+                where m.Student.Id==SelectedStudent.Id
+                select new
+                {
+                    Date = m.Date,
+                    Mark = m.Mark1,
+                    Notes=m.Description
+                };
+            MarkTable.ItemsSource = view.ToList().OrderBy(m=>m.Date);
         }
 
     }

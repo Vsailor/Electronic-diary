@@ -30,17 +30,21 @@ namespace ElectronicDiary
                 if (z.First().Role == role.administrator.ToString())
                 {
                     Logining.Visibility = Visibility.Hidden;
+                    Exit.Visibility = Visibility.Visible;
                     AdminPanelShow();
+                    StudentName.Content = "admin";
                 }
                 else if (z.First().Role == role.student.ToString())
                 {
                     Logining.Visibility = Visibility.Hidden;
                     Student.Visibility = Visibility.Visible;
                     Client.Visibility = Visibility.Visible;
+                    Exit.Visibility = Visibility.Visible;
+                    Teacher.Visibility = Visibility.Hidden;
                     int id = z.First().Id;
                     SelectedStudent = (from st in model.Students
                         where st.User_Id == id
-                        select st).First();
+                        select st).FirstOrDefault();
                                             
                     StudentName.Content = SelectedStudent.Name+" "+SelectedStudent.Surname;
                     var groups = model.Groups.ToList();
@@ -49,13 +53,22 @@ namespace ElectronicDiary
                         StudentGroupList.Items.Add(@group.Name);
                     }
                     StudentGroupList.SelectedItem=SelectedStudent.Group.Name;
+                    var subjects = model.Subjects.ToList();
+                    foreach (var @subject in subjects)
+                    {
+                        SubjectList.Items.Add(subject.Name);
+                    }
+                    //StudentGroupList.SelectedItem = SelectedStudent.Group.Name;
 
                 }
                 else
                     if (z.First().Role == role.teacher.ToString())
                     {
                         Logining.Visibility = Visibility.Hidden;
+                        Client.Visibility = Visibility.Visible;
+                        Student.Visibility = Visibility.Hidden;
                         Teacher.Visibility = Visibility.Visible;
+                        Exit.Visibility = Visibility.Visible;
                     }
             }
             else

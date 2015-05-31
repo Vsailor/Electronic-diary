@@ -29,8 +29,20 @@ namespace ElectronicDiary
             Admin.Visibility = Visibility.Hidden;
             Client.Visibility=Visibility.Hidden;
             Logining.Visibility = Visibility.Visible;
-            
+            Exit.Visibility = Visibility.Hidden;
         }
+
+        private void logout(object sender, RoutedEventArgs e)
+        {
+            Admin.Visibility = Visibility.Hidden;
+            Client.Visibility = Visibility.Hidden;
+            Logining.Visibility = Visibility.Visible;
+            Exit.Visibility = Visibility.Hidden;
+            Login.Text = "";
+            Password.Password = "";
+        }
+
+
 
     }
 }

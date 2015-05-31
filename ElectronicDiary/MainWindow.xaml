@@ -4,7 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ElectronicDiary.MainWindow"
         Title="Electronic diary" Height="483.052" Width="972.662">
     <Grid>
-        <Grid x:Name="Admin" HorizontalAlignment="Left" Height="443" VerticalAlignment="Top" Width="955">
+        <Grid x:Name="Exit" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
+            <Button Content="logout" HorizontalAlignment="Left" Margin="872,10,0,0" VerticalAlignment="Top" Width="69" Click="logout"/>
+            <Label x:Name="StudentName" Content="" Margin="655,6,0,0" VerticalAlignment="Top" Width="217" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
+        </Grid>
+        <Grid x:Name="Admin" HorizontalAlignment="Left" Height="443" VerticalAlignment="Top" Width="955" d:IsHidden="True">
             <ComboBox x:Name="AdminComboBox" HorizontalAlignment="Left" Margin="684,48,0,0" VerticalAlignment="Top" Width="206" SelectedIndex="0" SelectionChanged="AdminComboBox_SelectionChanged"/>
             <DataGrid x:Name="AdminDataGrid" HorizontalAlignment="Left" Margin="26,48,0,0" VerticalAlignment="Top" Height="346" Width="562"/>
             <Label x:Name="AdminStatusBar" Content="Administration panel" HorizontalAlignment="Left" Margin="0,418,0,0" VerticalAlignment="Top" Height="25" Width="945"/>
@@ -13,13 +17,31 @@
             <Grid x:Name="AdminButtonsDataGrid" HorizontalAlignment="Left" Height="343" Margin="618,75,0,0" VerticalAlignment="Top" Width="327"/>
         </Grid>
         <Grid x:Name="Client" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
-            <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" d:IsHidden="True"/>
-            <Grid x:Name="Student" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965" Margin="0,0,-865,-352">
-                <DataGrid x:Name="StudentDay" HorizontalAlignment="Left" Margin="89,45,-514,-261" VerticalAlignment="Top" Height="316" Width="525"/>
-                <Calendar x:Name="Calendar" HorizontalAlignment="Left" Margin="631,59,-710,-127" VerticalAlignment="Top" SelectedDatesChanged="ShowName"/>
-                <Label x:Name="StudentName" Content="" HorizontalAlignment="Left" Margin="702,6,0,0" VerticalAlignment="Top" Width="179"/>
-                <Button Content="Выход" HorizontalAlignment="Left" Margin="886,10,0,0" VerticalAlignment="Top" Width="69"/>
-                <ComboBox x:Name="StudentGroupList" HorizontalAlignment="Left" Margin="285,18,0,0" VerticalAlignment="Top" Width="120"/>
+            <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965">
+                <DataGrid HorizontalAlignment="Left" Margin="176,51,0,0" VerticalAlignment="Top" Height="364" Width="582">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Student"/>
+                        <DataGridTextColumn Header="Mark"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid x:Name="Student" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965" Margin="0,0,-865,-352" d:IsHidden="True">
+                <TabControl HorizontalAlignment="Left" Height="432" Margin="0,10,0,0" VerticalAlignment="Top" Width="955">
+                    <TabItem Header="Schedule">
+                        <Grid Background="#FFE5E5E5">
+                            <DataGrid x:Name="StudentDay" HorizontalAlignment="Left" Margin="89,45,0,0" VerticalAlignment="Top" Height="316" Width="525"/>
+                            <Calendar x:Name="Calendar" HorizontalAlignment="Left" Margin="631,59,0,0" VerticalAlignment="Top" SelectedDatesChanged="ShowName"/>
+                            <ComboBox x:Name="StudentGroupList" HorizontalAlignment="Left" Margin="332,18,0,0" VerticalAlignment="Top" Width="120"/>
+                            <Label Content="Group:" HorizontalAlignment="Left" Margin="284,19,0,0" VerticalAlignment="Top" Width="68"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Marks">
+                        <Grid Background="#FFE5E5E5">
+                            <ComboBox x:Name="SubjectList" HorizontalAlignment="Left" Margin="409,25,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ShowSubjects"/>
+                            <DataGrid x:Name="MarkTable" HorizontalAlignment="Left" Margin="280,52,0,0" VerticalAlignment="Top" Height="252" Width="380"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
             </Grid>
         </Grid>
         <Grid x:Name="Logining" Margin="0,0,-409,-83" d:IsHidden="True">
