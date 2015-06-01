@@ -17,7 +17,7 @@ namespace ElectronicDiary
         {
             if (Login.Text.Length == 0 || Password.Password.Length == 0)
             {
-                MessageBox.Show("Логин или пароль не были введены");
+                StatusBar.Content="Login or password is empty";
                 return;
             }
 
@@ -58,8 +58,14 @@ namespace ElectronicDiary
                     {
                         SubjectList.Items.Add(subject.Name);
                     }
-                    //StudentGroupList.SelectedItem = selectedStudent.Group.Name;
 
+                    StudentSchedule.ItemsSource = null;
+                    StudentMarkTable.ItemsSource = null;
+                    SubjectList.SelectedItem = null;
+
+
+                    StudentCalendar.SelectedDate = DateTime.Now.Date;
+                    ShowSchedule(sender, null);
                 }
                 else
                     if (z.First().Role == role.teacher.ToString())
@@ -76,11 +82,23 @@ namespace ElectronicDiary
                                            select st).FirstOrDefault();
 
                         UserName.Content = selectedTeacher.Name + " " + selectedTeacher.Surname;
+
+                        TeacherCalendar.Visibility = Visibility.Visible;
+                        TeacherSchedule.Visibility = Visibility.Visible;
+                        SetMarksButton.Visibility = Visibility.Visible;
+                        BackToTeacherScheduleButton.Visibility = Visibility.Hidden;
+                        groupname = "";
+                        subject = "";
+                        TeacherSchedule.ItemsSource = null;
+                        TeacherMarkSetter.ItemsSource = null;
+
+                        TeacherCalendar.SelectedDate = DateTime.Now.Date;
+                        ShowTeacherSchedule(e, null);
                     }
             }
             else
             {
-                MessageBox.Show("Логин или пароль были введены некоректно");
+                StatusBar.Content = "Login or password is wrong";
             }
         }
     }

@@ -13,41 +13,61 @@ namespace ElectronicDiary
     partial class MainWindow : Window
     {
         Student  selectedStudent;
-        private void ShowName(object sender, SelectionChangedEventArgs e)
+        private void ShowSchedule(object sender, SelectionChangedEventArgs e)
         {
-            StudentDay.Columns.Clear();
-            var DayOfWeek = ((Calendar)sender).SelectedDate.Value.DayOfWeek.ToString();
-            var studentgroup = StudentGroupList.SelectedItem.ToString();
-            var View = from asd in model.Schedules 
-                       join ast in model.Subjects on asd.Subjects_Id equals ast.Id
-                       join ask in model.Teachers on asd.Teachers_Id equals ask.Id
-                       join ass in model.Groups on asd.Groups_Id equals ass.Id
-                       where asd.WeekDay == DayOfWeek
-                       where studentgroup == ass.Name
-                       select new
-                       {
-                           Num = asd.LessonNumber,
-                           Subject = ast.Name,
-                           Teacher = ask.Surname,
-                           Group = ass.Name,
-                           Auditory = asd.Description
-                       };
-            StudentDay.ItemsSource = View.ToList().OrderBy(o=>o.Num);
+            StudentSchedule.Columns.Clear();
+            if (StudentCalendar.SelectedDate != null)
+            {
+                var dayOfWeek = StudentCalendar.SelectedDate.Value.DayOfWeek.ToString();
+                if (StudentGroupList.SelectedItem != null)
+                {
+                    var studentGroup = StudentGroupList.SelectedItem.ToString();
+                    var view = from asd in model.Schedules
+                        join ast in model.Subjects on asd.Subjects_Id equals ast.Id
+                        join ask in model.Teachers on asd.Teachers_Id equals ask.Id
+                        join ass in model.Groups on asd.Groups_Id equals ass.Id
+                        where asd.WeekDay == dayOfWeek
+                        where studentGroup == ass.Name
+                        select new
+                        {
+                            Num = asd.LessonNumber,
+                            Subject = ast.Name,
+                            Teacher = ask.Surname,
+                            Group = ass.Name,
+                            Auditory = asd.Description
+                        };
+                    StudentSchedule.ItemsSource = view.ToList().OrderBy(o => o.Num);
+                }
+            }
+        }
+
+        private void GroupSelected(object sender, SelectionChangedEventArgs e)
+        {
+            ShowSchedule(sender,e);
+        }
+        private void displaySchedule(object sender, RoutedEventArgs e)
+        {
+            StudentCalendar.SelectedDate = DateTime.Now.Date;
         }
         private void ShowSubjects(object sender, SelectionChangedEventArgs e)
         {
-            var name=SubjectList.SelectedItem.ToString();
-            var view = from m in model.Marks
-                where m.Subject.Name == name
-                where m.Student.Id==selectedStudent.Id
-                select new
-                {
-                    Date = m.Date,
-                    Mark = m.Mark1,
-                    Note=m.Description
-                };
-            MarkTable.ItemsSource = view.ToList().OrderBy(m=>m.Date);
+            if (SubjectList.SelectedItem != null)
+            {
+                var subjectName = SubjectList.SelectedItem.ToString();
+                var view = from mark in model.Marks
+                    where mark.Subject.Name == subjectName
+                    where mark.Student.Id == selectedStudent.Id
+                    where mark.Student.Group_Id == selectedStudent.Group_Id
+                    select new
+                    {
+                        Date = mark.Date,
+                        Mark = mark.Mark1,
+                        Note = mark.Description
+                    };
+                StudentMarkTable.ItemsSource = view.ToList().OrderBy(m => m.Date);
+            }
         }
+
 
     }
 }

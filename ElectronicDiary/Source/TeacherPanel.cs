@@ -25,7 +25,7 @@ namespace ElectronicDiary
         void SetMarks()
         {
             MyCollection = new ObservableCollection<MyData>();
-            var date = TeacherCalendar.SelectedDate.Value.Date;
+            var selectedDate = TeacherCalendar.SelectedDate.Value.Date;
             var data = from t in model.Students
                        where t.Group.Name == groupname
                        select new
@@ -35,102 +35,115 @@ namespace ElectronicDiary
                            Mark = "",
                            Note=""
                        };
-            var list = data.ToList().OrderBy(a => a.StudentName);
-            //list.First().
-            foreach (var l in list)
+            var studentList = data.ToList().OrderBy(a => a.StudentSurname);
+
+            foreach (var student in studentList)
             {
-                var view = new MyData() { StudentName = l.StudentName, StudentSurname = l.StudentSurname, Mark = l.Mark.ToString(), Note = l.Note};
-                var record = model.Marks.Where(m => m.Student.Name == l.StudentName && m.Student.Surname == l.StudentSurname && m.Date == date && m.Subject.Name == subject);
+                var view = new MyData() { StudentName = student.StudentName, StudentSurname = student.StudentSurname, Mark = student.Mark.ToString(), Note = student.Note};
+                var record = model.Marks.Where(s => s.Student.Name == student.StudentName && s.Student.Surname == student.StudentSurname && s.Date == selectedDate && s.Subject.Name == subject);
                 if (record.Any())
                 {
                     view.Mark = record.First().Mark1.ToString();
                     view.Note = record.First().Description;
                 }
                 MyCollection.Add(view);
-            }
-           
+            }           
             TeacherMarkSetter.ItemsSource = MyCollection;
+        }
 
+        private void ShowTeacherSchedule(object sender, RoutedEventArgs e)
+        {
+            TeacherCalendar.SelectedDate = DateTime.Now.Date;
         }
         private void AddMarks(object sender, DataGridRowEditEndingEventArgs e)
         {
-            var s = e.Row.DataContext as MyData;
-            var date = TeacherCalendar.SelectedDate.Value.Date;
-            var record = model.Marks.Where(m => m.Student.Name == s.StudentName && m.Student.Surname == s.StudentSurname && m.Date == date&&m.Subject.Name==subject);
-            if (record.Any())
-                try
-                {
-                    record.First().Mark1 = int.Parse(s.Mark);
-                    record.First().Description = s.Note;
-                    model.SaveChanges();
-                }
-                catch (Exception)
-                {
-
-
-                }
-            else
+            var chosenRow = e.Row.DataContext as MyData;
+            if (TeacherCalendar.SelectedDate != null)
             {
-                var student = model.Students.First(m => m.Name == s.StudentName && m.Surname == s.StudentSurname);
-                var sbj = model.Subjects.First(a => a.Name == subject);
-                var mark = new Mark()
+                var date = TeacherCalendar.SelectedDate.Value.Date;
+                var record = model.Marks.Where(s => s.Student.Name == chosenRow.StudentName && s.Student.Surname == chosenRow.StudentSurname && s.Date == date&&s.Subject.Name==subject);
+                if (record.Any())
+                    try
+                    {
+                        record.First().Mark1 = int.Parse(chosenRow.Mark);
+                        record.First().Description = chosenRow.Note;
+                        model.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        StatusBar.Content = ex.Message;
+                    }
+                else
                 {
-                    Date = TeacherCalendar.SelectedDate.Value.Date,
-                    Mark1 = int.Parse(s.Mark),
-                    Student_Id = student.Id,
-                    Subject_Id = sbj.Id,
-                    Description = s.Note
-                };
-                model.Marks.Add(mark);
-                try
-                {
-                    model.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    
-                }
+                    var student = model.Students.First(m => m.Name == chosenRow.StudentName && m.Surname == chosenRow.StudentSurname);
+                    var sbj = model.Subjects.First(a => a.Name == subject);
+                    var mark = new Mark()
+                    {
+                        Date = TeacherCalendar.SelectedDate.Value.Date,
+                        Mark1 = int.Parse(chosenRow.Mark),
+                        Student_Id = student.Id,
+                        Subject_Id = sbj.Id,
+                        Description = chosenRow.Note
+                    };
+                    model.Marks.Add(mark);
+                    try
+                    {
+                        model.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        StatusBar.Content = ex.Message;
+                    }
               
+                }
             }
         }
 
         private void ShowTeacherSchedule(object sender, SelectionChangedEventArgs e)
         {
-            var DayOfWeek = ((Calendar)sender).SelectedDate.Value.DayOfWeek.ToString();
-            var View = from asd in model.Schedules
-                       join ast in model.Subjects on asd.Subjects_Id equals ast.Id
-                       join ask in model.Teachers on asd.Teachers_Id equals ask.Id
-                       join ass in model.Groups on asd.Groups_Id equals ass.Id
-                       where asd.WeekDay == DayOfWeek
-                       select new
-                       {
-                           Num = asd.LessonNumber,
-                           Subject = ast.Name,
-                           Teacher = ask.Surname,
-                           Group = ass.Name,
-                           Auditory = asd.Description
+            var selectedDate = TeacherCalendar.SelectedDate;
+            if (selectedDate != null)
+            {
+                var DayOfWeek = selectedDate.Value.DayOfWeek.ToString();
+                var View = from schedule in model.Schedules
+                    join subj in model.Subjects on schedule.Subjects_Id equals subj.Id
+                    join teacher in model.Teachers on schedule.Teachers_Id equals teacher.Id
+                    join @group in model.Groups on schedule.Groups_Id equals @group.Id
+                    where schedule.WeekDay == DayOfWeek
+                    select new
+                    {
+                        Num = schedule.LessonNumber,
+                        Subject = subj.Name,
+                        Teacher = teacher.Surname,
+                        Group = @group.Name,
+                        Auditory = schedule.Description
 
-                       };
-            TeacherSchedule.ItemsSource = View.ToList().OrderBy(o => o.Num);
-
+                    };
+                TeacherSchedule.ItemsSource = View.ToList().OrderBy(o => o.Num);
+            }
         }
-        private string groupname;
-        private string subject;
-        private void test(object sender, SelectionChangedEventArgs e)
+
+        private string groupname="";
+        private string subject="";
+        private void SelectedRow(object sender, SelectionChangedEventArgs e)
         {
 
             DataGrid _DataGrid = sender as DataGrid;
             try
             {
-                string strEID = _DataGrid.SelectedCells[0].Item.ToString();
-                int t = strEID.IndexOf("Group = ");
-                int p = strEID.IndexOf(", Auditory");
-                groupname = strEID.Substring(t + 8, p - t - 8);
-                t = strEID.IndexOf("Subject = ");
-                p = strEID.IndexOf(", Teacher");
-                subject = strEID.Substring(t + 10, p - t - 10); ;
+                if (_DataGrid != null)
+                {
+                    string strEID = _DataGrid.SelectedCells[0].Item.ToString();
+                    int lpos = strEID.IndexOf("Group = ", StringComparison.Ordinal);
+                    int rpos = strEID.IndexOf(", Auditory", StringComparison.Ordinal);
+                    groupname = strEID.Substring(lpos + 8, rpos - lpos - 8);
+                    lpos = strEID.IndexOf("Subject = ", StringComparison.Ordinal);
+                    rpos = strEID.IndexOf(", Teacher", StringComparison.Ordinal);
+                    subject = strEID.Substring(lpos + 10, rpos - lpos - 10);
+                }
+                ;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 groupname = "";
                 subject = "";
@@ -141,7 +154,7 @@ namespace ElectronicDiary
 
         private void SetMarks(object sender, RoutedEventArgs e)
         {
-            if (groupname != "" && subject != "")
+            if (groupname != "" || subject != "")
             {
                 SetMarks();
                 TeacherCalendar.Visibility = Visibility.Hidden;
@@ -151,7 +164,7 @@ namespace ElectronicDiary
             }
             else
             {
-                MessageBox.Show("Select lesson");
+                StatusBar.Content = "Select lesson in the table";
             }
         }
         private void BackToTeacherSchedule(object sender, RoutedEventArgs e)
@@ -162,6 +175,8 @@ namespace ElectronicDiary
             BackToTeacherScheduleButton.Visibility = Visibility.Hidden;
             groupname = "";
             subject = "";
+            TeacherSchedule.SelectedItem = null;
+            
         }
 
 

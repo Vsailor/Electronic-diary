@@ -41,23 +41,8 @@ namespace ElectronicDiary
             Logining.Visibility = Visibility.Visible;
             Exit.Visibility = Visibility.Hidden;
             Login.Text = "";
-            Password.Password = "";
+            Password.Password = "";            
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
