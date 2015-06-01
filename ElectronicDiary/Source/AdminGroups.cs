@@ -111,6 +111,11 @@ namespace ElectronicDiary
 
         private void AdminPanelSaveEditGroup_Click(object sender, RoutedEventArgs e)
         {
+            if (AdminPanelGroupIdCombobox.SelectedIndex == -1)
+            {
+                StatusBar.Content = "Id isn't selected";
+                return;
+            }
             try
             {
                 int index = int.Parse(AdminPanelGroupIdCombobox.SelectedValue.ToString());

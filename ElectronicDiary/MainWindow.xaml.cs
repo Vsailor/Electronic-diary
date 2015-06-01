@@ -25,10 +25,10 @@ namespace ElectronicDiary
         {
             InitializeComponent();
             model = new ElectronicDiaryDBEntities();
-            //AdminPanelShow();
-            Admin.Visibility = Visibility.Hidden;
+            AdminPanelShow();
+            //Admin.Visibility = Visibility.Hidden;
             Client.Visibility = Visibility.Hidden;
-            Logining.Visibility = Visibility.Visible;
+            Logining.Visibility = Visibility.Hidden;
             Exit.Visibility = Visibility.Hidden;
             StatusBar.Content = "Use your login and password to authorizate";
         }
@@ -43,6 +43,8 @@ namespace ElectronicDiary
             Login.Text = "";
             Password.Password = "";
         }
+
+
 
 
 

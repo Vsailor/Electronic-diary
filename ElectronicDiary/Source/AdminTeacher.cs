@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ElectronicDiary
 {
@@ -64,6 +65,11 @@ namespace ElectronicDiary
                 model.Teachers.Add(teacher);
                 model.SaveChanges();
                 ShowTeachers();
+                AdminTeacherNameTextBox.Text = String.Empty;
+                AdminTeacherSurnameTextBox.Text = String.Empty;
+                AdminTeacherLoginTextBox.Text = String.Empty;
+                AdminTeacherPasswordTextBox.Text = String.Empty;
+                AdminPanelTeacherAdd(sender, e);
                 StatusBar.Content = "Teacher added";
             }
             catch (Exception ex)
@@ -76,22 +82,111 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminTeachersEdit);
             AdminColName.Content = "Edit teacher";
+            AdminTeacherIdComboboxEdit.Items.Clear();
+            var teachers = (from items in model.Teachers
+                            select items.Id).ToList();
+            foreach (var items in teachers)
+            {
+                AdminTeacherIdComboboxEdit.Items.Add(items);
+            }
         }
+
+        private void AdminTeacherIdComboboxEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AdminTeacherIdComboboxEdit.SelectedIndex != -1)
+            {
+                int index = (int)(AdminTeacherIdComboboxEdit.SelectedValue);
+                var teacher = (from teachers in model.Teachers
+                               where teachers.Id == index
+                               select teachers).FirstOrDefault();
+                AdminTeacherNameTextBoxEdit.Text = teacher.Name;
+                AdminTeacherSurnameTextBoxEdit.Text = teacher.Surname;
+                AdminTeacherLoginTextBoxEdit.Text = teacher.User.Login;
+                AdminTeacherPasswordTextBoxEdit.Text = String.Empty;
+            }
+        }
+
         private void AdminPanelBackEditTeacher_Click(object sender, RoutedEventArgs e)
         {
             ShowAdminGrid(AdminTeachersGrid);
             AdminColName.Content = String.Empty;
+            AdminTeacherNameTextBoxEdit.Text = String.Empty;
+            AdminTeacherSurnameTextBoxEdit.Text = String.Empty;
+            AdminTeacherLoginTextBoxEdit.Text = String.Empty;
+            AdminTeacherPasswordTextBoxEdit.Text = String.Empty;
         }
 
         private void AdminPanelSaveTeacher_Click(object sender, RoutedEventArgs e)
         {
-            // Editing teacher
+            if (AdminTeacherIdComboboxEdit.SelectedIndex == -1)
+            {
+                StatusBar.Content = "Id isn't selected";
+                return;
+            }
+            int index = (int)(AdminTeacherIdComboboxEdit.SelectedValue);
+            string name = AdminTeacherNameTextBoxEdit.Text;
+            string surname = AdminTeacherSurnameTextBoxEdit.Text;
+            string login = AdminTeacherLoginTextBoxEdit.Text;
+            string pass = AdminTeacherPasswordTextBoxEdit.Text;
+            if (name == String.Empty || surname == String.Empty
+                || login == String.Empty || pass == String.Empty)
+            {
+                StatusBar.Content = "At least one textbox is emty";
+                return;
+            }
+            User teacher = new User() { Login = login, Password = pass };
+            try
+            {
+                var user = (from teachers in model.Teachers
+                            where teachers.Id == index
+                            select teachers).FirstOrDefault();
+                if (user.User.Login != login)
+                {
+                    if (IsExist(teacher))
+                    {
+                        StatusBar.Content = "This teacher already exists";
+                        return;  
+                    }
+                }
+                user.Name = name;
+                user.Surname = surname;
+                user.User.Login = login;
+                user.User.Password = pass;
+                model.SaveChanges();
+                StatusBar.Content = "Teacher saved";
+                AdminTeacherNameTextBoxEdit.Text = String.Empty;
+                AdminTeacherSurnameTextBoxEdit.Text = String.Empty;
+                AdminTeacherLoginTextBoxEdit.Text = String.Empty;
+                AdminTeacherPasswordTextBoxEdit.Text = String.Empty;
+                ShowTeachers();
+                AdminPanelTeacherEdit(sender, e);
+            }
+            catch (Exception ex)
+            {
+                StatusBar.Content = ex.Message;
+            }
         }
         private void AdminPanelTeacherRemove(object sender, RoutedEventArgs e)
         {
             ShowAdminGrid(AdminTeachersRemove);
             AdminColName.Content = "Remove teacher";
+            AdminTeacherLoginDeleteCombobox.Items.Clear();
+            try
+            {
+                var items = (from teachers in model.Teachers
+                             select teachers).ToList();
+                foreach (var item in items)
+                {
+                    AdminTeacherLoginDeleteCombobox.Items.Add(item.User.Login);
+                }
+            }
+            catch (Exception ex)
+            {
+                StatusBar.Content = ex.Message;
+            }
+
         }
+
 
 
         private void AdminPanelBackDeleteTeacher_Click(object sender, RoutedEventArgs e)
@@ -102,8 +197,34 @@ namespace ElectronicDiary
 
         private void AdminPanelDeleteTeacher_Click(object sender, RoutedEventArgs e)
         {
-            // Removing teacher
-
+            if (AdminTeacherLoginDeleteCombobox.SelectedIndex == -1)
+            {
+                StatusBar.Content = "Login is not chosen";
+                return;
+            }
+            string login = AdminTeacherLoginDeleteCombobox.SelectedValue.ToString();
+            var item = (from teachers in model.Teachers
+                        where teachers.User.Login == login &&
+                        teachers.User.Role == "teacher"
+                        select teachers).FirstOrDefault();
+            if (item == null)
+            {
+                StatusBar.Content = "Teacher not found";
+                return;
+            }
+            try
+            {
+                model.Teachers.Remove(item);
+                model.SaveChanges();
+                AdminPanelTeacherRemove(sender, e);
+                ShowTeachers();
+                ShowAdminGrid(AdminTeachersGrid);
+                AdminColName.Content = String.Empty;
+            }
+            catch (Exception ex)
+            {
+                StatusBar.Content = ex.Message;
+            }
         }
     }
 }
