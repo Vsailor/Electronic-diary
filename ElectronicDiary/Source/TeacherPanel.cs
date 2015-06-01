@@ -110,6 +110,7 @@ namespace ElectronicDiary
                     join teacher in model.Teachers on schedule.Teachers_Id equals teacher.Id
                     join @group in model.Groups on schedule.Groups_Id equals @group.Id
                     where schedule.WeekDay == DayOfWeek
+					where teacher.Id==selectedTeacher.Id
                     select new
                     {
                         Num = schedule.LessonNumber,

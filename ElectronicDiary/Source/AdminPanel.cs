@@ -77,7 +77,7 @@ namespace ElectronicDiary
             AdminDataGrid.ItemsSource = (from students in model.Students
                                          join groups in model.Groups on students.Group_Id equals groups.Id
                                          join users in model.Users on students.User_Id equals users.Id
-                                         select new { Name = students.Name, Surname = students.Surname, Group = groups.Name, Login = users.Login, Password = users.Password }).ToList();
+                                         select new {Id = students.Id, Name = students.Name, Surname = students.Surname, Group = groups.Name, Login = users.Login}).ToList();
             ShowAdminGrid(AdminStudentsGrid);
         }
         private void ShowTeachers()
@@ -161,6 +161,20 @@ namespace ElectronicDiary
                          where t.Name == teachers.Name
                          && t.Surname == teachers.Surname
                          select teachers).FirstOrDefault();
+            if (items != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsExist(Student s)
+        {
+            var items = (from students in model.Students
+                         where s.Name == students.Name
+                         && s.Surname == students.Surname
+                         && s.Group_Id == students.Group_Id
+                         select students).FirstOrDefault();
             if (items != null)
             {
                 return true;

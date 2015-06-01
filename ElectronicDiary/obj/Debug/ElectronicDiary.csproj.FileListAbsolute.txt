@@ -37,7 +37,6 @@ C:\Electronic-diary\ElectronicDiary\bin\Debug\EntityFramework.dll
 C:\Electronic-diary\ElectronicDiary\bin\Debug\EntityFramework.SqlServer.dll
 C:\Electronic-diary\ElectronicDiary\bin\Debug\EntityFramework.xml
 C:\Electronic-diary\ElectronicDiary\bin\Debug\EntityFramework.SqlServer.xml
-C:\Electronic-diary\ElectronicDiary\obj\Debug\ElectronicDiary.csprojResolveAssemblyReference.cache
 C:\Electronic-diary\ElectronicDiary\obj\Debug\MainWindow.baml
 C:\Electronic-diary\ElectronicDiary\obj\Debug\MainWindow.g.cs
 C:\Electronic-diary\ElectronicDiary\obj\Debug\App.g.cs
@@ -45,3 +44,4 @@ C:\Electronic-diary\ElectronicDiary\obj\Debug\ElectronicDiary_MarkupCompile.cach
 C:\Electronic-diary\ElectronicDiary\obj\Debug\ElectronicDiary.g.resources
 C:\Electronic-diary\ElectronicDiary\obj\Debug\ElectronicDiary.Properties.Resources.resources
 C:\Electronic-diary\ElectronicDiary\obj\Debug\ElectronicDiary.csproj.GenerateResource.Cache
+C:\Electronic-diary\ElectronicDiary\obj\Debug\ElectronicDiary.csprojResolveAssemblyReference.cache
