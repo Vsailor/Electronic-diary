@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,16 +24,18 @@ namespace ElectronicDiary
         public MainWindow()
         {
             InitializeComponent();
-            model=new ElectronicDiaryDBEntities();
+            model = new ElectronicDiaryDBEntities();
             //AdminPanelShow();
             Admin.Visibility = Visibility.Hidden;
-            Client.Visibility=Visibility.Hidden;
+            Client.Visibility = Visibility.Hidden;
             Logining.Visibility = Visibility.Visible;
             Exit.Visibility = Visibility.Hidden;
+            StatusBar.Content = "Use your login and password to authorizate";
         }
 
         private void logout(object sender, RoutedEventArgs e)
         {
+            StatusBar.Content = "Use your login and password to authorizate";
             Admin.Visibility = Visibility.Hidden;
             Client.Visibility = Visibility.Hidden;
             Logining.Visibility = Visibility.Visible;
@@ -43,6 +43,20 @@ namespace ElectronicDiary
             Login.Text = "";
             Password.Password = "";
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
