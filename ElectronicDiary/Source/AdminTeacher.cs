@@ -19,6 +19,11 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminTeachersGrid);
             AdminColName.Content = String.Empty;
+            AdminTeacherNameTextBox.Text = String.Empty;
+            AdminTeacherSurnameTextBox.Text = String.Empty;
+            AdminTeacherLoginTextBox.Text = String.Empty;
+            AdminTeacherPasswordTextBox.Text = String.Empty;
+
         }
 
         private void AdminPanelAddTeacher_Click(object sender, RoutedEventArgs e)
@@ -216,9 +221,9 @@ namespace ElectronicDiary
             {
                 model.Teachers.Remove(item);
                 model.SaveChanges();
-                AdminPanelTeacherRemove(sender, e);
                 ShowTeachers();
                 ShowAdminGrid(AdminTeachersGrid);
+                AdminPanelTeacherRemove(sender, e);
                 AdminColName.Content = String.Empty;
             }
             catch (Exception ex)
