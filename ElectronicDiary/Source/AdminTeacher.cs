@@ -22,7 +22,7 @@ namespace ElectronicDiary
             AdminTeacherNameTextBox.Text = String.Empty;
             AdminTeacherSurnameTextBox.Text = String.Empty;
             AdminTeacherLoginTextBox.Text = String.Empty;
-            AdminTeacherPasswordTextBox.Text = String.Empty;
+            AdminTeacherPasswordTextBox.Password = String.Empty;
 
         }
 
@@ -31,7 +31,7 @@ namespace ElectronicDiary
             string name = AdminTeacherNameTextBox.Text;
             string surname = AdminTeacherSurnameTextBox.Text;
             string login = AdminTeacherLoginTextBox.Text;
-            string pass = AdminTeacherPasswordTextBox.Text;
+            string pass = AdminTeacherPasswordTextBox.Password;
             if (name == String.Empty || surname == String.Empty
                 || login == String.Empty || pass == String.Empty)
             {
@@ -73,7 +73,7 @@ namespace ElectronicDiary
                 AdminTeacherNameTextBox.Text = String.Empty;
                 AdminTeacherSurnameTextBox.Text = String.Empty;
                 AdminTeacherLoginTextBox.Text = String.Empty;
-                AdminTeacherPasswordTextBox.Text = String.Empty;
+                AdminTeacherPasswordTextBox.Password = String.Empty;
                 AdminPanelTeacherAdd(sender, e);
                 StatusBar.Content = "Teacher added";
             }
@@ -107,7 +107,7 @@ namespace ElectronicDiary
                 AdminTeacherNameTextBoxEdit.Text = teacher.Name;
                 AdminTeacherSurnameTextBoxEdit.Text = teacher.Surname;
                 AdminTeacherLoginTextBoxEdit.Text = teacher.User.Login;
-                AdminTeacherPasswordTextBoxEdit.Text = String.Empty;
+                AdminTeacherPasswordTextBoxEdit.Password = String.Empty;
             }
         }
 
@@ -118,7 +118,7 @@ namespace ElectronicDiary
             AdminTeacherNameTextBoxEdit.Text = String.Empty;
             AdminTeacherSurnameTextBoxEdit.Text = String.Empty;
             AdminTeacherLoginTextBoxEdit.Text = String.Empty;
-            AdminTeacherPasswordTextBoxEdit.Text = String.Empty;
+            AdminTeacherPasswordTextBoxEdit.Password = String.Empty;
         }
 
         private void AdminPanelSaveTeacher_Click(object sender, RoutedEventArgs e)
@@ -132,7 +132,7 @@ namespace ElectronicDiary
             string name = AdminTeacherNameTextBoxEdit.Text;
             string surname = AdminTeacherSurnameTextBoxEdit.Text;
             string login = AdminTeacherLoginTextBoxEdit.Text;
-            string pass = AdminTeacherPasswordTextBoxEdit.Text;
+            string pass = AdminTeacherPasswordTextBoxEdit.Password;
             if (name == String.Empty || surname == String.Empty
                 || login == String.Empty || pass == String.Empty)
             {
@@ -162,7 +162,7 @@ namespace ElectronicDiary
                 AdminTeacherNameTextBoxEdit.Text = String.Empty;
                 AdminTeacherSurnameTextBoxEdit.Text = String.Empty;
                 AdminTeacherLoginTextBoxEdit.Text = String.Empty;
-                AdminTeacherPasswordTextBoxEdit.Text = String.Empty;
+                AdminTeacherPasswordTextBoxEdit.Password = String.Empty;
                 ShowTeachers();
                 AdminPanelTeacherEdit(sender, e);
             }

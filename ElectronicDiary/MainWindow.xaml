@@ -29,7 +29,7 @@
                 <ComboBox x:Name="AdminPanelGroupIdRemoveCombobox" HorizontalAlignment="Left" Margin="89,29,0,0" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Group id:" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top"/>
             </Grid>
-            <Grid x:Name="AdminGroupsEdit" HorizontalAlignment="Left" Height="382" Margin="618,91,0,-30" VerticalAlignment="Top" Width="327">
+            <Grid x:Name="AdminGroupsEdit" HorizontalAlignment="Left" Height="382" Margin="618,91,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
                 <TextBox x:Name="GroupNameTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <TextBox x:Name="GroupYearTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Group name:" HorizontalAlignment="Left" Margin="5,51,0,0" VerticalAlignment="Top"/>
@@ -56,12 +56,12 @@
                 <Label Content="Surname:" HorizontalAlignment="Left" Margin="30,55,0,0" VerticalAlignment="Top"/>
                 <Button x:Name="AdminPanelAddStudent" Content="Add" HorizontalAlignment="Left" Margin="195,227,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelAddStudent_Click"/>
                 <Label Content="Group:" HorizontalAlignment="Left" Margin="43,101,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="AdminStudentPassTextBox" HorizontalAlignment="Left" Height="22" Margin="89,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Password:" HorizontalAlignment="Left" Margin="26,186,0,0" VerticalAlignment="Top"/>
                 <Label Content="Login:" HorizontalAlignment="Left" Margin="47,145,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="AdminStudentLoginTextBox" HorizontalAlignment="Left" Height="22" Margin="89,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Button x:Name="AdminPanelBackStudent" Content="Back" HorizontalAlignment="Left" Margin="89,227,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelBackStudent_Click"/>
                 <ComboBox x:Name="AdminStudentGroupCombobox" HorizontalAlignment="Left" Margin="89,101,0,0" VerticalAlignment="Top" Width="177"/>
+                <PasswordBox x:Name="AdminStudentPassTextBox" HorizontalAlignment="Left" Margin="89,186,0,0" VerticalAlignment="Top" Width="177" Height="26"/>
             </Grid>
             <Grid x:Name="AdminStudentsDelete" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
                 <Button x:Name="AdminPanelDelete" Content="Delete" HorizontalAlignment="Left" Margin="195,72,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelDelete_Click"/>
@@ -76,7 +76,6 @@
                 <Label Content="Surname:" HorizontalAlignment="Left" Margin="30,105,0,0" VerticalAlignment="Top"/>
                 <Button x:Name="AdminPanelEditSave" Content="Save" HorizontalAlignment="Left" Margin="195,277,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelEditSave_Click"/>
                 <Label Content="Group:" HorizontalAlignment="Left" Margin="43,152,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="AdminStudentPassEditTextBox" HorizontalAlignment="Left" Height="22" Margin="89,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Password:" HorizontalAlignment="Left" Margin="26,236,0,0" VerticalAlignment="Top"/>
                 <Label Content="Login:" HorizontalAlignment="Left" Margin="45,195,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="AdminStudentLoginEditTextBox" HorizontalAlignment="Left" Height="22" Margin="89,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
@@ -84,6 +83,7 @@
                 <ComboBox x:Name="AdminStudentGroupEditCombobox" HorizontalAlignment="Left" Margin="89,152,0,0" VerticalAlignment="Top" Width="177"/>
                 <ComboBox x:Name="AdminStudentsIdCombobox" HorizontalAlignment="Left" Margin="89,28,0,0" VerticalAlignment="Top" Width="177" SelectionChanged="AdminStudentsIdCombobox_SelectionChanged"/>
                 <Label Content="Student Id:" HorizontalAlignment="Left" Margin="16,28,0,0" VerticalAlignment="Top"/>
+                <PasswordBox x:Name="AdminStudentPassEditTextBox" HorizontalAlignment="Left" Margin="89,236,0,0" VerticalAlignment="Top" Width="177" Height="26"/>
             </Grid>
             <Grid x:Name="AdminSubjectsGrid" HorizontalAlignment="Left" Height="364" Margin="618,109,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
                 <TextBox x:Name="SubjectNameTextBox" HorizontalAlignment="Left" Height="22" Margin="89,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
@@ -102,24 +102,24 @@
                 <Label Content="Name:" HorizontalAlignment="Left" Margin="45,12,0,0" VerticalAlignment="Top"/>
                 <Label Content="Surname:" HorizontalAlignment="Left" Margin="30,55,0,0" VerticalAlignment="Top"/>
                 <Button x:Name="AdminPanelAddTeacher" Content="Add" HorizontalAlignment="Left" Margin="195,190,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelAddTeacher_Click"/>
-                <TextBox x:Name="AdminTeacherPasswordTextBox" HorizontalAlignment="Left" Height="22" Margin="89,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Password:" HorizontalAlignment="Left" Margin="26,143,0,0" VerticalAlignment="Top"/>
                 <Label Content="Login:" HorizontalAlignment="Left" Margin="47,99,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="AdminTeacherLoginTextBox" HorizontalAlignment="Left" Height="22" Margin="89,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Button x:Name="AdminPanelBackTeacher" Content="Back" HorizontalAlignment="Left" Margin="89,190,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelBackTeacher_Click"/>
+                <PasswordBox x:Name="AdminTeacherPasswordTextBox" HorizontalAlignment="Left" Margin="89,143,0,0" VerticalAlignment="Top" Width="177" Height="25"/>
             </Grid>
-            <Grid x:Name="AdminTeachersEdit" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
+            <Grid x:Name="AdminTeachersEdit" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327">
                 <TextBox x:Name="AdminTeacherNameTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <TextBox x:Name="AdminTeacherSurnameTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Name:" HorizontalAlignment="Left" Margin="45,39,0,0" VerticalAlignment="Top"/>
                 <Label Content="Surname:" HorizontalAlignment="Left" Margin="30,82,0,0" VerticalAlignment="Top"/>
                 <Button x:Name="AdminPanelSaveTeacher" Content="Save" HorizontalAlignment="Left" Margin="195,218,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelSaveTeacher_Click"/>
-                <TextBox x:Name="AdminTeacherPasswordTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Password:" HorizontalAlignment="Left" Margin="26,170,0,0" VerticalAlignment="Top"/>
                 <Label Content="Login:" HorizontalAlignment="Left" Margin="47,126,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="AdminTeacherLoginTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Button x:Name="AdminPanelBackEditTeacher" Content="Back" HorizontalAlignment="Left" Margin="89,218,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelBackEditTeacher_Click"/>
                 <ComboBox x:Name="AdminTeacherIdComboboxEdit" HorizontalAlignment="Left" Margin="89,10,0,0" VerticalAlignment="Top" Width="177" SelectionChanged="AdminTeacherIdComboboxEdit_SelectionChanged"/>
+                <PasswordBox x:Name="AdminTeacherPasswordTextBoxEdit" HorizontalAlignment="Left" Margin="89,170,0,0" VerticalAlignment="Top" Width="177" Height="26"/>
             </Grid>
             <Grid x:Name="AdminTeachersRemove" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
                 <Button x:Name="AdminPanelDeleteTeacher" Content="Delete" HorizontalAlignment="Left" Margin="195,72,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelDeleteTeacher_Click"/>

@@ -17,7 +17,7 @@ namespace ElectronicDiary
             AdminStudentNameTextBox.Text = String.Empty;
             AdminStudentSurnameTextBox.Text= String.Empty;
             AdminStudentLoginTextBox.Text= String.Empty;
-            AdminStudentPassTextBox.Text = String.Empty;
+            AdminStudentPassTextBox.Password = String.Empty;
             AdminStudentGroupCombobox.Items.Clear();
             var groups = (from items in model.Groups
                           select items.Name).ToList();
@@ -36,7 +36,7 @@ namespace ElectronicDiary
             AdminStudentNameEditTextBox.Text = String.Empty;
             AdminStudentSurnameEditTextBox.Text = String.Empty;
             AdminStudentLoginEditTextBox.Text = String.Empty;
-            AdminStudentPassEditTextBox.Text = String.Empty;
+            AdminStudentPassEditTextBox.Password = String.Empty;
             AdminStudentsIdCombobox.Items.Clear();
             var ids = (from students in model.Students
                        select students.Id).ToList();
@@ -77,7 +77,7 @@ namespace ElectronicDiary
             string name = AdminStudentNameTextBox.Text;
             string surname = AdminStudentSurnameTextBox.Text;
             string login = AdminStudentLoginTextBox.Text;
-            string pass = AdminStudentPassTextBox.Text;
+            string pass = AdminStudentPassTextBox.Password;
             string groupName = AdminStudentGroupCombobox.SelectedValue.ToString();
             if (name == String.Empty || surname == String.Empty
                 || login == String.Empty || pass == String.Empty || groupName == String.Empty)
@@ -124,7 +124,7 @@ namespace ElectronicDiary
                 AdminStudentNameTextBox.Text = String.Empty;
                 AdminStudentSurnameTextBox.Text = String.Empty;
                 AdminStudentLoginTextBox.Text = String.Empty;
-                AdminStudentPassTextBox.Text = String.Empty;
+                AdminStudentPassTextBox.Password = String.Empty;
                 AdminPanelStudentsAddStudent_Click(sender, e);
                 StatusBar.Content = "Student added";
             }
@@ -193,7 +193,7 @@ namespace ElectronicDiary
                 AdminStudentNameEditTextBox.Text = student.Name;
                 AdminStudentSurnameEditTextBox.Text = student.Surname;
                 AdminStudentLoginEditTextBox.Text = student.User.Login;
-                AdminStudentPassEditTextBox.Text = String.Empty;
+                AdminStudentPassEditTextBox.Password = String.Empty;
                 AdminStudentGroupEditCombobox.Items.Clear();
                 var groupList = (from groups in model.Groups
                              select groups.Name).ToList();
@@ -215,7 +215,7 @@ namespace ElectronicDiary
             string name = AdminStudentNameEditTextBox.Text;
             string surname = AdminStudentSurnameEditTextBox.Text;
             string login = AdminStudentLoginEditTextBox.Text;
-            string pass = AdminStudentPassEditTextBox.Text;
+            string pass = AdminStudentPassEditTextBox.Password;
             if (name == String.Empty || surname == String.Empty
                 || login == String.Empty || pass == String.Empty)
             {
@@ -245,7 +245,7 @@ namespace ElectronicDiary
                 AdminStudentNameEditTextBox.Text = String.Empty;
                 AdminStudentSurnameEditTextBox.Text = String.Empty;
                 AdminStudentLoginEditTextBox.Text = String.Empty;
-                AdminStudentPassEditTextBox.Text = String.Empty;
+                AdminStudentPassEditTextBox.Password = String.Empty;
                 AdminStudentGroupEditCombobox.Items.Clear();
                 AdminStudentsIdCombobox.Items.Clear();
                 ShowStudents();
