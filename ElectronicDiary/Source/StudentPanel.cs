@@ -12,7 +12,7 @@ namespace ElectronicDiary
 {
     partial class MainWindow : Window
     {
-        Student  SelectedStudent;
+        Student  selectedStudent;
         private void ShowName(object sender, SelectionChangedEventArgs e)
         {
             StudentDay.Columns.Clear();
@@ -30,7 +30,7 @@ namespace ElectronicDiary
                            Subject = ast.Name,
                            Teacher = ask.Surname,
                            Group = ass.Name,
-                        
+                           Auditory = asd.Description
                        };
             StudentDay.ItemsSource = View.ToList().OrderBy(o=>o.Num);
         }
@@ -39,12 +39,12 @@ namespace ElectronicDiary
             var name=SubjectList.SelectedItem.ToString();
             var view = from m in model.Marks
                 where m.Subject.Name == name
-                where m.Student.Id==SelectedStudent.Id
+                where m.Student.Id==selectedStudent.Id
                 select new
                 {
                     Date = m.Date,
                     Mark = m.Mark1,
-                    Notes=m.Description
+                    Note=m.Description
                 };
             MarkTable.ItemsSource = view.ToList().OrderBy(m=>m.Date);
         }

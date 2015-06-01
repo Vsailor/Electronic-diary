@@ -17,6 +17,7 @@ namespace ElectronicDiary
         public Group()
         {
             this.Students = new HashSet<Student>();
+            this.Schedules = new HashSet<Schedule>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,6 @@ namespace ElectronicDiary
     
         public virtual ICollection<Student> Students { get; set; }
         public virtual Schedule Schedule { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

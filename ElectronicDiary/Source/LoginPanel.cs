@@ -32,7 +32,7 @@ namespace ElectronicDiary
                     Logining.Visibility = Visibility.Hidden;
                     Exit.Visibility = Visibility.Visible;
                     AdminPanelShow();
-                    StudentName.Content = "admin";
+                    UserName.Content = "admin";
                 }
                 else if (z.First().Role == role.student.ToString())
                 {
@@ -42,23 +42,23 @@ namespace ElectronicDiary
                     Exit.Visibility = Visibility.Visible;
                     Teacher.Visibility = Visibility.Hidden;
                     int id = z.First().Id;
-                    SelectedStudent = (from st in model.Students
+                    selectedStudent = (from st in model.Students
                         where st.User_Id == id
                         select st).FirstOrDefault();
                                             
-                    StudentName.Content = SelectedStudent.Name+" "+SelectedStudent.Surname;
+                    UserName.Content = selectedStudent.Name+" "+selectedStudent.Surname;
                     var groups = model.Groups.ToList();
                     foreach (var @group in groups)
                     {
                         StudentGroupList.Items.Add(@group.Name);
                     }
-                    StudentGroupList.SelectedItem=SelectedStudent.Group.Name;
+                    StudentGroupList.SelectedItem=selectedStudent.Group.Name;
                     var subjects = model.Subjects.ToList();
                     foreach (var @subject in subjects)
                     {
                         SubjectList.Items.Add(subject.Name);
                     }
-                    //StudentGroupList.SelectedItem = SelectedStudent.Group.Name;
+                    //StudentGroupList.SelectedItem = selectedStudent.Group.Name;
 
                 }
                 else
@@ -69,6 +69,13 @@ namespace ElectronicDiary
                         Student.Visibility = Visibility.Hidden;
                         Teacher.Visibility = Visibility.Visible;
                         Exit.Visibility = Visibility.Visible;
+                        //SetMarks();
+                        int id = z.First().Id;
+                        selectedTeacher = (from st in model.Teachers
+                                           where st.UserId == id
+                                           select st).FirstOrDefault();
+
+                        UserName.Content = selectedTeacher.Name + " " + selectedTeacher.Surname;
                     }
             }
             else

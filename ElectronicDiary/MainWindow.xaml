@@ -6,7 +6,7 @@
     <Grid>
         <Grid x:Name="Exit" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
             <Button Content="logout" HorizontalAlignment="Left" Margin="872,10,0,0" VerticalAlignment="Top" Width="69" Click="logout"/>
-            <Label x:Name="StudentName" Content="" Margin="655,6,0,0" VerticalAlignment="Top" Width="217" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
+            <Label x:Name="UserName" Content="" Margin="655,6,0,0" VerticalAlignment="Top" Width="217" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
         </Grid>
         <Grid x:Name="Admin" HorizontalAlignment="Left" Height="443" VerticalAlignment="Top" Width="955" d:IsHidden="True">
             <ComboBox x:Name="AdminComboBox" HorizontalAlignment="Left" Margin="684,48,0,0" VerticalAlignment="Top" Width="206" SelectedIndex="0" SelectionChanged="AdminComboBox_SelectionChanged"/>
@@ -18,12 +18,20 @@
         </Grid>
         <Grid x:Name="Client" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
             <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965">
-                <DataGrid HorizontalAlignment="Left" Margin="176,51,0,0" VerticalAlignment="Top" Height="364" Width="582">
+                <DataGrid x:Name="TeacherMarkSetter" HorizontalAlignment="Left" Margin="278,53,0,0" VerticalAlignment="Top" Height="344" Width="376" AutoGenerateColumns="False" CanUserAddRows="False" RowEditEnding="AddMarks" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Student"/>
-                        <DataGridTextColumn Header="Mark"/>
+                        <DataGridTextColumn Header="Name" 
+                             Binding="{Binding Path=StudentName,UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Surname"
+                             Binding="{Binding Path=StudentSurname,UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Mark" IsReadOnly="False" Binding="{Binding Path=Mark,UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Note" IsReadOnly="False" Binding="{Binding Path=Note,UpdateSourceTrigger=PropertyChanged}"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                <Calendar x:Name="TeacherCalendar" HorizontalAlignment="Left" Margin="735,51,0,0" VerticalAlignment="Top" SelectedDatesChanged="ShowTeacherSchedule" d:IsHidden="True"/>
+                <DataGrid x:Name="TeacherSchedule" HorizontalAlignment="Left" Margin="58,46,0,0" VerticalAlignment="Top" Height="367" Width="672" SelectionChanged="test" d:IsHidden="True"/>
+                <Button x:Name="BackToTeacherScheduleButton" Content="Back" Margin="434,418,456,12" Click="BackToTeacherSchedule" Visibility="Hidden" d:IsHidden="True"/>
+                <Button x:Name="SetMarksButton" HorizontalAlignment="Left" Margin="776,245,0,0" VerticalAlignment="Top" Width="96" Click="SetMarks" Height="25" Content="Set marks" d:IsHidden="True"/>
             </Grid>
             <Grid x:Name="Student" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965" Margin="0,0,-865,-352" d:IsHidden="True">
                 <TabControl HorizontalAlignment="Left" Height="432" Margin="0,10,0,0" VerticalAlignment="Top" Width="955">

@@ -25,5 +25,6 @@ namespace ElectronicDiary
         public virtual Group Group { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual Teacher Teacher { get; set; }
+        public virtual Group Group1 { get; set; }
     }
 }

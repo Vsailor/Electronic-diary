@@ -23,6 +23,7 @@
         <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedule_Groups" />
         <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedule_Subjects" />
         <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedule_Teachers" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedule_Groups1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

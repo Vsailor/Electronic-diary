@@ -8,6 +8,8 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Year" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Students" Relationship="ElectronicDiaryDBModel.FK_Students_Groups" FromRole="Group" ToRole="Student" />
+    <NavigationProperty Name="Schedule" Relationship="ElectronicDiaryDBModel.FK_Schedule_Groups" FromRole="Group" ToRole="Schedule" />
+    <NavigationProperty Name="Schedules" Relationship="ElectronicDiaryDBModel.FK_Schedule_Groups1" FromRole="Group" ToRole="Schedule" />
   </EntityType>
   <EntityType Name="Mark">
     <Key>
@@ -33,6 +35,10 @@
     <Property Name="WeekDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Teachers_Id" Type="Int32" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Group" Relationship="ElectronicDiaryDBModel.FK_Schedule_Groups" FromRole="Schedule" ToRole="Group" />
+    <NavigationProperty Name="Subject" Relationship="ElectronicDiaryDBModel.FK_Schedule_Subjects" FromRole="Schedule" ToRole="Subject" />
+    <NavigationProperty Name="Teacher" Relationship="ElectronicDiaryDBModel.FK_Schedule_Teachers" FromRole="Schedule" ToRole="Teacher" />
+    <NavigationProperty Name="Group1" Relationship="ElectronicDiaryDBModel.FK_Schedule_Groups1" FromRole="Schedule" ToRole="Group" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -55,6 +61,7 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Subjects_Teachers" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects" FromRole="Subject" ToRole="Subjects_Teachers" />
     <NavigationProperty Name="Marks" Relationship="ElectronicDiaryDBModel.FK_Marks_Subjects" FromRole="Subject" ToRole="Mark" />
+    <NavigationProperty Name="Schedules" Relationship="ElectronicDiaryDBModel.FK_Schedule_Subjects" FromRole="Subject" ToRole="Schedule" />
   </EntityType>
   <EntityType Name="Subjects_Teachers">
     <Key>
@@ -76,6 +83,7 @@
     <NavigationProperty Name="Subjects_Teachers" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers" FromRole="Teacher" ToRole="Subjects_Teachers" />
     <Property Type="Int32" Name="UserId" Nullable="false" />
     <NavigationProperty Name="User" Relationship="ElectronicDiaryDBModel.FK_Teachers_Users" FromRole="Teacher" ToRole="User" />
+    <NavigationProperty Name="Schedules" Relationship="ElectronicDiaryDBModel.FK_Schedule_Teachers" FromRole="Teacher" ToRole="Schedule" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -124,6 +132,22 @@
     <AssociationSet Name="FK_Teachers_Users" Association="ElectronicDiaryDBModel.FK_Teachers_Users">
       <End Role="User" EntitySet="Users" />
       <End Role="Teacher" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_Groups" Association="ElectronicDiaryDBModel.FK_Schedule_Groups">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Schedule" EntitySet="Schedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_Subjects" Association="ElectronicDiaryDBModel.FK_Schedule_Subjects">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Schedule" EntitySet="Schedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_Teachers" Association="ElectronicDiaryDBModel.FK_Schedule_Teachers">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Schedule" EntitySet="Schedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_Groups1" Association="ElectronicDiaryDBModel.FK_Schedule_Groups1">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Schedule" EntitySet="Schedules" />
     </AssociationSet>
   </EntityContainer>
   <Association Name="FK_Subjects_Teachers_Subjects">
@@ -207,6 +231,54 @@
       </Principal>
       <Dependent Role="Teacher">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_Groups">
+    <End Type="ElectronicDiaryDBModel.Group" Role="Group" Multiplicity="1" />
+    <End Type="ElectronicDiaryDBModel.Schedule" Role="Schedule" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_Subjects">
+    <End Type="ElectronicDiaryDBModel.Subject" Role="Subject" Multiplicity="1" />
+    <End Type="ElectronicDiaryDBModel.Schedule" Role="Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="Subjects_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_Teachers">
+    <End Type="ElectronicDiaryDBModel.Teacher" Role="Teacher" Multiplicity="1" />
+    <End Type="ElectronicDiaryDBModel.Schedule" Role="Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="Teachers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_Groups1">
+    <End Type="ElectronicDiaryDBModel.Group" Role="Group" Multiplicity="1" />
+    <End Type="ElectronicDiaryDBModel.Schedule" Role="Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="Groups_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
