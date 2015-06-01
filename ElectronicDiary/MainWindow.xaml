@@ -24,16 +24,12 @@
                 <Button x:Name="AdminPanelGroupsAdd" Content="Add" HorizontalAlignment="Left" Margin="195,106,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelGroupsAdd_Click"/>
             </Grid>
             <Grid x:Name="AdminGroupsRemove" HorizontalAlignment="Left" Height="382" Margin="618,91,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
-                <TextBox x:Name="GroupNameTextBoxRemove" HorizontalAlignment="Left" Height="22" Margin="89,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
-                <TextBox x:Name="GroupYearTextBoxRemove" HorizontalAlignment="Left" Height="22" Margin="89,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
-                <Label Content="Group name:" HorizontalAlignment="Left" Margin="5,67,0,0" VerticalAlignment="Top"/>
-                <Label Content="Year:" HorizontalAlignment="Left" Margin="48,109,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="AdminPanelBackRemoveGroup" Content="Back" HorizontalAlignment="Left" Margin="89,155,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelBackRemoveGroup_Click"/>
-                <Button x:Name="AdminPanelRemoveGroup" Content="Remove" HorizontalAlignment="Left" Margin="195,155,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelRemoveGroup_Click"/>
-                <ComboBox x:Name="AdminPanelGroupIdRemoveCombobox" HorizontalAlignment="Left" Margin="89,29,0,0" VerticalAlignment="Top" Width="177" SelectionChanged="AdminPanelGroupIdRemoveCombobox_SelectionChanged"/>
+                <Button x:Name="AdminPanelBackRemoveGroup" Content="Back" HorizontalAlignment="Left" Margin="89,86,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelBackRemoveGroup_Click"/>
+                <Button x:Name="AdminPanelRemoveGroup" Content="Remove" HorizontalAlignment="Left" Margin="195,86,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelRemoveGroup_Click"/>
+                <ComboBox x:Name="AdminPanelGroupIdRemoveCombobox" HorizontalAlignment="Left" Margin="89,29,0,0" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Group id:" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top"/>
             </Grid>
-            <Grid x:Name="AdminGroupsEdit" HorizontalAlignment="Left" Height="382" Margin="618,91,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
+            <Grid x:Name="AdminGroupsEdit" HorizontalAlignment="Left" Height="382" Margin="618,91,0,-30" VerticalAlignment="Top" Width="327">
                 <TextBox x:Name="GroupNameTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <TextBox x:Name="GroupYearTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Group name:" HorizontalAlignment="Left" Margin="5,51,0,0" VerticalAlignment="Top"/>
@@ -67,7 +63,7 @@
                 <Button x:Name="AdminPanelBackStudent" Content="Back" HorizontalAlignment="Left" Margin="89,227,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelBackStudent_Click"/>
                 <ComboBox x:Name="AdminStudentGroupCombobox" HorizontalAlignment="Left" Margin="89,101,0,0" VerticalAlignment="Top" Width="177"/>
             </Grid>
-            <Grid x:Name="AdminStudentsDelete" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327">
+            <Grid x:Name="AdminStudentsDelete" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
                 <Button x:Name="AdminPanelDelete" Content="Delete" HorizontalAlignment="Left" Margin="195,72,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelDelete_Click"/>
                 <Label Content="Login:" HorizontalAlignment="Left" Margin="42,22,0,0" VerticalAlignment="Top"/>
                 <Button x:Name="AdminPanelBackDelete" Content="Back" HorizontalAlignment="Left" Margin="89,72,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelBackDelete_Click"/>

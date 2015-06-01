@@ -57,6 +57,8 @@ namespace ElectronicDiary
                     ShowGroups();
                     AdminPanelGroupsAddGroup_Click(sender, e);
                     StatusBar.Content = "Group added";
+                    GroupNameTextBoxAdd.Text = String.Empty;
+                    GroupYearTextBoxAdd.Text = String.Empty;
                 }
                 catch (Exception ex)
                 {
@@ -130,7 +132,8 @@ namespace ElectronicDiary
                     StatusBar.Content = "Wrong year set";
                     return;
                 }
-                if (IsExist(group))
+                var reservGroup = new Group() { Name = name, Year = year };
+                if (IsExist(reservGroup))
                 {
                     StatusBar.Content = "This group already exists";
                     return;
@@ -148,38 +151,14 @@ namespace ElectronicDiary
             }
 
         }
-
-        private void AdminPanelGroupIdRemoveCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (AdminPanelGroupIdRemoveCombobox.SelectedIndex != -1)
-            {
-                try
-                {
-                    int index = int.Parse(AdminPanelGroupIdRemoveCombobox.SelectedValue.ToString());
-                    var group = (from groups in model.Groups
-                                 where groups.Id == index
-                                 select groups).FirstOrDefault();
-                    GroupNameTextBoxRemove.Text = group.Name;
-                    GroupYearTextBoxRemove.Text = group.Year.ToString();
-                    StatusBar.Content = String.Empty;
-                }
-                catch (Exception ex)
-                {
-                    StatusBar.Content = ex.Message;
-                }
-
-            }
-        }
         private void AdminPanelGroupsRemoveGroup_Click(object sender, RoutedEventArgs e)
         {
             ShowAdminGrid(AdminGroupsRemove);
             AdminColName.Content = "Remove group";
             AdminPanelGroupIdRemoveCombobox.Items.Clear();
-            GroupNameTextBoxRemove.Text = String.Empty;
-            GroupYearTextBoxRemove.Text = String.Empty;
-            var groupsIds = (from groups in model.Groups
+            var groupNames = (from groups in model.Groups
                              select groups.Id).ToList();
-            foreach (var item in groupsIds)
+            foreach (var item in groupNames)
             {
                 AdminPanelGroupIdRemoveCombobox.Items.Add(item);
             }
@@ -189,14 +168,17 @@ namespace ElectronicDiary
 
         private void AdminPanelRemoveGroup_Click(object sender, RoutedEventArgs e)
         {
+            if (AdminPanelGroupIdRemoveCombobox.SelectedIndex == -1)
+            {
+                StatusBar.Content = "Id isn't selected";
+                return;
+            }
             try
             {
-                int index = int.Parse(AdminPanelGroupIdRemoveCombobox.SelectedValue.ToString());
-                string name = GroupNameTextBoxRemove.Text;
-                int year = int.Parse(GroupYearTextBoxRemove.Text);
+                int groupids = int.Parse(AdminPanelGroupIdRemoveCombobox.SelectedValue.ToString());
                 var group = (from groups in model.Groups
                              where
-                                 groups.Id == index
+                                 groups.Id == groupids
                              select groups).FirstOrDefault();
                 model.Groups.Remove(group);
                 model.SaveChanges();
