@@ -62,10 +62,6 @@ namespace ElectronicDiary
         }
 
 
-
-
-
-
         private void ShowAllUsers()
         {
             AdminHeaderLabel.Content = "All users";
@@ -91,6 +87,7 @@ namespace ElectronicDiary
                                              in model.Teachers
                                          select new
                                          {
+                                             Id = teachers.Id,
                                              Name = teachers.Name,
                                              Surname = teachers.Surname,
                                              Login = teachers.User.Login
@@ -117,6 +114,7 @@ namespace ElectronicDiary
             AdminHeaderLabel.Content = "Schedules";
 
             AdminDataGrid.ItemsSource = (from schedules in model.Schedules
+                                         where schedules.Group.Name != null
                                          group schedules.Group.Name by schedules.Group.Name
                                              into schedules
                                              select new { Name = schedules.Key }).ToList();
