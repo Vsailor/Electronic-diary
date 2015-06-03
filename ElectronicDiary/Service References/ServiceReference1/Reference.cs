@@ -20,6 +20,30 @@ namespace ElectronicDiary.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequests/GetStudentSchedule", ReplyAction="http://tempuri.org/IRequests/GetStudentScheduleResponse")]
         System.Threading.Tasks.Task<string> GetStudentScheduleAsync(string dayOfWeek, string NameOfGroup);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequests/GetStudentMarks", ReplyAction="http://tempuri.org/IRequests/GetStudentMarksResponse")]
+        string GetStudentMarks(string subjectName, int studentId, int groupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequests/GetStudentMarks", ReplyAction="http://tempuri.org/IRequests/GetStudentMarksResponse")]
+        System.Threading.Tasks.Task<string> GetStudentMarksAsync(string subjectName, int studentId, int groupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequests/GetSelectedGroup", ReplyAction="http://tempuri.org/IRequests/GetSelectedGroupResponse")]
+        string GetSelectedGroup(string groupName, System.DateTime selectedDate, string subject);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequests/GetSelectedGroup", ReplyAction="http://tempuri.org/IRequests/GetSelectedGroupResponse")]
+        System.Threading.Tasks.Task<string> GetSelectedGroupAsync(string groupName, System.DateTime selectedDate, string subject);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequests/AddMarkToGroup", ReplyAction="http://tempuri.org/IRequests/AddMarkToGroupResponse")]
+        string AddMarkToGroup(string selectedrow, System.DateTime selectedDate, string subject, string groupname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequests/AddMarkToGroup", ReplyAction="http://tempuri.org/IRequests/AddMarkToGroupResponse")]
+        System.Threading.Tasks.Task<string> AddMarkToGroupAsync(string selectedrow, System.DateTime selectedDate, string subject, string groupname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequests/GetTeacherSchedule", ReplyAction="http://tempuri.org/IRequests/GetTeacherScheduleResponse")]
+        string GetTeacherSchedule(string DayOfWeek, int teacherId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRequests/GetTeacherSchedule", ReplyAction="http://tempuri.org/IRequests/GetTeacherScheduleResponse")]
+        System.Threading.Tasks.Task<string> GetTeacherScheduleAsync(string DayOfWeek, int teacherId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +79,38 @@ namespace ElectronicDiary.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string> GetStudentScheduleAsync(string dayOfWeek, string NameOfGroup) {
             return base.Channel.GetStudentScheduleAsync(dayOfWeek, NameOfGroup);
+        }
+        
+        public string GetStudentMarks(string subjectName, int studentId, int groupId) {
+            return base.Channel.GetStudentMarks(subjectName, studentId, groupId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStudentMarksAsync(string subjectName, int studentId, int groupId) {
+            return base.Channel.GetStudentMarksAsync(subjectName, studentId, groupId);
+        }
+        
+        public string GetSelectedGroup(string groupName, System.DateTime selectedDate, string subject) {
+            return base.Channel.GetSelectedGroup(groupName, selectedDate, subject);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetSelectedGroupAsync(string groupName, System.DateTime selectedDate, string subject) {
+            return base.Channel.GetSelectedGroupAsync(groupName, selectedDate, subject);
+        }
+        
+        public string AddMarkToGroup(string selectedrow, System.DateTime selectedDate, string subject, string groupname) {
+            return base.Channel.AddMarkToGroup(selectedrow, selectedDate, subject, groupname);
+        }
+        
+        public System.Threading.Tasks.Task<string> AddMarkToGroupAsync(string selectedrow, System.DateTime selectedDate, string subject, string groupname) {
+            return base.Channel.AddMarkToGroupAsync(selectedrow, selectedDate, subject, groupname);
+        }
+        
+        public string GetTeacherSchedule(string DayOfWeek, int teacherId) {
+            return base.Channel.GetTeacherSchedule(DayOfWeek, teacherId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetTeacherScheduleAsync(string DayOfWeek, int teacherId) {
+            return base.Channel.GetTeacherScheduleAsync(DayOfWeek, teacherId);
         }
     }
 }

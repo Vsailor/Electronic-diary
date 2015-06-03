@@ -23,9 +23,7 @@ namespace ElectronicDiary
                 var dayOfWeek = StudentCalendar.SelectedDate.Value.DayOfWeek.ToString();
                 if (StudentGroupList.SelectedItem != null)
                 {
-                    var studentGroup = StudentGroupList.SelectedItem.ToString();
-
-                    ServiceReference1.RequestsClient client= new ServiceReference1.RequestsClient();             
+                    var studentGroup = StudentGroupList.SelectedItem.ToString();                               
                     StudentSchedule.ItemsSource = JsonConvert.DeserializeObject<ArrayList>(client.GetStudentSchedule(dayOfWeek, studentGroup));
                 }
             }
@@ -41,23 +39,11 @@ namespace ElectronicDiary
         }
         private void ShowSubjects(object sender, SelectionChangedEventArgs e)
         {
-            if (SubjectList.SelectedItem != null)
+            if (SubjectList.SelectedItem != null && selectedStudent!=null)
             {
                 var subjectName = SubjectList.SelectedItem.ToString();
-                var view = from mark in model.Marks
-                    where mark.Subject.Name == subjectName
-                    where mark.Student.Id == selectedStudent.Id
-                    where mark.Student.Group_Id == selectedStudent.Group_Id
-                    select new
-                    {
-                        Date = mark.Date,
-                        Mark = mark.Mark1,
-                        Note = mark.Description
-                    };
-                StudentMarkTable.ItemsSource = view.ToList().OrderBy(m => m.Date);
+                StudentMarkTable.ItemsSource = JsonConvert.DeserializeObject<ArrayList>(client.GetStudentMarks(subjectName, selectedStudent.Id, selectedStudent.Group_Id));                         
             }
         }
-
-
     }
 }

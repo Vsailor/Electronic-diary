@@ -13,5 +13,13 @@ namespace WcfServiceLibraryED
     {
         [OperationContract]
         string GetStudentSchedule(string dayOfWeek, string NameOfGroup);
+        [OperationContract]
+        string GetStudentMarks(string subjectName, int studentId, int groupId);
+        [OperationContract]
+        string GetSelectedGroup(string groupName, DateTime selectedDate, string subject);
+        [OperationContract]
+        string AddMarkToGroup(string selectedrow, DateTime selectedDate, string subject, string groupname);
+        [OperationContract]
+        string GetTeacherSchedule(string DayOfWeek, int teacherId);
     }
 }

@@ -20,12 +20,11 @@ namespace ElectronicDiary
     /// </summary>
     public partial class MainWindow : Window
     {
-        ElectronicDiaryDBEntities model;
+        ElectronicDiaryDBEntities model=new ElectronicDiaryDBEntities();
+        ServiceReference1.RequestsClient client = new ServiceReference1.RequestsClient();  
         public MainWindow()
         {
             InitializeComponent();
-            model = new ElectronicDiaryDBEntities();
-            //AdminPanelShow();
             Admin.Visibility = Visibility.Hidden;
             Client.Visibility = Visibility.Hidden;
             Logining.Visibility = Visibility.Visible;
@@ -43,10 +42,6 @@ namespace ElectronicDiary
             Login.Text = "";
             Password.Password = "";            
         }
-
-
-
-
 
 
     }

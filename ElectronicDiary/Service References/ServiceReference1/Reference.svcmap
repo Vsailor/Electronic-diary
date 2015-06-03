@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="da04db3c-2e0d-42e8-a8b8-f582dbbba218" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="151211fc-064f-46e9-9b71-4a3fa6d2d713" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,9 +22,9 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/WcfServiceLibraryED/Requests/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="b36056a0-7f6f-4fef-8d64-039b7a693142" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfServiceLibraryED/Requests/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="724ed7c6-25d6-46aa-9311-6ec94395dc7d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfServiceLibraryED/Requests/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="27b2ecea-9220-4828-a15b-b18b3743c9f6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfServiceLibraryED/Requests/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ea3baf4c-bc07-42d8-93fc-e76bba94e8cc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfServiceLibraryED/Requests/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="bd659ec3-5876-4fdb-a321-569b34544504" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfServiceLibraryED/Requests/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="e1920f76-a409-4c08-ae49-abb7e17dc39d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfServiceLibraryED/Requests/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
