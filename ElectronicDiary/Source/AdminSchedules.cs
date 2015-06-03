@@ -81,6 +81,7 @@ namespace ElectronicDiary
             AdminPanelAddScheduleSubjectCombobox.Items.Clear();
             AdminScheduleAddDescriptionTextBox.Text = String.Empty;
             AdminScheduleNumber.Text = String.Empty;
+            UpdateGroupsComboboxList();
         }
         private void AdminPanelSchedulesAddSchedule_Click(object sender, RoutedEventArgs e)
         {
@@ -233,38 +234,21 @@ namespace ElectronicDiary
             try
             {
 
-                //var subject_teachers = (from items in model.Subjects_Teachers
-                //                        select items).ToList();
-                //bool teacherSubjectExist = false;
-                //foreach(var item in subject_teachers)
-                //{
-                //    if (item.Teachers_Id == teacherdb.Id &&
-                //        item.Subjects_Id == subjectdb.Id)
-                //    {
-                //        teacherSubjectExist = true;
-                //    }
-                //}
-                //if (!teacherSubjectExist)
-                //{
-                //    Subjects_Teachers st = new Subjects_Teachers();
-                //    st.Subjects_Id = subjectdb.Id;
-                //    st.Teachers_Id = teacherdb.Id;
-                //    model.Subjects_Teachers.Add(st);
-                //    model.SaveChanges();
-                //}
+
                 Schedule s = new Schedule()
                 {
-                    //Subjects_Id = subjectdb.Id,
-                    //Groups_Id = groupdb.Id,
-                    //LessonNumber = lessonNumber,
-                    //WeekDay = weekDay,
-                    //Teachers_Id = teacherdb.Id,
-                    //Description = description
+                    Subject_Id = subjectdb.Id,
+                    Group_Id = groupdb.Id,
+                    LessonNumber = lessonNumber,
+                    WeekDay = weekDay,
+                    Teacher_Id = teacherdb.Id,
+                    Description = description
                 };
                 model.Schedules.Add(s);
                 model.SaveChanges();
-                //StatusBar.Content = "Lesson added";
-                //ClearAddScheduleForm();
+                StatusBar.Content = "Lesson added";
+                ClearAddScheduleForm();
+                AdminPanelSchedulesAddSchedule_Click(sender, e);
             }
             catch (Exception ex)
             {
