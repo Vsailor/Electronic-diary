@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -22,21 +24,9 @@ namespace ElectronicDiary
                 if (StudentGroupList.SelectedItem != null)
                 {
                     var studentGroup = StudentGroupList.SelectedItem.ToString();
-                    var view = from asd in model.Schedules
-                        join ast in model.Subjects on asd.Subjects_Id equals ast.Id
-                        join ask in model.Teachers on asd.Teachers_Id equals ask.Id
-                        join ass in model.Groups on asd.Groups_Id equals ass.Id
-                        where asd.WeekDay == dayOfWeek
-                        where studentGroup == ass.Name
-                        select new
-                        {
-                            Num = asd.LessonNumber,
-                            Subject = ast.Name,
-                            Teacher = ask.Surname,
-                            Group = ass.Name,
-                            Auditory = asd.Description
-                        };
-                    StudentSchedule.ItemsSource = view.ToList().OrderBy(o => o.Num);
+
+                    ServiceReference1.RequestsClient client= new ServiceReference1.RequestsClient();             
+                    StudentSchedule.ItemsSource = JsonConvert.DeserializeObject<ArrayList>(client.GetStudentSchedule(dayOfWeek, studentGroup));
                 }
             }
         }

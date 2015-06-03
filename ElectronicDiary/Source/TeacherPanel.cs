@@ -120,7 +120,17 @@ namespace ElectronicDiary
                         Auditory = schedule.Description
 
                     };
-                TeacherSchedule.ItemsSource = View.ToList().OrderBy(o => o.Num);
+                
+                ///Убрать при релизе
+                try
+                {
+                    var list = View.ToList().OrderBy(o => o.Num);
+                    TeacherSchedule.ItemsSource = list;
+                }
+                catch
+                {
+
+                }
             }
         }
 

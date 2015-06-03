@@ -15,3 +15,15 @@ C:\Electronic-diary\WcfServiceLibraryED\bin\Debug\WcfServiceLibraryED.dll
 C:\Electronic-diary\WcfServiceLibraryED\bin\Debug\WcfServiceLibraryED.pdb
 C:\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.dll
 C:\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.pdb
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\WcfServiceLibraryED.dll.config
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\WcfServiceLibraryED.dll
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\WcfServiceLibraryED.pdb
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.dll
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.pdb
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.dll
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\Newtonsoft.Json.dll
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.xml
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\Newtonsoft.Json.xml
