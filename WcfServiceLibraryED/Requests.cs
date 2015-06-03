@@ -18,10 +18,10 @@ namespace WcfServiceLibraryED
         {
 
 
-            var view = from asd in model.Schedule
-                       join ast in model.Subjects on asd.Subjects_Id equals ast.Id
-                       join ask in model.Teachers on asd.Teachers_Id equals ask.Id
-                       join ass in model.Groups on asd.Groups_Id equals ass.Id
+            var view = from asd in model.Schedules
+                       join ast in model.Subjects on asd.Subject_Id equals ast.Id
+                       join ask in model.Teachers on asd.Teacher_Id equals ask.Id
+                       join ass in model.Groups on asd.Group_Id equals ass.Id
                        where asd.WeekDay == dayOfWeek
                        where NameOfGroup == ass.Name
                        select new
@@ -138,10 +138,10 @@ namespace WcfServiceLibraryED
         }
         public string GetTeacherSchedule(string DayOfWeek, int teacherId)
         {
-            var View = from schedule in model.Schedule
-                       join subj in model.Subjects on schedule.Subjects_Id equals subj.Id
-                       join teacher in model.Teachers on schedule.Teachers_Id equals teacher.Id
-                       join @group in model.Groups on schedule.Groups_Id equals @group.Id
+            var View = from schedule in model.Schedules
+                       join subj in model.Subjects on schedule.Subject_Id equals subj.Id
+                       join teacher in model.Teachers on schedule.Teacher_Id equals teacher.Id
+                       join @group in model.Groups on schedule.Group_Id equals @group.Id
                        where schedule.WeekDay == DayOfWeek
                        where teacher.Id == teacherId
                        select new
@@ -153,8 +153,16 @@ namespace WcfServiceLibraryED
                            Auditory = schedule.Description
 
                        };
-            var list = View.ToList().OrderBy(o => o.Num);
-            return JsonConvert.SerializeObject(list);
+            try
+            {
+                var list = View.ToList().OrderBy(o => o.Num);
+                return JsonConvert.SerializeObject(list);
+            }
+            catch
+            {
+                return "";
+            }
+            
         }
     }
 }
