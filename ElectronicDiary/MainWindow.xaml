@@ -108,7 +108,7 @@
                 <Button x:Name="AdminPanelBackTeacher" Content="Back" HorizontalAlignment="Left" Margin="89,190,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelBackTeacher_Click"/>
                 <PasswordBox x:Name="AdminTeacherPasswordTextBox" HorizontalAlignment="Left" Margin="89,143,0,0" VerticalAlignment="Top" Width="177" Height="25"/>
             </Grid>
-            <Grid x:Name="AdminTeachersEdit" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327">
+            <Grid x:Name="AdminTeachersEdit" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
                 <TextBox x:Name="AdminTeacherNameTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <TextBox x:Name="AdminTeacherSurnameTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Name:" HorizontalAlignment="Left" Margin="45,39,0,0" VerticalAlignment="Top"/>
@@ -132,7 +132,7 @@
                 <Button x:Name="AdminPanelSchedulesRemoveSchedule" Content="Remove lesson" HorizontalAlignment="Left" Margin="95,83,0,0" VerticalAlignment="Top" Width="155" Height="24" Click="AdminPanelSchedulesRemoveSchedule_Click"/>
                 <Button x:Name="AdminPanelSchedulesAddSchedule" Content="Add lesson" HorizontalAlignment="Left" Margin="95,0,0,0" VerticalAlignment="Top" Width="155" Height="24" Click="AdminPanelSchedulesAddSchedule_Click"/>
             </Grid>
-            <Grid x:Name="AdminSchedulesPanel" HorizontalAlignment="Left" Height="327" Margin="618,91,0,0" VerticalAlignment="Top" Width="327" d:IsHidden="True">
+            <Grid x:Name="AdminSchedulesPanel" HorizontalAlignment="Left" Height="327" Margin="618,91,0,0" VerticalAlignment="Top" Width="327">
                 <Label HorizontalAlignment="Left" Margin="63,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.305,0.471" Content="Group:">
                     <Label.RenderTransform>
                         <TransformGroup>
@@ -161,19 +161,19 @@
                     <TextBox x:Name="AdminScheduleEditDescriptionTextBox" HorizontalAlignment="Left" Height="22" Margin="104,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                     <Label Content="Description:" HorizontalAlignment="Left" Margin="31,157,0,0" VerticalAlignment="Top"/>
                 </Grid>
-                <Grid x:Name="AddScheduleForm" HorizontalAlignment="Left" Height="258" Margin="5,38,0,0" VerticalAlignment="Top" Width="312" d:IsHidden="True">
-                    <TextBox x:Name="AdminScheduleAddTextBox" HorizontalAlignment="Left" Height="22" Margin="104,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
-                    <Label Content="Lesson number:" HorizontalAlignment="Left" Margin="11,18,0,0" VerticalAlignment="Top"/>
+                <Grid x:Name="AddScheduleForm" HorizontalAlignment="Left" Height="258" Margin="5,38,0,0" VerticalAlignment="Top" Width="312">
+                    <Label Content="Lesson number:" HorizontalAlignment="Left" Margin="11,51,0,0" VerticalAlignment="Top"/>
                     <Label Content="Subject:" HorizontalAlignment="Left" Margin="52,124,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelAddScheduleSubjectCombobox" HorizontalAlignment="Left" Margin="104,128,0,0" VerticalAlignment="Top" Width="168"/>
-                    <Label Content="Teacher:" HorizontalAlignment="Left" Margin="50,86,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelAddScheduleTeacherCombobox" HorizontalAlignment="Left" Margin="104,90,0,0" VerticalAlignment="Top" Width="168"/>
-                    <Label Content="Week day:" HorizontalAlignment="Left" Margin="39,49,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelAddScheduleWeekDayCombobox_Copy" HorizontalAlignment="Left" Margin="104,53,0,0" VerticalAlignment="Top" Width="168"/>
-                    <Button x:Name="AddScheduleButtonBack" Content="Back" HorizontalAlignment="Left" Margin="104,198,0,0" VerticalAlignment="Top" Width="71" Click="AddScheduleButtonBack_Click"/>
-                    <Button x:Name="AddScheduleButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="201,198,0,0" VerticalAlignment="Top" Width="71" Click="AddScheduleButtonAdd_Click"/>
-                    <TextBox x:Name="AdminScheduleAddDescriptionTextBox" HorizontalAlignment="Left" Height="22" Margin="104,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
-                    <Label Content="Description:" HorizontalAlignment="Left" Margin="31,155,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AdminPanelAddScheduleSubjectCombobox" HorizontalAlignment="Left" Margin="104,134,0,0" VerticalAlignment="Top" Width="168"/>
+                    <Label Content="Teacher:" HorizontalAlignment="Left" Margin="50,93,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AdminPanelAddScheduleTeacherCombobox" HorizontalAlignment="Left" Margin="104,93,0,0" VerticalAlignment="Top" Width="168"/>
+                    <Label Content="Week day:" HorizontalAlignment="Left" Margin="39,6,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AdminPanelAddScheduleWeekDayCombobox" HorizontalAlignment="Left" Margin="104,10,0,0" VerticalAlignment="Top" Width="168" SelectionChanged="AdminPanelAddScheduleWeekDayCombobox_SelectionChanged"/>
+                    <Button x:Name="AddScheduleButtonBack" Content="Back" HorizontalAlignment="Left" Margin="104,226,0,0" VerticalAlignment="Top" Width="71" Click="AddScheduleButtonBack_Click"/>
+                    <Button x:Name="AddScheduleButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="201,226,0,0" VerticalAlignment="Top" Width="71" Click="AddScheduleButtonAdd_Click"/>
+                    <TextBox x:Name="AdminScheduleAddDescriptionTextBox" HorizontalAlignment="Left" Height="22" Margin="104,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
+                    <Label Content="Description:" HorizontalAlignment="Left" Margin="31,177,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AdminScheduleNumber" HorizontalAlignment="Left" Margin="104,51,0,0" VerticalAlignment="Top" Width="168"/>
                 </Grid>
                 <Grid x:Name="RemoveScheduleForm" HorizontalAlignment="Left" Height="258" VerticalAlignment="Top" Width="312" Margin="5,38,0,0" d:IsHidden="True">
                     <Label Content="Lesson number:" HorizontalAlignment="Left" Margin="11,18,0,0" VerticalAlignment="Top"/>

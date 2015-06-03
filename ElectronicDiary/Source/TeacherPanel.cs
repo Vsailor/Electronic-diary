@@ -106,9 +106,9 @@ namespace ElectronicDiary
             {
                 var DayOfWeek = selectedDate.Value.DayOfWeek.ToString();
                 var View = from schedule in model.Schedules
-                    join subj in model.Subjects on schedule.Subjects_Id equals subj.Id
-                    join teacher in model.Teachers on schedule.Teachers_Id equals teacher.Id
-                    join @group in model.Groups on schedule.Groups_Id equals @group.Id
+                    join subj in model.Subjects on schedule.Subject_Id equals subj.Id
+                    join teacher in model.Teachers on schedule.Teacher_Id equals teacher.Id
+                    join @group in model.Groups on schedule.Group_Id equals @group.Id
                     where schedule.WeekDay == DayOfWeek
 					where teacher.Id==selectedTeacher.Id
                     select new

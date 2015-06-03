@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
@@ -72,21 +73,6 @@
     <Compile Include="Mark.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Schedule.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\ServiceReference1\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Source\AdminGroups.cs" />
-    <Compile Include="Source\AdminPanel.cs" />
-    <Compile Include="Source\AdminSchedules.cs" />
-    <Compile Include="Source\AdminStudents.cs" />
-    <Compile Include="Source\AdminSubjects.cs" />
-    <Compile Include="Source\AdminTeacher.cs" />
-    <Compile Include="Source\LoginPanel.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,15 +88,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Schedule.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Source\AdminGroups.cs" />
+    <Compile Include="Source\AdminPanel.cs" />
+    <Compile Include="Source\AdminSchedules.cs" />
+    <Compile Include="Source\AdminStudents.cs" />
+    <Compile Include="Source\AdminSubjects.cs" />
+    <Compile Include="Source\AdminTeacher.cs" />
+    <Compile Include="Source\LoginPanel.cs" />
     <Compile Include="Source\TeacherPanel.cs" />
     <Compile Include="Source\StudentPanel.cs" />
     <Compile Include="Student.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Subject.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Subjects_Teachers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Teacher.cs">

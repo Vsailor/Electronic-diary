@@ -16,16 +16,15 @@ namespace ElectronicDiary
     {
         public Group()
         {
-            this.Students = new HashSet<Student>();
             this.Schedules = new HashSet<Schedule>();
+            this.Students = new HashSet<Student>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public int Year { get; set; }
     
-        public virtual ICollection<Student> Students { get; set; }
-        public virtual Schedule Schedule { get; set; }
         public virtual ICollection<Schedule> Schedules { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

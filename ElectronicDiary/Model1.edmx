@@ -4,45 +4,86 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ElectronicDiaryDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ElectronicDiaryDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ElectronicDiaryDBModelStoreContainer">
+          <EntitySet Name="Groups" EntityType="ElectronicDiaryDBModel.Store.Groups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Marks" EntityType="ElectronicDiaryDBModel.Store.Marks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Schedules" EntityType="ElectronicDiaryDBModel.Store.Schedules" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Students" EntityType="ElectronicDiaryDBModel.Store.Students" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subjects" EntityType="ElectronicDiaryDBModel.Store.Subjects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Teachers" EntityType="ElectronicDiaryDBModel.Store.Teachers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="ElectronicDiaryDBModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Marks_Students" Association="ElectronicDiaryDBModel.Store.FK_Marks_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Subjects" Association="ElectronicDiaryDBModel.Store.FK_Marks_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedules_Groups" Association="ElectronicDiaryDBModel.Store.FK_Schedules_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedules_Subjects" Association="ElectronicDiaryDBModel.Store.FK_Schedules_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedules_Teachers" Association="ElectronicDiaryDBModel.Store.FK_Schedules_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Groups" Association="ElectronicDiaryDBModel.Store.FK_Students_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Users" Association="ElectronicDiaryDBModel.Store.FK_Students_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Users" Association="ElectronicDiaryDBModel.Store.FK_Teachers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Groups">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Year" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Marks">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Mark" Type="int" Nullable="false" />
           <Property Name="Subject_Id" Type="int" Nullable="false" />
           <Property Name="Student_Id" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Schedule">
+        <EntityType Name="Schedules">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Subjects_Id" Type="int" Nullable="false" />
-          <Property Name="Groups_Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_Id" Type="int" Nullable="false" />
+          <Property Name="Group_Id" Type="int" Nullable="false" />
           <Property Name="LessonNumber" Type="int" Nullable="false" />
-          <Property Name="WeekDay" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Teachers_Id" Type="int" Nullable="false" />
+          <Property Name="WeekDay" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Teacher_Id" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Group_Id" Type="int" Nullable="false" />
           <Property Name="User_Id" Type="int" Nullable="false" />
         </EntityType>
@@ -50,38 +91,30 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Subjects_Teachers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Teachers_Id" Type="int" Nullable="false" />
-          <Property Name="Subjects_Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Teachers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Marks_Students">
-          <End Role="Students" Type="Self.Students" Multiplicity="1" />
-          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <End Role="Students" Type="ElectronicDiaryDBModel.Store.Students" Multiplicity="1" />
+          <End Role="Marks" Type="ElectronicDiaryDBModel.Store.Marks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
               <PropertyRef Name="Id" />
@@ -92,8 +125,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Marks_Subjects">
-          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
-          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <End Role="Subjects" Type="ElectronicDiaryDBModel.Store.Subjects" Multiplicity="1" />
+          <End Role="Marks" Type="ElectronicDiaryDBModel.Store.Marks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subjects">
               <PropertyRef Name="Id" />
@@ -103,45 +136,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Schedule_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+        <Association Name="FK_Schedules_Groups">
+          <End Role="Groups" Type="ElectronicDiaryDBModel.Store.Groups" Multiplicity="1" />
+          <End Role="Schedules" Type="ElectronicDiaryDBModel.Store.Schedules" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groups">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Schedule">
-              <PropertyRef Name="Groups_Id" />
+            <Dependent Role="Schedules">
+              <PropertyRef Name="Group_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Schedule_Subjects">
-          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+        <Association Name="FK_Schedules_Subjects">
+          <End Role="Subjects" Type="ElectronicDiaryDBModel.Store.Subjects" Multiplicity="1" />
+          <End Role="Schedules" Type="ElectronicDiaryDBModel.Store.Schedules" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subjects">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Schedule">
-              <PropertyRef Name="Subjects_Id" />
+            <Dependent Role="Schedules">
+              <PropertyRef Name="Subject_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Schedule_Teachers">
-          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+        <Association Name="FK_Schedules_Teachers">
+          <End Role="Teachers" Type="ElectronicDiaryDBModel.Store.Teachers" Multiplicity="1" />
+          <End Role="Schedules" Type="ElectronicDiaryDBModel.Store.Schedules" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teachers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Schedule">
-              <PropertyRef Name="Teachers_Id" />
+            <Dependent Role="Schedules">
+              <PropertyRef Name="Teacher_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Students_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <End Role="Groups" Type="ElectronicDiaryDBModel.Store.Groups" Multiplicity="1" />
+          <End Role="Students" Type="ElectronicDiaryDBModel.Store.Students" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groups">
               <PropertyRef Name="Id" />
@@ -152,8 +185,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Students_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <End Role="Users" Type="ElectronicDiaryDBModel.Store.Users" Multiplicity="1" />
+          <End Role="Students" Type="ElectronicDiaryDBModel.Store.Students" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
@@ -163,33 +196,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Subjects_Teachers_Subjects">
-          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
-          <End Role="Subjects_Teachers" Type="Self.Subjects_Teachers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Subjects">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Subjects_Teachers">
-              <PropertyRef Name="Subjects_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Subjects_Teachers_Teachers">
-          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
-          <End Role="Subjects_Teachers" Type="Self.Subjects_Teachers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teachers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Subjects_Teachers">
-              <PropertyRef Name="Teachers_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Teachers_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <End Role="Users" Type="ElectronicDiaryDBModel.Store.Users" Multiplicity="1" />
+          <End Role="Teachers" Type="ElectronicDiaryDBModel.Store.Teachers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
@@ -199,339 +208,227 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ElectronicDiaryDBModelStoreContainer">
-          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Subjects_Teachers" EntityType="Self.Subjects_Teachers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Marks_Students" Association="Self.FK_Marks_Students">
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ElectronicDiaryDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ElectronicDiaryDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Groups" EntityType="ElectronicDiaryDBModel.Group" />
+          <EntitySet Name="Marks" EntityType="ElectronicDiaryDBModel.Mark" />
+          <EntitySet Name="Schedules" EntityType="ElectronicDiaryDBModel.Schedule" />
+          <EntitySet Name="Students" EntityType="ElectronicDiaryDBModel.Student" />
+          <EntitySet Name="Subjects" EntityType="ElectronicDiaryDBModel.Subject" />
+          <EntitySet Name="Teachers" EntityType="ElectronicDiaryDBModel.Teacher" />
+          <EntitySet Name="Users" EntityType="ElectronicDiaryDBModel.User" />
+          <AssociationSet Name="FK_Schedules_Groups" Association="ElectronicDiaryDBModel.FK_Schedules_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Groups" Association="ElectronicDiaryDBModel.FK_Students_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Students" Association="ElectronicDiaryDBModel.FK_Marks_Students">
             <End Role="Students" EntitySet="Students" />
             <End Role="Marks" EntitySet="Marks" />
           </AssociationSet>
-          <AssociationSet Name="FK_Marks_Subjects" Association="Self.FK_Marks_Subjects">
+          <AssociationSet Name="FK_Marks_Subjects" Association="ElectronicDiaryDBModel.FK_Marks_Subjects">
             <End Role="Subjects" EntitySet="Subjects" />
             <End Role="Marks" EntitySet="Marks" />
           </AssociationSet>
-          <AssociationSet Name="FK_Schedule_Groups" Association="Self.FK_Schedule_Groups">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Schedule" EntitySet="Schedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Schedule_Subjects" Association="Self.FK_Schedule_Subjects">
+          <AssociationSet Name="FK_Schedules_Subjects" Association="ElectronicDiaryDBModel.FK_Schedules_Subjects">
             <End Role="Subjects" EntitySet="Subjects" />
-            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Schedules" EntitySet="Schedules" />
           </AssociationSet>
-          <AssociationSet Name="FK_Schedule_Teachers" Association="Self.FK_Schedule_Teachers">
+          <AssociationSet Name="FK_Schedules_Teachers" Association="ElectronicDiaryDBModel.FK_Schedules_Teachers">
             <End Role="Teachers" EntitySet="Teachers" />
-            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Schedules" EntitySet="Schedules" />
           </AssociationSet>
-          <AssociationSet Name="FK_Students_Groups" Association="Self.FK_Students_Groups">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_Users" Association="Self.FK_Students_Users">
+          <AssociationSet Name="FK_Students_Users" Association="ElectronicDiaryDBModel.FK_Students_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
-          <AssociationSet Name="FK_Subjects_Teachers_Subjects" Association="Self.FK_Subjects_Teachers_Subjects">
-            <End Role="Subjects" EntitySet="Subjects" />
-            <End Role="Subjects_Teachers" EntitySet="Subjects_Teachers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Subjects_Teachers_Teachers" Association="Self.FK_Subjects_Teachers_Teachers">
-            <End Role="Teachers" EntitySet="Teachers" />
-            <End Role="Subjects_Teachers" EntitySet="Subjects_Teachers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Teachers_Users" Association="Self.FK_Teachers_Users">
+          <AssociationSet Name="FK_Teachers_Users" Association="ElectronicDiaryDBModel.FK_Teachers_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="ElectronicDiaryDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Year" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Students" Relationship="ElectronicDiaryDBModel.FK_Students_Groups" FromRole="Group" ToRole="Student" />
-          <NavigationProperty Name="Schedule" Relationship="ElectronicDiaryDBModel.FK_Schedule_Groups" FromRole="Group" ToRole="Schedule" />
-          <NavigationProperty Name="Schedules" Relationship="ElectronicDiaryDBModel.FK_Schedule_Groups1" FromRole="Group" ToRole="Schedule" />
+          <NavigationProperty Name="Schedules" Relationship="ElectronicDiaryDBModel.FK_Schedules_Groups" FromRole="Groups" ToRole="Schedules" />
+          <NavigationProperty Name="Students" Relationship="ElectronicDiaryDBModel.FK_Students_Groups" FromRole="Groups" ToRole="Students" />
         </EntityType>
         <EntityType Name="Mark">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Mark1" Type="Int32" Nullable="false" />
           <Property Name="Subject_Id" Type="Int32" Nullable="false" />
           <Property Name="Student_Id" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Student" Relationship="ElectronicDiaryDBModel.FK_Marks_Students" FromRole="Mark" ToRole="Student" />
-          <NavigationProperty Name="Subject" Relationship="ElectronicDiaryDBModel.FK_Marks_Subjects" FromRole="Mark" ToRole="Subject" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Student" Relationship="ElectronicDiaryDBModel.FK_Marks_Students" FromRole="Marks" ToRole="Students" />
+          <NavigationProperty Name="Subject" Relationship="ElectronicDiaryDBModel.FK_Marks_Subjects" FromRole="Marks" ToRole="Subjects" />
         </EntityType>
         <EntityType Name="Schedule">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Subjects_Id" Type="Int32" Nullable="false" />
-          <Property Name="Groups_Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_Id" Type="Int32" Nullable="false" />
+          <Property Name="Group_Id" Type="Int32" Nullable="false" />
           <Property Name="LessonNumber" Type="Int32" Nullable="false" />
-          <Property Name="WeekDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Teachers_Id" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Group" Relationship="ElectronicDiaryDBModel.FK_Schedule_Groups" FromRole="Schedule" ToRole="Group" />
-          <NavigationProperty Name="Subject" Relationship="ElectronicDiaryDBModel.FK_Schedule_Subjects" FromRole="Schedule" ToRole="Subject" />
-          <NavigationProperty Name="Teacher" Relationship="ElectronicDiaryDBModel.FK_Schedule_Teachers" FromRole="Schedule" ToRole="Teacher" />
-          <NavigationProperty Name="Group1" Relationship="ElectronicDiaryDBModel.FK_Schedule_Groups1" FromRole="Schedule" ToRole="Group" />
+          <Property Name="WeekDay" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Teacher_Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Group" Relationship="ElectronicDiaryDBModel.FK_Schedules_Groups" FromRole="Schedules" ToRole="Groups" />
+          <NavigationProperty Name="Subject" Relationship="ElectronicDiaryDBModel.FK_Schedules_Subjects" FromRole="Schedules" ToRole="Subjects" />
+          <NavigationProperty Name="Teacher" Relationship="ElectronicDiaryDBModel.FK_Schedules_Teachers" FromRole="Schedules" ToRole="Teachers" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Group_Id" Type="Int32" Nullable="false" />
           <Property Name="User_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="ElectronicDiaryDBModel.FK_Students_Users" FromRole="Student" ToRole="User" />
-          <NavigationProperty Name="Group" Relationship="ElectronicDiaryDBModel.FK_Students_Groups" FromRole="Student" ToRole="Group" />
-          <NavigationProperty Name="Marks" Relationship="ElectronicDiaryDBModel.FK_Marks_Students" FromRole="Student" ToRole="Mark" />
+          <NavigationProperty Name="Group" Relationship="ElectronicDiaryDBModel.FK_Students_Groups" FromRole="Students" ToRole="Groups" />
+          <NavigationProperty Name="Marks" Relationship="ElectronicDiaryDBModel.FK_Marks_Students" FromRole="Students" ToRole="Marks" />
+          <NavigationProperty Name="User" Relationship="ElectronicDiaryDBModel.FK_Students_Users" FromRole="Students" ToRole="Users" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Subjects_Teachers" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects" FromRole="Subject" ToRole="Subjects_Teachers" />
-          <NavigationProperty Name="Marks" Relationship="ElectronicDiaryDBModel.FK_Marks_Subjects" FromRole="Subject" ToRole="Mark" />
-          <NavigationProperty Name="Schedules" Relationship="ElectronicDiaryDBModel.FK_Schedule_Subjects" FromRole="Subject" ToRole="Schedule" />
-        </EntityType>
-        <EntityType Name="Subjects_Teachers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Teachers_Id" Type="Int32" Nullable="false" />
-          <Property Name="Subjects_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Subject" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects" FromRole="Subjects_Teachers" ToRole="Subject" />
-          <NavigationProperty Name="Teacher" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers" FromRole="Subjects_Teachers" ToRole="Teacher" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Marks" Relationship="ElectronicDiaryDBModel.FK_Marks_Subjects" FromRole="Subjects" ToRole="Marks" />
+          <NavigationProperty Name="Schedules" Relationship="ElectronicDiaryDBModel.FK_Schedules_Subjects" FromRole="Subjects" ToRole="Schedules" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Subjects_Teachers" Relationship="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers" FromRole="Teacher" ToRole="Subjects_Teachers" />
-          <Property Type="Int32" Name="UserId" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="ElectronicDiaryDBModel.FK_Teachers_Users" FromRole="Teacher" ToRole="User" />
-          <NavigationProperty Name="Schedules" Relationship="ElectronicDiaryDBModel.FK_Schedule_Teachers" FromRole="Teacher" ToRole="Schedule" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Schedules" Relationship="ElectronicDiaryDBModel.FK_Schedules_Teachers" FromRole="Teachers" ToRole="Schedules" />
+          <NavigationProperty Name="User" Relationship="ElectronicDiaryDBModel.FK_Teachers_Users" FromRole="Teachers" ToRole="Users" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Students" Relationship="ElectronicDiaryDBModel.FK_Students_Users" FromRole="User" ToRole="Student" />
-          <NavigationProperty Name="Teachers" Relationship="ElectronicDiaryDBModel.FK_Teachers_Users" FromRole="User" ToRole="Teacher" />
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Students" Relationship="ElectronicDiaryDBModel.FK_Students_Users" FromRole="Users" ToRole="Students" />
+          <NavigationProperty Name="Teachers" Relationship="ElectronicDiaryDBModel.FK_Teachers_Users" FromRole="Users" ToRole="Teachers" />
         </EntityType>
-        <EntityContainer Name="ElectronicDiaryDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Groups" EntityType="Self.Group" />
-          <EntitySet Name="Marks" EntityType="Self.Mark" />
-          <EntitySet Name="Schedules" EntityType="Self.Schedule" />
-          <EntitySet Name="Students" EntityType="Self.Student" />
-          <EntitySet Name="Subjects" EntityType="Self.Subject" />
-          <EntitySet Name="Subjects_Teachers" EntityType="Self.Subjects_Teachers" />
-          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Subjects_Teachers_Subjects" Association="ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects">
-            <End Role="Subject" EntitySet="Subjects" />
-            <End Role="Subjects_Teachers" EntitySet="Subjects_Teachers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Subjects_Teachers_Teachers" Association="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers">
-            <End Role="Teacher" EntitySet="Teachers" />
-            <End Role="Subjects_Teachers" EntitySet="Subjects_Teachers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_Users" Association="ElectronicDiaryDBModel.FK_Students_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Student" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_Groups" Association="ElectronicDiaryDBModel.FK_Students_Groups">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="Student" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Marks_Students" Association="ElectronicDiaryDBModel.FK_Marks_Students">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="Mark" EntitySet="Marks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Marks_Subjects" Association="ElectronicDiaryDBModel.FK_Marks_Subjects">
-            <End Role="Subject" EntitySet="Subjects" />
-            <End Role="Mark" EntitySet="Marks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Teachers_Users" Association="ElectronicDiaryDBModel.FK_Teachers_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Teacher" EntitySet="Teachers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Schedule_Groups" Association="ElectronicDiaryDBModel.FK_Schedule_Groups">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="Schedule" EntitySet="Schedules" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Schedule_Subjects" Association="ElectronicDiaryDBModel.FK_Schedule_Subjects">
-            <End Role="Subject" EntitySet="Subjects" />
-            <End Role="Schedule" EntitySet="Schedules" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Schedule_Teachers" Association="ElectronicDiaryDBModel.FK_Schedule_Teachers">
-            <End Role="Teacher" EntitySet="Teachers" />
-            <End Role="Schedule" EntitySet="Schedules" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Schedule_Groups1" Association="ElectronicDiaryDBModel.FK_Schedule_Groups1">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="Schedule" EntitySet="Schedules" />
-          </AssociationSet>
-        </EntityContainer>
-        <Association Name="FK_Subjects_Teachers_Subjects">
-          <End Type="ElectronicDiaryDBModel.Subject" Role="Subject" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Subjects_Teachers" Role="Subjects_Teachers" Multiplicity="*" />
+        <Association Name="FK_Schedules_Groups">
+          <End Role="Groups" Type="ElectronicDiaryDBModel.Group" Multiplicity="1" />
+          <End Role="Schedules" Type="ElectronicDiaryDBModel.Schedule" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Subject">
+            <Principal Role="Groups">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Subjects_Teachers">
-              <PropertyRef Name="Subjects_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Subjects_Teachers_Teachers">
-          <End Type="ElectronicDiaryDBModel.Teacher" Role="Teacher" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Subjects_Teachers" Role="Subjects_Teachers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Subjects_Teachers">
-              <PropertyRef Name="Teachers_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Students_Users">
-          <End Type="ElectronicDiaryDBModel.User" Role="User" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Student" Role="Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="User_Id" />
+            <Dependent Role="Schedules">
+              <PropertyRef Name="Group_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Students_Groups">
-          <End Type="ElectronicDiaryDBModel.Group" Role="Group" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Student" Role="Student" Multiplicity="*" />
+          <End Role="Groups" Type="ElectronicDiaryDBModel.Group" Multiplicity="1" />
+          <End Role="Students" Type="ElectronicDiaryDBModel.Student" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Group">
+            <Principal Role="Groups">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Student">
+            <Dependent Role="Students">
               <PropertyRef Name="Group_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Marks_Students">
-          <End Type="ElectronicDiaryDBModel.Student" Role="Student" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Mark" Role="Mark" Multiplicity="*" />
+          <End Role="Students" Type="ElectronicDiaryDBModel.Student" Multiplicity="1" />
+          <End Role="Marks" Type="ElectronicDiaryDBModel.Mark" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
+            <Principal Role="Students">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Mark">
+            <Dependent Role="Marks">
               <PropertyRef Name="Student_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Marks_Subjects">
-          <End Type="ElectronicDiaryDBModel.Subject" Role="Subject" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Mark" Role="Mark" Multiplicity="*" />
+          <End Role="Subjects" Type="ElectronicDiaryDBModel.Subject" Multiplicity="1" />
+          <End Role="Marks" Type="ElectronicDiaryDBModel.Mark" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Subject">
+            <Principal Role="Subjects">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Mark">
+            <Dependent Role="Marks">
               <PropertyRef Name="Subject_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Schedules_Subjects">
+          <End Role="Subjects" Type="ElectronicDiaryDBModel.Subject" Multiplicity="1" />
+          <End Role="Schedules" Type="ElectronicDiaryDBModel.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="Subject_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedules_Teachers">
+          <End Role="Teachers" Type="ElectronicDiaryDBModel.Teacher" Multiplicity="1" />
+          <End Role="Schedules" Type="ElectronicDiaryDBModel.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="Teacher_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Users">
+          <End Role="Users" Type="ElectronicDiaryDBModel.User" Multiplicity="1" />
+          <End Role="Students" Type="ElectronicDiaryDBModel.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Teachers_Users">
-          <End Type="ElectronicDiaryDBModel.User" Role="User" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Teacher" Role="Teacher" Multiplicity="*" />
+          <End Role="Users" Type="ElectronicDiaryDBModel.User" Multiplicity="1" />
+          <End Role="Teachers" Type="ElectronicDiaryDBModel.Teacher" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Teacher">
+            <Dependent Role="Teachers">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Schedule_Groups">
-          <End Type="ElectronicDiaryDBModel.Group" Role="Group" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Schedule" Role="Schedule" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Schedule">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Schedule_Subjects">
-          <End Type="ElectronicDiaryDBModel.Subject" Role="Subject" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Schedule" Role="Schedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Subject">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Schedule">
-              <PropertyRef Name="Subjects_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Schedule_Teachers">
-          <End Type="ElectronicDiaryDBModel.Teacher" Role="Teacher" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Schedule" Role="Schedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Schedule">
-              <PropertyRef Name="Teachers_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Schedule_Groups1">
-          <End Type="ElectronicDiaryDBModel.Group" Role="Group" Multiplicity="1" />
-          <End Type="ElectronicDiaryDBModel.Schedule" Role="Schedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Schedule">
-              <PropertyRef Name="Groups_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -564,13 +461,13 @@
           </EntitySetMapping>
           <EntitySetMapping Name="Schedules">
             <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Schedule">
-              <MappingFragment StoreEntitySet="Schedule">
+              <MappingFragment StoreEntitySet="Schedules">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Subjects_Id" ColumnName="Subjects_Id" />
-                <ScalarProperty Name="Groups_Id" ColumnName="Groups_Id" />
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
                 <ScalarProperty Name="LessonNumber" ColumnName="LessonNumber" />
                 <ScalarProperty Name="WeekDay" ColumnName="WeekDay" />
-                <ScalarProperty Name="Teachers_Id" ColumnName="Teachers_Id" />
+                <ScalarProperty Name="Teacher_Id" ColumnName="Teacher_Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -594,22 +491,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Subjects_Teachers">
-            <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Subjects_Teachers">
-              <MappingFragment StoreEntitySet="Subjects_Teachers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Teachers_Id" ColumnName="Teachers_Id" />
-                <ScalarProperty Name="Subjects_Id" ColumnName="Subjects_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Teacher">
               <MappingFragment StoreEntitySet="Teachers">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -637,9 +525,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

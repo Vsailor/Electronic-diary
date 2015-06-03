@@ -4,26 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="07f7bae9a8ce4174a8bd3e0e12fc6ece" Name="Diagram1">
-        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Group" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Mark" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Schedule" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Student" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Subject" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Subjects_Teachers" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Teacher" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ElectronicDiaryDBModel.User" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Subjects_Teachers_Subjects" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Subjects_Teachers_Teachers" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Students_Users" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Students_Groups" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Marks_Students" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Marks_Subjects" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Teachers_Users" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedule_Groups" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedule_Subjects" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedule_Teachers" />
-        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedule_Groups1" />
+      <Diagram DiagramId="20e42121bb56484ab9283dfc08528bb3" Name="Diagram1">
+        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Group" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Mark" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Schedule" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Student" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Subject" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectronicDiaryDBModel.Teacher" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectronicDiaryDBModel.User" Width="1.5" PointX="1.5" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedules_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Students_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Marks_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Marks_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedules_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Schedules_Teachers" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Students_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectronicDiaryDBModel.FK_Teachers_Users" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -16,7 +16,6 @@ namespace ElectronicDiary
     {
         public Teacher()
         {
-            this.Subjects_Teachers = new HashSet<Subjects_Teachers>();
             this.Schedules = new HashSet<Schedule>();
         }
     
@@ -25,8 +24,7 @@ namespace ElectronicDiary
         public string Surname { get; set; }
         public int UserId { get; set; }
     
-        public virtual ICollection<Subjects_Teachers> Subjects_Teachers { get; set; }
-        public virtual User User { get; set; }
         public virtual ICollection<Schedule> Schedules { get; set; }
+        public virtual User User { get; set; }
     }
 }

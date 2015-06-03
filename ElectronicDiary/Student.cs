@@ -25,8 +25,8 @@ namespace ElectronicDiary
         public int Group_Id { get; set; }
         public int User_Id { get; set; }
     
-        public virtual User User { get; set; }
         public virtual Group Group { get; set; }
         public virtual ICollection<Mark> Marks { get; set; }
+        public virtual User User { get; set; }
     }
 }
