@@ -260,12 +260,6 @@ namespace ElectronicDiary
                     //WeekDay = weekDay,
                     //Teachers_Id = teacherdb.Id,
                     //Description = description
-                    Subject_Id = 1,
-                    Teacher_Id = 1,
-                    Group_Id = 1,
-                    LessonNumber = 1,
-                    WeekDay = "Sunday",
-                    Description = "HYUI"
                 };
                 model.Schedules.Add(s);
                 model.SaveChanges();
