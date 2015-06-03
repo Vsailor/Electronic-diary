@@ -27,3 +27,10 @@ C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\Ne
 C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.xml
 C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\user\Documents\GitHub\Electronic-diary\WcfServiceLibraryED\bin\Debug\Newtonsoft.Json.xml
+C:\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.dll
+C:\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.SqlServer.dll
+C:\Electronic-diary\WcfServiceLibraryED\bin\Debug\Newtonsoft.Json.dll
+C:\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.xml
+C:\Electronic-diary\WcfServiceLibraryED\bin\Debug\EntityFramework.SqlServer.xml
+C:\Electronic-diary\WcfServiceLibraryED\bin\Debug\Newtonsoft.Json.xml
+C:\Electronic-diary\WcfServiceLibraryED\obj\Debug\WcfServiceLibraryED.csprojResolveAssemblyReference.cache
