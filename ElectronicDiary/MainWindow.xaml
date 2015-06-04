@@ -3,16 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ElectronicDiary.MainWindow"
         Title="Electronic diary" Height="483.052" Width="972.662">
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF3A3838"/>
-            <GradientStop Color="#FF595555" Offset="1"/>
-            <GradientStop Color="#FF636363"/>
-        </LinearGradientBrush>
-    </Window.Background>
     <Grid>
+        <Grid x:Name="Exit" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
+            <Button Content="logout" HorizontalAlignment="Left" Margin="872,10,0,0" VerticalAlignment="Top" Width="69" Click="logout"/>
+            <Label x:Name="UserName" Content="" Margin="655,6,0,0" VerticalAlignment="Top" Width="217" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
+        </Grid>
         <Label x:Name="StatusBar" Content="Administration panel" HorizontalAlignment="Left" Margin="0,421,0,0" VerticalAlignment="Top" Height="32" Width="945"/>
-        <Grid x:Name="Admin" HorizontalAlignment="Left" Height="443" VerticalAlignment="Top" Width="955" Margin="0,10,0,0" d:IsHidden="True">
+        <Grid x:Name="Admin" HorizontalAlignment="Left" Height="443" VerticalAlignment="Top" Width="955" Margin="0,10,0,0">
             <ComboBox x:Name="AdminComboBox" HorizontalAlignment="Left" Margin="684,48,0,0" VerticalAlignment="Top" Width="206" SelectedIndex="0" SelectionChanged="AdminComboBox_SelectionChanged"/>
             <DataGrid x:Name="AdminDataGrid" HorizontalAlignment="Left" Margin="26,48,0,0" VerticalAlignment="Top" Height="346" Width="562"/>
             <Label x:Name="AdminHeaderLabel" Content="Users" HorizontalAlignment="Left" Margin="276,10,0,0" VerticalAlignment="Top" FontSize="20"/>
@@ -111,7 +108,7 @@
                 <Button x:Name="AdminPanelBackTeacher" Content="Back" HorizontalAlignment="Left" Margin="89,190,0,0" VerticalAlignment="Top" Width="71" Height="24" Click="AdminPanelBackTeacher_Click"/>
                 <PasswordBox x:Name="AdminTeacherPasswordTextBox" HorizontalAlignment="Left" Margin="89,143,0,0" VerticalAlignment="Top" Width="177" Height="25"/>
             </Grid>
-            <Grid x:Name="AdminTeachersEdit" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327">
+            <Grid x:Name="AdminTeachersEdit" HorizontalAlignment="Left" Height="343" Margin="618,130,0,-30" VerticalAlignment="Top" Width="327" d:IsHidden="True">
                 <TextBox x:Name="AdminTeacherNameTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <TextBox x:Name="AdminTeacherSurnameTextBoxEdit" HorizontalAlignment="Left" Height="22" Margin="89,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                 <Label Content="Name:" HorizontalAlignment="Left" Margin="45,39,0,0" VerticalAlignment="Top"/>
@@ -135,7 +132,7 @@
                 <Button x:Name="AdminPanelSchedulesRemoveSchedule" Content="Remove lesson" HorizontalAlignment="Left" Margin="95,83,0,0" VerticalAlignment="Top" Width="155" Height="24" Click="AdminPanelSchedulesRemoveSchedule_Click"/>
                 <Button x:Name="AdminPanelSchedulesAddSchedule" Content="Add lesson" HorizontalAlignment="Left" Margin="95,0,0,0" VerticalAlignment="Top" Width="155" Height="24" Click="AdminPanelSchedulesAddSchedule_Click"/>
             </Grid>
-            <Grid x:Name="AdminSchedulesPanel" HorizontalAlignment="Left" Height="327" Margin="618,91,0,0" VerticalAlignment="Top" Width="327" d:IsHidden="True">
+            <Grid x:Name="AdminSchedulesPanel" HorizontalAlignment="Left" Height="327" Margin="618,91,0,0" VerticalAlignment="Top" Width="327">
                 <Label HorizontalAlignment="Left" Margin="63,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.305,0.471" Content="Group:">
                     <Label.RenderTransform>
                         <TransformGroup>
@@ -164,19 +161,19 @@
                     <TextBox x:Name="AdminScheduleEditDescriptionTextBox" HorizontalAlignment="Left" Height="22" Margin="104,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                     <Label Content="Description:" HorizontalAlignment="Left" Margin="31,157,0,0" VerticalAlignment="Top"/>
                 </Grid>
-                <Grid x:Name="AddScheduleForm" HorizontalAlignment="Left" Height="258" Margin="5,38,0,0" VerticalAlignment="Top" Width="312" d:IsHidden="True">
-                    <TextBox x:Name="AdminScheduleAddTextBox" HorizontalAlignment="Left" Height="22" Margin="104,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
-                    <Label Content="Lesson number:" HorizontalAlignment="Left" Margin="11,18,0,0" VerticalAlignment="Top"/>
+                <Grid x:Name="AddScheduleForm" HorizontalAlignment="Left" Height="258" Margin="5,38,0,0" VerticalAlignment="Top" Width="312">
+                    <Label Content="Lesson number:" HorizontalAlignment="Left" Margin="11,51,0,0" VerticalAlignment="Top"/>
                     <Label Content="Subject:" HorizontalAlignment="Left" Margin="52,124,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelAddScheduleSubjectCombobox" HorizontalAlignment="Left" Margin="104,128,0,0" VerticalAlignment="Top" Width="168"/>
-                    <Label Content="Teacher:" HorizontalAlignment="Left" Margin="50,86,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelAddScheduleTeacherCombobox" HorizontalAlignment="Left" Margin="104,90,0,0" VerticalAlignment="Top" Width="168"/>
-                    <Label Content="Week day:" HorizontalAlignment="Left" Margin="39,49,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelAddScheduleWeekDayCombobox_Copy" HorizontalAlignment="Left" Margin="104,53,0,0" VerticalAlignment="Top" Width="168"/>
-                    <Button x:Name="AddScheduleButtonBack" Content="Back" HorizontalAlignment="Left" Margin="104,198,0,0" VerticalAlignment="Top" Width="71" Click="AddScheduleButtonBack_Click"/>
-                    <Button x:Name="AddScheduleButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="201,198,0,0" VerticalAlignment="Top" Width="71" Click="AddScheduleButtonAdd_Click"/>
-                    <TextBox x:Name="AdminScheduleAddDescriptionTextBox" HorizontalAlignment="Left" Height="22" Margin="104,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
-                    <Label Content="Description:" HorizontalAlignment="Left" Margin="31,155,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AdminPanelAddScheduleSubjectCombobox" HorizontalAlignment="Left" Margin="104,134,0,0" VerticalAlignment="Top" Width="168"/>
+                    <Label Content="Teacher:" HorizontalAlignment="Left" Margin="50,93,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AdminPanelAddScheduleTeacherCombobox" HorizontalAlignment="Left" Margin="104,93,0,0" VerticalAlignment="Top" Width="168"/>
+                    <Label Content="Week day:" HorizontalAlignment="Left" Margin="39,6,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AdminPanelAddScheduleWeekDayCombobox" HorizontalAlignment="Left" Margin="104,10,0,0" VerticalAlignment="Top" Width="168" SelectionChanged="AdminPanelAddScheduleWeekDayCombobox_SelectionChanged"/>
+                    <Button x:Name="AddScheduleButtonBack" Content="Back" HorizontalAlignment="Left" Margin="104,226,0,0" VerticalAlignment="Top" Width="71" Click="AddScheduleButtonBack_Click"/>
+                    <Button x:Name="AddScheduleButtonAdd" Content="Add" HorizontalAlignment="Left" Margin="201,226,0,0" VerticalAlignment="Top" Width="71" Click="AddScheduleButtonAdd_Click"/>
+                    <TextBox x:Name="AdminScheduleAddDescriptionTextBox" HorizontalAlignment="Left" Height="22" Margin="104,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
+                    <Label Content="Description:" HorizontalAlignment="Left" Margin="31,177,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AdminScheduleNumber" HorizontalAlignment="Left" Margin="104,51,0,0" VerticalAlignment="Top" Width="168"/>
                 </Grid>
                 <Grid x:Name="RemoveScheduleForm" HorizontalAlignment="Left" Height="258" VerticalAlignment="Top" Width="312" Margin="5,38,0,0" d:IsHidden="True">
                     <Label Content="Lesson number:" HorizontalAlignment="Left" Margin="11,18,0,0" VerticalAlignment="Top"/>
@@ -194,78 +191,47 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid x:Name="Client" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
-            <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965" d:IsHidden="True">
-                <DataGrid x:Name="TeacherMarkSetter" HorizontalAlignment="Left" Margin="278,53,0,0" VerticalAlignment="Top" Height="344" Width="376" AutoGenerateColumns="False" CanUserAddRows="False" RowEditEnding="AddMarks" >
+        <Grid x:Name="Client" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965" d:IsHidden="True">
+            <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965">
+                <DataGrid x:Name="TeacherMarkSetter" HorizontalAlignment="Left" Margin="278,53,0,0" VerticalAlignment="Top" Height="344" Width="376" AutoGenerateColumns="False" CanUserAddRows="False" RowEditEnding="AddMarks" d:IsHidden="True" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Surname"
-                             Binding="{Binding Path=StudentSurname,UpdateSourceTrigger=PropertyChanged}"/>
                         <DataGridTextColumn Header="Name" 
                              Binding="{Binding Path=StudentName,UpdateSourceTrigger=PropertyChanged}"/>
-
+                        <DataGridTextColumn Header="Surname"
+                             Binding="{Binding Path=StudentSurname,UpdateSourceTrigger=PropertyChanged}"/>
                         <DataGridTextColumn Header="Mark" IsReadOnly="False" Binding="{Binding Path=Mark,UpdateSourceTrigger=PropertyChanged}"/>
                         <DataGridTextColumn Header="Note" IsReadOnly="False" Binding="{Binding Path=Note,UpdateSourceTrigger=PropertyChanged}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Calendar x:Name="TeacherCalendar" HorizontalAlignment="Left" Margin="735,45,0,0" VerticalAlignment="Top" SelectedDatesChanged="ShowTeacherSchedule" Loaded="ShowTeacherSchedule" d:IsHidden="True"/>
-                <DataGrid x:Name="TeacherSchedule" HorizontalAlignment="Left" Margin="58,46,0,0" VerticalAlignment="Top" Height="367" Width="672" SelectionChanged="SelectedRow" CanUserAddRows="False" d:IsHidden="True"/>
+                <Calendar x:Name="TeacherCalendar" HorizontalAlignment="Left" Margin="735,45,0,0" VerticalAlignment="Top" SelectedDatesChanged="ShowTeacherSchedule" Loaded="ShowTeacherSchedule"/>
+                <DataGrid x:Name="TeacherSchedule" HorizontalAlignment="Left" Margin="58,46,0,0" VerticalAlignment="Top" Height="367" Width="672" SelectionChanged="SelectedRow"/>
                 <Button x:Name="BackToTeacherScheduleButton" Content="Back" Margin="434,418,456,12" Click="BackToTeacherSchedule" Visibility="Hidden" d:IsHidden="True"/>
-                <Button x:Name="SetMarksButton" HorizontalAlignment="Left" Margin="776,245,0,0" VerticalAlignment="Top" Width="96" Height="25" Content="Set marks" Click="SetMarks"/>
+                <Button x:Name="SetMarksButton" HorizontalAlignment="Left" Margin="776,245,0,0" VerticalAlignment="Top" Width="96" Click="SetMarks" Height="25" Content="Set marks" d:IsHidden="True"/>
             </Grid>
-            <Grid x:Name="Student" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965" Margin="0,0,-865,-352">
+            <Grid x:Name="Student" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965" Margin="0,0,-865,-352" d:IsHidden="True">
                 <TabControl HorizontalAlignment="Left" Height="432" Margin="0,10,0,0" VerticalAlignment="Top" Width="955">
-                    <TabControl.Background>
-                        <RadialGradientBrush GradientOrigin="0,0" RadiusY="0.8" RadiusX="0.8">
-                            <GradientStop Color="#FF222222" Offset="1"/>
-                            <GradientStop Color="#FF4E4E4C" Offset="0"/>
-                            <GradientStop Color="#FF393938" Offset="0.594"/>
-                            <GradientStop Color="#FF373736" Offset="0.247"/>
-                        </RadialGradientBrush>
-                    </TabControl.Background>
                     <TabItem Header="Schedule">
-                        <Grid>
-                            <Grid.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="Black" Offset="0"/>
-                                    <GradientStop Color="White"/>
-                                    <GradientStop Color="#FF7C7C7C" Offset="0.011"/>
-                                    <GradientStop Color="#FFDEDEDE"/>
-                                    <GradientStop Color="Black" Offset="1"/>
-                                    <GradientStop Color="#FF9E9E9E"/>
-                                </LinearGradientBrush>
-                            </Grid.Background>
-                            <DataGrid x:Name="StudentSchedule" HorizontalAlignment="Left" Margin="89,45,0,0" VerticalAlignment="Top" Height="316" Width="525" CanUserAddRows="False"/>
-                            <Calendar x:Name="StudentCalendar" HorizontalAlignment="Left" Margin="631,42,0,0" VerticalAlignment="Top" SelectedDatesChanged="ShowSchedule" Loaded="displaySchedule" d:IsHidden="True"/>
-                            <ComboBox x:Name="StudentGroupList" HorizontalAlignment="Left" Margin="332,18,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="GroupSelected" d:IsHidden="True" />
+                        <Grid Background="#FFE5E5E5">
+                            <DataGrid x:Name="StudentSchedule" HorizontalAlignment="Left" Margin="89,45,0,0" VerticalAlignment="Top" Height="316" Width="525"/>
+                            <Calendar x:Name="StudentCalendar" HorizontalAlignment="Left" Margin="631,42,0,0" VerticalAlignment="Top" SelectedDatesChanged="ShowSchedule" Loaded="displaySchedule"/>
+                            <ComboBox x:Name="StudentGroupList" HorizontalAlignment="Left" Margin="332,18,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="GroupSelected"/>
                             <Label Content="Group:" HorizontalAlignment="Left" Margin="284,19,0,0" VerticalAlignment="Top" Width="68"/>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Marks">
-                        <Grid>
-                            <Grid.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="Black" Offset="0"/>
-                                    <GradientStop Color="White"/>
-                                    <GradientStop Color="#FF131313"/>
-                                    <GradientStop Color="#FF717171" Offset="0.982"/>
-                                </LinearGradientBrush>
-                            </Grid.Background>
+                        <Grid Background="#FFE5E5E5">
                             <ComboBox x:Name="SubjectList" HorizontalAlignment="Left" Margin="409,25,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ShowSubjects"/>
-                            <DataGrid x:Name="StudentMarkTable" HorizontalAlignment="Left" Margin="280,52,0,0" VerticalAlignment="Top" Height="252" Width="380" CanUserAddRows="False" />
+                            <DataGrid x:Name="StudentMarkTable" HorizontalAlignment="Left" Margin="280,52,0,0" VerticalAlignment="Top" Height="252" Width="380"/>
                         </Grid>
                     </TabItem>
                 </TabControl>
             </Grid>
         </Grid>
-        <Grid x:Name="Exit" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
-            <Button Content="logout" HorizontalAlignment="Left" Margin="872,9,0,0" VerticalAlignment="Top" Width="69" Click="logout"/>
-            <Label x:Name="UserName" Content="" Margin="655,5,0,0" VerticalAlignment="Top" Width="217" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
-        </Grid>
         <Grid x:Name="Logining" Margin="0,0,-409,-83" d:IsHidden="True">
 
             <TextBox x:Name="Login" HorizontalAlignment="Left" Height="30" Margin="459,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" TabIndex="1"/>
-            <Button Content="Sign in" HorizontalAlignment="Left" Margin="415,287,0,0" VerticalAlignment="Top" Width="136" Height="45" FontSize="20"  TabIndex="3" Click="Entering"/>
-            <Label Content="Welcome" HorizontalAlignment="Left" Margin="286,85,0,0" VerticalAlignment="Top" Height="66" Width="364" TextOptions.TextFormattingMode="Display" FontFamily="Wide Latin" FontSize="38" FontStyle="Italic" HorizontalContentAlignment="Center"/>
+            <Button Content="Войти" HorizontalAlignment="Left" Margin="415,287,0,0" VerticalAlignment="Top" Width="136" Height="45" FontSize="20"  TabIndex="3" Click="Entering"/>
+            <Label Content="Добро пожаловать" HorizontalAlignment="Left" Margin="306,85,0,0" VerticalAlignment="Top" Height="66" Width="364" TextOptions.TextFormattingMode="Display" FontFamily="Wide Latin" FontSize="38" FontStyle="Italic"/>
             <Label Content="Login" HorizontalAlignment="Left" Margin="344,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.684,-0.231" FontSize="20" FontFamily="Cooper Black"/>
             <Label Content="Password" HorizontalAlignment="Left" Margin="344,234,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.684,-0.231" FontSize="20" FontFamily="Cooper Black"/>
             <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="459,234,0,0" VerticalAlignment="Top" Width="152" Height="30" TabIndex="2"/>

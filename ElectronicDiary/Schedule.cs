@@ -15,16 +15,15 @@ namespace ElectronicDiary
     public partial class Schedule
     {
         public int Id { get; set; }
-        public int Subjects_Id { get; set; }
-        public int Groups_Id { get; set; }
+        public int Subject_Id { get; set; }
+        public int Group_Id { get; set; }
         public int LessonNumber { get; set; }
         public string WeekDay { get; set; }
-        public int Teachers_Id { get; set; }
+        public int Teacher_Id { get; set; }
         public string Description { get; set; }
     
         public virtual Group Group { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual Teacher Teacher { get; set; }
-        public virtual Group Group1 { get; set; }
     }
 }

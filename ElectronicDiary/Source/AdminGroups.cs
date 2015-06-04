@@ -180,6 +180,8 @@ namespace ElectronicDiary
                              where
                                  groups.Id == groupids
                              select groups).FirstOrDefault();
+                model.Schedules.RemoveRange(group.Schedules);
+                model.Students.RemoveRange(group.Students);
                 model.Groups.Remove(group);
                 model.SaveChanges();
                 ShowGroups();

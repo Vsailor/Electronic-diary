@@ -22,15 +22,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Schedule">
-      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Schedule">
-        <MappingFragment StoreEntitySet="Schedule">
+    <EntitySetMapping Name="Schedules">
+      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Schedules">
+        <MappingFragment StoreEntitySet="Schedules">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Subjects_Id" ColumnName="Subjects_Id" />
-          <ScalarProperty Name="Groups_Id" ColumnName="Groups_Id" />
+          <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+          <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
           <ScalarProperty Name="LessonNumber" ColumnName="LessonNumber" />
           <ScalarProperty Name="WeekDay" ColumnName="WeekDay" />
-          <ScalarProperty Name="Teachers_Id" ColumnName="Teachers_Id" />
+          <ScalarProperty Name="Teacher_Id" ColumnName="Teacher_Id" />
           <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -51,26 +51,6 @@
         <MappingFragment StoreEntitySet="Subjects">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Subjects_Teachers">
-      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.Subjects_Teachers">
-        <MappingFragment StoreEntitySet="Subjects_Teachers">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Teachers_Id" ColumnName="Teachers_Id" />
-          <ScalarProperty Name="Subjects_Id" ColumnName="Subjects_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="ElectronicDiaryDBModel.sysdiagrams">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

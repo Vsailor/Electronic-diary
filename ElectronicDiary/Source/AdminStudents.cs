@@ -161,6 +161,7 @@ namespace ElectronicDiary
             }
             try
             {
+                model.Users.Remove(item.User);
                 model.Students.Remove(item);
                 model.SaveChanges();
                 ShowStudents();

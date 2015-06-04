@@ -44,13 +44,11 @@ namespace ElectronicDiary
                            where
                                subjects.Name == toRemove
                            select subjects).FirstOrDefault();
-            
             if (subject == null)
             {
                 StatusBar.Content = "Subject not found";
                 return;
             }
-            model.Subjects_Teachers.RemoveRange(subject.Subjects_Teachers);
             model.Schedules.RemoveRange(subject.Schedules);
             model.Marks.RemoveRange(subject.Marks);
             model.Subjects.Remove(subject);

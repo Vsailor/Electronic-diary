@@ -16,7 +16,6 @@ namespace ElectronicDiary
     {
         public Subject()
         {
-            this.Subjects_Teachers = new HashSet<Subjects_Teachers>();
             this.Marks = new HashSet<Mark>();
             this.Schedules = new HashSet<Schedule>();
         }
@@ -24,7 +23,6 @@ namespace ElectronicDiary
         public int Id { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<Subjects_Teachers> Subjects_Teachers { get; set; }
         public virtual ICollection<Mark> Marks { get; set; }
         public virtual ICollection<Schedule> Schedules { get; set; }
     }

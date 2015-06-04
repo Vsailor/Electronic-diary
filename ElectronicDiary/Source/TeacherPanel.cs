@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ElectronicDiary.ServiceReference1;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace ElectronicDiary
     partial class MainWindow : Window
     {
         private Teacher selectedTeacher;
-
+        ServiceReference1.RequestsClient client = new RequestsClient();
         void ShowSelectedGroup()
         {
             var selectedDate = TeacherCalendar.SelectedDate.Value.Date;
@@ -28,8 +29,8 @@ namespace ElectronicDiary
         }
         private void AddMarks(object sender, DataGridRowEditEndingEventArgs e)
         {
-            var chosenRow = e.Row.DataContext;            
-            var response = client.AddMarkToGroup(JsonConvert.SerializeObject(chosenRow), TeacherCalendar.SelectedDate.Value.Date, subject,groupname);
+            var chosenRow = e.Row.DataContext;
+            var response = client.AddMarkToGroup(JsonConvert.SerializeObject(chosenRow), TeacherCalendar.SelectedDate.Value.Date, subject, groupname);
             if (response != "")
                 StatusBar.Content = response;
         }
@@ -37,10 +38,10 @@ namespace ElectronicDiary
         private void ShowTeacherSchedule(object sender, SelectionChangedEventArgs e)
         {
             var selectedDate = TeacherCalendar.SelectedDate;
-            if (selectedDate != null && selectedTeacher!=null)
+            if (selectedDate != null && selectedTeacher != null)
             {
                 var DayOfWeek = selectedDate.Value.DayOfWeek.ToString();
-                TeacherSchedule.ItemsSource = JsonConvert.DeserializeObject<ArrayList>(client.GetTeacherSchedule(DayOfWeek,selectedTeacher.Id));                                     
+                TeacherSchedule.ItemsSource = JsonConvert.DeserializeObject<ArrayList>(client.GetTeacherSchedule(DayOfWeek, selectedTeacher.Id));
             }
         }
 
@@ -54,7 +55,7 @@ namespace ElectronicDiary
             {
                 if (_DataGrid != null)
                 {
-                    string strEID = _DataGrid.SelectedCells[0].Item.ToString().Replace("\r\n","").Replace(" ","").Replace("\"","");
+                    string strEID = _DataGrid.SelectedCells[0].Item.ToString().Replace("\r\n", "").Replace(" ", "").Replace("\"", "");
                     int lpos = strEID.IndexOf("Group:", StringComparison.Ordinal);
                     int rpos = strEID.IndexOf(",Auditory", StringComparison.Ordinal);
                     groupname = strEID.Substring(lpos + 6, rpos - lpos - 6);

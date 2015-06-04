@@ -66,7 +66,7 @@ namespace ElectronicDiary
         {
             AdminHeaderLabel.Content = "All users";
             AdminDataGrid.ItemsSource = (from users in model.Users
-                                         select new { users.Login, users.Password, users.Role }).ToList();
+                                         select new { users.Login, users.Role }).ToList();
             ShowAdminGrid(null);
             AdminColName.Content = String.Empty;
         }

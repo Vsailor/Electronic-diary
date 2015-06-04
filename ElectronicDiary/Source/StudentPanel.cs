@@ -14,7 +14,7 @@ namespace ElectronicDiary
 {
     partial class MainWindow : Window
     {
-        Student  selectedStudent;
+        Student selectedStudent;
         private void ShowSchedule(object sender, SelectionChangedEventArgs e)
         {
             StudentSchedule.Columns.Clear();
@@ -23,7 +23,7 @@ namespace ElectronicDiary
                 var dayOfWeek = StudentCalendar.SelectedDate.Value.DayOfWeek.ToString();
                 if (StudentGroupList.SelectedItem != null)
                 {
-                    var studentGroup = StudentGroupList.SelectedItem.ToString();                               
+                    var studentGroup = StudentGroupList.SelectedItem.ToString();
                     StudentSchedule.ItemsSource = JsonConvert.DeserializeObject<ArrayList>(client.GetStudentSchedule(dayOfWeek, studentGroup));
                 }
             }
@@ -31,7 +31,7 @@ namespace ElectronicDiary
 
         private void GroupSelected(object sender, SelectionChangedEventArgs e)
         {
-            ShowSchedule(sender,e);
+            ShowSchedule(sender, e);
         }
         private void displaySchedule(object sender, RoutedEventArgs e)
         {
@@ -39,10 +39,10 @@ namespace ElectronicDiary
         }
         private void ShowSubjects(object sender, SelectionChangedEventArgs e)
         {
-            if (SubjectList.SelectedItem != null && selectedStudent!=null)
+            if (SubjectList.SelectedItem != null && selectedStudent != null)
             {
                 var subjectName = SubjectList.SelectedItem.ToString();
-                StudentMarkTable.ItemsSource = JsonConvert.DeserializeObject<ArrayList>(client.GetStudentMarks(subjectName, selectedStudent.Id, selectedStudent.Group_Id));                         
+                StudentMarkTable.ItemsSource = JsonConvert.DeserializeObject<ArrayList>(client.GetStudentMarks(subjectName, selectedStudent.Id, selectedStudent.Group_Id));
             }
         }
     }

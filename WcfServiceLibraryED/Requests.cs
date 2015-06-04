@@ -17,11 +17,11 @@ namespace WcfServiceLibraryED
         public string GetStudentSchedule(string dayOfWeek, string NameOfGroup)
         {
 
-           
-            var view = from asd in model.Schedule
-                       join ast in model.Subjects on asd.Subjects_Id equals ast.Id
-                       join ask in model.Teachers on asd.Teachers_Id equals ask.Id
-                       join ass in model.Groups on asd.Groups_Id equals ass.Id
+
+            var view = from asd in model.Schedules
+                       join ast in model.Subjects on asd.Subject_Id equals ast.Id
+                       join ask in model.Teachers on asd.Teacher_Id equals ask.Id
+                       join ass in model.Groups on asd.Group_Id equals ass.Id
                        where asd.WeekDay == dayOfWeek
                        where NameOfGroup == ass.Name
                        select new
@@ -79,8 +79,10 @@ namespace WcfServiceLibraryED
 
             foreach (var student in studentList)
             {
-                var view = new MyData() { StudentName = student.StudentName, StudentSurname = student.StudentSurname, Mark = student.Mark.ToString(), Note = student.Note };
-                var record = model.Marks.Where(s => s.Students.Name == student.StudentName && s.Students.Surname == student.StudentSurname && s.Date == selectedDate && s.Subjects.Name == subject&&s.Students.Groups.Name==groupName);
+                var view = new MyData() { StudentName = student.StudentName, StudentSurname = student.StudentSurname, Mark = student.Mark.ToString(),
+                    Note = student.Note };
+                var record = model.Marks.Where(s => s.Students.Name == student.StudentName && s.Students.Surname == student.StudentSurname &&
+                    s.Date == selectedDate && s.Subjects.Name == subject && s.Students.Groups.Name == groupName);
                 if (record.Any())
                 {
                     view.Mark = record.First().Mark.ToString();
@@ -90,13 +92,14 @@ namespace WcfServiceLibraryED
             }
             return JsonConvert.SerializeObject(MyCollection);
         }
-        public string AddMarkToGroup(string selectedrow, DateTime selectedDate, string subject,string groupname)
+        public string AddMarkToGroup(string selectedrow, DateTime selectedDate, string subject, string groupname)
         {
             var chosenRow = JsonConvert.DeserializeObject<MyData>(selectedrow);
             if (selectedDate != null)
             {
                 var date = selectedDate.Date;
-                var record = model.Marks.Where(s => s.Students.Name == chosenRow.StudentName && s.Students.Surname == chosenRow.StudentSurname && s.Date == date && s.Subjects.Name == subject&&s.Students.Groups.Name == groupname);
+                var record = model.Marks.Where(s => s.Students.Name == chosenRow.StudentName && s.Students.Surname == chosenRow.StudentSurname &&
+                    s.Date == date && s.Subjects.Name == subject && s.Students.Groups.Name == groupname);
                 if (record.Any())
                     try
                     {
@@ -135,10 +138,10 @@ namespace WcfServiceLibraryED
         }
         public string GetTeacherSchedule(string DayOfWeek, int teacherId)
         {
-            var View = from schedule in model.Schedule
-                       join subj in model.Subjects on schedule.Subjects_Id equals subj.Id
-                       join teacher in model.Teachers on schedule.Teachers_Id equals teacher.Id
-                       join @group in model.Groups on schedule.Groups_Id equals @group.Id
+            var View = from schedule in model.Schedules
+                       join subj in model.Subjects on schedule.Subject_Id equals subj.Id
+                       join teacher in model.Teachers on schedule.Teacher_Id equals teacher.Id
+                       join @group in model.Groups on schedule.Group_Id equals @group.Id
                        where schedule.WeekDay == DayOfWeek
                        where teacher.Id == teacherId
                        select new
@@ -150,8 +153,16 @@ namespace WcfServiceLibraryED
                            Auditory = schedule.Description
 
                        };
-            var list = View.ToList().OrderBy(o => o.Num);
-            return JsonConvert.SerializeObject(list);
+            try
+            {
+                var list = View.ToList().OrderBy(o => o.Num);
+                return JsonConvert.SerializeObject(list);
+            }
+            catch
+            {
+                return "";
+            }
+            
         }
     }
 }

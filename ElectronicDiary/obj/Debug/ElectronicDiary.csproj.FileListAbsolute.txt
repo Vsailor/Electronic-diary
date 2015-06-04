@@ -77,8 +77,3 @@ C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\ExpressionLight.baml
 C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\ShinyBlue.baml
 C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\ShinyRed.baml
 C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\WhistlerBlue.baml
-C:\Electronic-diary\ElectronicDiary\obj\Debug\App.baml
-C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\Brushes.baml
-C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\Core.baml
-C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\Icons.baml
-C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\Core.g.cs

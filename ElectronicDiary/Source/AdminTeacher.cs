@@ -219,7 +219,8 @@ namespace ElectronicDiary
             }
             try
             {
-                model.Teachers.Remove(item);
+                model.Users.Remove(item.User);
+                model.Teachers.Remove(item);               
                 model.SaveChanges();
                 ShowTeachers();
                 ShowAdminGrid(AdminTeachersGrid);
