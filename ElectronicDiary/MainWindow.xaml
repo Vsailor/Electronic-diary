@@ -152,7 +152,7 @@
                 <Grid x:Name="EditScheduleButtonsForm" HorizontalAlignment="Left" Height="129" Margin="5,43,0,0" VerticalAlignment="Top" Width="312" Grid.ColumnSpan="3" d:IsHidden="True">
                     <Button x:Name="EditScheduleButtonBackPanel" Content="Back" HorizontalAlignment="Left" Margin="147,29,0,0" VerticalAlignment="Top" Width="75" Click="EditScheduleButtonBackPanel_Click"/>
                 </Grid>
-                <Grid x:Name="EditScheduleForm" HorizontalAlignment="Left" Height="311" VerticalAlignment="Top" Width="400" Margin="-13,38,0,0" Grid.ColumnSpan="4">
+                <Grid x:Name="EditScheduleForm" HorizontalAlignment="Left" Height="311" VerticalAlignment="Top" Width="400" Margin="-13,38,0,0" Grid.ColumnSpan="4" d:IsHidden="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="108*"/>
                         <ColumnDefinition Width="221*"/>
@@ -192,24 +192,16 @@
                     <Label Content="Description:" HorizontalAlignment="Left" Margin="22,207,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="AdminScheduleNumber" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top" Width="213" Grid.Column="1"/>
                 </Grid>
-                <Grid x:Name="RemoveScheduleForm" HorizontalAlignment="Left" Height="258" VerticalAlignment="Top" Width="312" Margin="5,38,0,0" d:IsHidden="True" Grid.ColumnSpan="3">
-                    <Label Content="Lesson number:" HorizontalAlignment="Left" Margin="11,18,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Subject:" HorizontalAlignment="Left" Margin="52,124,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelRemoveScheduleSubjectCombobox" HorizontalAlignment="Left" Margin="104,128,0,0" VerticalAlignment="Top" Width="168"/>
-                    <Label Content="Teacher:" HorizontalAlignment="Left" Margin="50,86,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelRemoveScheduleTeacherCombobox" HorizontalAlignment="Left" Margin="104,90,0,0" VerticalAlignment="Top" Width="168"/>
-                    <Label Content="Week day:" HorizontalAlignment="Left" Margin="39,49,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelRemoveScheduleWeekDayCombobox" HorizontalAlignment="Left" Margin="104,53,0,0" VerticalAlignment="Top" Width="168"/>
-                    <Button x:Name="RemoveScheduleButtonBack" Content="Back" HorizontalAlignment="Left" Margin="104,202,0,0" VerticalAlignment="Top" Width="71" Click="RemoveScheduleButtonBack_Click"/>
-                    <Button x:Name="RemoveScheduleButtonDelete" Content="Delete" HorizontalAlignment="Left" Margin="201,202,0,0" VerticalAlignment="Top" Width="71" Click="RemoveScheduleButtonDelete_Click"/>
-                    <Label Content="Description:" HorizontalAlignment="Left" Margin="31,157,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AdminPanelRemoveScheduleLessonCombobox" HorizontalAlignment="Left" Margin="104,18,0,0" VerticalAlignment="Top" Width="168"/>
-                    <ComboBox x:Name="AdminPanelRemoveScheduleDescriptionCombobox" HorizontalAlignment="Left" Margin="104,161,0,0" VerticalAlignment="Top" Width="168"/>
+                <Grid x:Name="RemoveScheduleForm" HorizontalAlignment="Left" Height="258" VerticalAlignment="Top" Width="341" Margin="-24,38,0,0" Grid.ColumnSpan="3">
+                    <Label Content="Lesson Id:" HorizontalAlignment="Left" Margin="51,10,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="RemoveScheduleButtonBack" Content="Back" HorizontalAlignment="Left" Margin="119,65,0,0" VerticalAlignment="Top" Width="100" Click="RemoveScheduleButtonBack_Click"/>
+                    <Button x:Name="RemoveScheduleButtonDelete" Content="Delete" HorizontalAlignment="Left" Margin="241,65,0,0" VerticalAlignment="Top" Width="100" Click="RemoveScheduleButtonDelete_Click"/>
+                    <ComboBox x:Name="AdminPanelRemoveScheduleLessonCombobox" HorizontalAlignment="Left" Margin="119,10,0,0" VerticalAlignment="Top" Width="222"/>
                 </Grid>
             </Grid>
         </Grid>
 
-        <Grid x:Name="Client" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
+        <Grid x:Name="Client" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965" d:IsHidden="True">
             <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965">
                 <Button Name="BackToTeacherScheduleButton" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="440,378,0,0" Click="BackToTeacherSchedule" Visibility="Hidden" />
 

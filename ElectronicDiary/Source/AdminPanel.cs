@@ -112,7 +112,7 @@ namespace ElectronicDiary
                                          where schedules.Group.Name != null
                                          group schedules.Group.Name by schedules.Group.Name
                                              into schedules
-                                             select new { Name = schedules.Key }).ToList();
+                                             select new { GroupName = schedules.Key }).ToList();
             ShowAdminGrid(AdminSchedulesGrid);
         }
 

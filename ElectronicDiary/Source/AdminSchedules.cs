@@ -69,6 +69,7 @@ namespace ElectronicDiary
                                                  orderby schedules.LessonNumber
                                                  select new
                                                  {
+                                                     Id = schedules.Id,
                                                      Number = schedules.LessonNumber,
                                                      Week_Day = schedules.WeekDay,
                                                      Group_Name = schedules.Group.Name,
@@ -267,11 +268,29 @@ namespace ElectronicDiary
         private void AdminPanelScheduleGroupCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClearEditScheduleForm();
+            AdminPanelRemoveScheduleLessonCombobox.Items.Clear();
             if (EditScheduleButtonsForm.Visibility == Visibility.Visible)
             {
 
                 ShowAdminGrid(AdminSchedulesPanel, EditScheduleForm);
 
+            }
+            if (RemoveScheduleForm.Visibility == Visibility.Visible)
+            {
+                if (AdminPanelScheduleGroupCombobox.Items.Count == 0)
+                {
+                    return;
+                }
+                string groupName = AdminPanelScheduleGroupCombobox.SelectedItem.ToString();
+                AdminPanelRemoveScheduleLessonCombobox.Items.Clear();
+                var lessons = (from items in model.Schedules
+                               where items.Group.Name == groupName
+                               orderby items.Id
+                               select items.Id).ToList();
+                foreach (var item in lessons)
+                {
+                    AdminPanelRemoveScheduleLessonCombobox.Items.Add(item);
+                }
             }
 
             FillIdNumberComboboxEditSchedule();
@@ -360,7 +379,7 @@ namespace ElectronicDiary
         private void AdminPanelSchedulesRemoveSchedule_Click(object sender, RoutedEventArgs e)
         {
             ShowAdminGrid(AdminSchedulesPanel, RemoveScheduleForm);
-
+            AdminPanelRemoveScheduleLessonCombobox.Items.Clear();
             AdminColName.Content = "Remove lesson";
             ShowAllLessons();
             UpdateGroupsComboboxList();
@@ -485,11 +504,29 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminSchedulesGrid);
             AdminColName.Content = String.Empty;
+            ShowAllLessons();
         }
 
         private void RemoveScheduleButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            // Remove schedule
+            try
+            {
+                string groupName = AdminPanelScheduleGroupCombobox.SelectedItem.ToString();
+                int lessonId = int.Parse(AdminPanelRemoveScheduleLessonCombobox.SelectedItem.ToString());
+                var schedule = (from schedules in model.Schedules
+                                where schedules.Group.Name == groupName
+                                && lessonId == schedules.Id
+                                select schedules).FirstOrDefault();
+                model.Schedules.Remove(schedule);
+                model.SaveChanges();
+                AdminPanelScheduleGroupCombobox_SelectionChanged(null, null);
+                StatusBar.Content = "Lesson deleted";
+
+            }
+            catch (Exception ex)
+            {
+                StatusBar.Content = ex.Message;
+            }
         }
     }
 }

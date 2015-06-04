@@ -168,6 +168,7 @@ namespace ElectronicDiary
                 ShowAdminGrid(AdminStudentsGrid);
                 AdminPanelStudentsRemoveStudent_Click(sender, e);
                 AdminColName.Content = String.Empty;
+                StatusBar.Content = "Student deleted";
             }
             catch (Exception ex)
             {

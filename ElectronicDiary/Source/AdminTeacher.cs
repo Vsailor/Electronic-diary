@@ -226,6 +226,7 @@ namespace ElectronicDiary
                 ShowAdminGrid(AdminTeachersGrid);
                 AdminPanelTeacherRemove(sender, e);
                 AdminColName.Content = String.Empty;
+                StatusBar.Content = "Teacher deleted";
             }
             catch (Exception ex)
             {

@@ -186,7 +186,7 @@ namespace ElectronicDiary
                 model.SaveChanges();
                 ShowGroups();
                 AdminPanelGroupsRemoveGroup_Click(sender, e);
-                StatusBar.Content = "Group saved";
+                StatusBar.Content = "Group removed";
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException)
             {
