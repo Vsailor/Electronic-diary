@@ -26,6 +26,7 @@ namespace ElectronicDiary
         private void ShowAllLessons()
         {
             AdminDataGrid.ItemsSource = (from schedules in model.Schedules
+                                         orderby schedules.Group.Name
                                          select new
                                          {
                                              Number = schedules.LessonNumber,
@@ -47,6 +48,7 @@ namespace ElectronicDiary
                 {
                     AdminDataGrid.ItemsSource = (from schedules in model.Schedules
                                                  where schedules.Group.Name == combobox
+                                                 orderby schedules.LessonNumber
                                                  select new
                                                  {
                                                      Id = schedules.Id,
@@ -64,6 +66,7 @@ namespace ElectronicDiary
                 {
                     AdminDataGrid.ItemsSource = (from schedules in model.Schedules
                                                  where schedules.Group.Name == combobox
+                                                 orderby schedules.LessonNumber
                                                  select new
                                                  {
                                                      Number = schedules.LessonNumber,
@@ -380,11 +383,91 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminSchedulesGrid);
             AdminColName.Content = String.Empty;
+            ShowAllLessons();
         }
 
         private void EditScheduleButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            // Save schedule
+            string groupName = String.Empty;
+            int scheduleId = 0;
+            int lessonNumber = 0;
+            string weekDay = String.Empty;
+            string teacher = String.Empty;
+            string subject = String.Empty;
+            string description = String.Empty;
+            try
+            {
+                groupName = AdminPanelScheduleGroupCombobox.SelectedItem.ToString();
+                scheduleId = int.Parse(EditScheduleLessonIdCombobox.SelectedItem.ToString());
+                lessonNumber = int.Parse(AdminScheduleEditTextBox.Text);
+                weekDay = AdminPanelEditScheduleWeekDayCombobox.SelectedItem.ToString();
+                teacher = AdminPanelEditScheduleTeacherCombobox.SelectedItem.ToString();
+                subject = AdminPanelEditScheduleSubjectCombobox.SelectedItem.ToString();
+                description = AdminScheduleEditDescriptionTextBox.Text;
+            }
+            catch
+            { 
+                
+            }
+            if (groupName == String.Empty ||
+                weekDay == String.Empty || teacher == String.Empty ||
+                subject == String.Empty)
+            {
+                StatusBar.Content = "At least one textbox is emty";
+                return;
+            }
+            string teacherName = teacher.Remove(teacher.IndexOf(" "));
+            string teacherSurname = teacher.Remove(0, teacher.IndexOf(" ") + 1);
+
+            var subjectdb = (from subjects in model.Subjects
+                             where subjects.Name == subject select subjects).FirstOrDefault();
+            var groupdb = (from groups in model.Groups
+                           where groups.Name == groupName
+                           select groups).FirstOrDefault();
+            var teacherdb = (from teachers in model.Teachers
+                             where teachers.Name == teacherName &&
+                             teachers.Surname == teacherSurname
+                             select teachers).FirstOrDefault();
+            Schedule s = new Schedule()
+            {
+                Subject = subjectdb,
+                Group = groupdb,
+                LessonNumber = lessonNumber,
+                WeekDay = weekDay,
+                Teacher = teacherdb,
+                Description = description
+            };
+            var clone = (from schedules in model.Schedules
+                               where schedules.LessonNumber == lessonNumber
+                               && schedules.WeekDay == weekDay
+                             select schedules).FirstOrDefault();
+            if (clone != null)
+            {
+                if (scheduleId != clone.Id)
+                {
+                    StatusBar.Content = "This teacher is busy or lesson for this group is already scheduled";
+                    return;
+                }
+            }
+            try
+            {
+                var item = (from schedules in model.Schedules
+                            where schedules.Id == scheduleId
+                            select schedules).FirstOrDefault();
+                item.LessonNumber = lessonNumber;
+                item.WeekDay = weekDay;
+                item.Teacher = s.Teacher;
+                item.Subject = s.Subject;
+                item.Description = s.Description;
+                model.SaveChanges();
+                ClearEditScheduleForm();
+                AdminPanelScheduleGroupCombobox_SelectionChanged(null, null);
+                StatusBar.Content = "Changes saved";
+            }
+            catch (Exception ex)
+            {
+                StatusBar.Content = ex.Message;
+            }
         }
 
         private void RemoveScheduleButtonBack_Click(object sender, RoutedEventArgs e)
