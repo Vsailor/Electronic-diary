@@ -225,6 +225,9 @@ namespace ElectronicDiary
             {
                 return;
             }
+            AdminPanelEditScheduleWeekDayCombobox.Items.Clear();
+            AdminPanelEditScheduleTeacherCombobox.Items.Clear();
+            AdminPanelEditScheduleSubjectCombobox.Items.Clear();
             int index = int.Parse(EditScheduleLessonIdCombobox.SelectedItem.ToString());
             var schedule = (from schedules in model.Schedules
                             where index == schedules.Id
@@ -232,6 +235,7 @@ namespace ElectronicDiary
             AdminScheduleEditTextBox.Text = schedule.LessonNumber.ToString();
             FillWeekDaysCombobox(AdminPanelEditScheduleWeekDayCombobox);
             AdminPanelEditScheduleWeekDayCombobox.SelectedItem = schedule.WeekDay;
+
             var teachersdb = (from teachers in model.Teachers
                               select teachers).ToList();
             foreach (var item in teachersdb)
@@ -262,12 +266,14 @@ namespace ElectronicDiary
         }
         private void AdminPanelScheduleGroupCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ClearEditScheduleForm();
             if (EditScheduleButtonsForm.Visibility == Visibility.Visible)
             {
-                ClearEditScheduleForm();
+
                 ShowAdminGrid(AdminSchedulesPanel, EditScheduleForm);
 
             }
+
             FillIdNumberComboboxEditSchedule();
             try
             {
@@ -438,15 +444,20 @@ namespace ElectronicDiary
                 Description = description
             };
             var clone = (from schedules in model.Schedules
-                               where schedules.LessonNumber == lessonNumber
-                               && schedules.WeekDay == weekDay
-                             select schedules).FirstOrDefault();
+                         where schedules.LessonNumber == lessonNumber
+                         && schedules.WeekDay == weekDay
+                         && schedules.Teacher.Surname == teacherSurname
+                         && schedules.Teacher.Name == teacherName
+                         select schedules).ToList();
             if (clone != null)
             {
-                if (scheduleId != clone.Id)
+                foreach (var item in clone)
                 {
-                    StatusBar.Content = "This teacher is busy or lesson for this group is already scheduled";
-                    return;
+                    if (scheduleId != item.Id)
+                    {
+                        StatusBar.Content = "This teacher is busy or lesson for this group is already scheduled";
+                        return;
+                    }
                 }
             }
             try
