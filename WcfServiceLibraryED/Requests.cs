@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Linq.Expressions;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace WcfServiceLibraryED
                            Subject = ast.Name,
                            Teacher = ask.Surname,
                            Group = ass.Name,
-                           Auditory = asd.Description
+                           Description = asd.Description
                        };
             var list = view.OrderBy(o => o.Num).ToList();
             return JsonConvert.SerializeObject(list);
@@ -115,10 +116,19 @@ namespace WcfServiceLibraryED
                 {
                     var student = model.Students.First(m => m.Name == chosenRow.StudentName && m.Surname == chosenRow.StudentSurname);
                     var sbj = model.Subjects.First(a => a.Name == subject);
+                    int setMark;
+                    try
+                    {
+                        setMark = int.Parse(chosenRow.Mark);
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.Message;
+                    }
                     var mark = new Marks()
                     {
                         Date = selectedDate.Date,
-                        Mark = int.Parse(chosenRow.Mark),
+                        Mark = setMark,
                         Student_Id = student.Id,
                         Subject_Id = sbj.Id,
                         Description = chosenRow.Note
@@ -134,7 +144,7 @@ namespace WcfServiceLibraryED
                     }
                 }
             }
-            return "";
+            return "Mark was set";
         }
         public string GetTeacherSchedule(string DayOfWeek, int teacherId)
         {
@@ -150,7 +160,7 @@ namespace WcfServiceLibraryED
                            Subject = subj.Name,
                            Teacher = teacher.Surname,
                            Group = @group.Name,
-                           Auditory = schedule.Description
+                           Description = schedule.Description
 
                        };
             try
