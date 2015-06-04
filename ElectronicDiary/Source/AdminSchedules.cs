@@ -269,7 +269,6 @@ namespace ElectronicDiary
             ShowAdminGrid(AdminSchedulesPanel, RemoveScheduleForm);
 
             AdminColName.Content = "Remove lesson";
-            AdminHeaderLabel.Content = "Lessons";
             ShowExistLessons();
             UpdateGroupsComboboxList();
         }

@@ -77,3 +77,12 @@ C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\ExpressionLight.baml
 C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\ShinyBlue.baml
 C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\ShinyRed.baml
 C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\WhistlerBlue.baml
+C:\Electronic-diary\ElectronicDiary\obj\Debug\App.baml
+C:\Electronic-diary\ElectronicDiary\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+C:\Electronic-diary\ElectronicDiary\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+C:\Electronic-diary\ElectronicDiary\bin\Debug\WPFToolkit.dll
+C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\Metro\Metro.MSControls.Core.Implicit.baml
+C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\Metro\Metro.MSControls.Toolkit.Implicit.baml
+C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\Metro\Styles.Shared.baml
+C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\Metro\Styles.WPF.baml
+C:\Electronic-diary\ElectronicDiary\obj\Debug\Themes\Metro\Theme.Colors.baml

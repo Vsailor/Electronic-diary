@@ -45,6 +45,7 @@ namespace ElectronicDiary
             AdminComboBox.Items.Add("Groups");
             AdminComboBox.Items.Add("Subjects");
             AdminComboBox.Items.Add("Schedules");
+            AdminComboBox.SelectedIndex = 0;
         }
         private void ShowAdminGrid(params Grid[] g)
         {
@@ -64,7 +65,6 @@ namespace ElectronicDiary
 
         private void ShowAllUsers()
         {
-            AdminHeaderLabel.Content = "All users";
             AdminDataGrid.ItemsSource = (from users in model.Users
                                          select new { users.Login, users.Role }).ToList();
             ShowAdminGrid(null);
@@ -73,7 +73,6 @@ namespace ElectronicDiary
 
         private void ShowStudents()
         {
-            AdminHeaderLabel.Content = "Students";
             AdminDataGrid.ItemsSource = (from students in model.Students
                                          join groups in model.Groups on students.Group_Id equals groups.Id
                                          join users in model.Users on students.User_Id equals users.Id
@@ -82,7 +81,6 @@ namespace ElectronicDiary
         }
         private void ShowTeachers()
         {
-            AdminHeaderLabel.Content = "Teachers";
             AdminDataGrid.ItemsSource = (from teachers
                                              in model.Teachers
                                          select new
@@ -96,14 +94,12 @@ namespace ElectronicDiary
         }
         private void ShowGroups()
         {
-            AdminHeaderLabel.Content = "Groups";
             AdminDataGrid.ItemsSource = (from groups in model.Groups
                                          select new { Id = groups.Id, Name = groups.Name, Year = groups.Year }).ToList();
             ShowAdminGrid(AdminGroupsGrid);
         }
         private void ShowSubjects()
         {
-            AdminHeaderLabel.Content = "Subjects";
             AdminDataGrid.ItemsSource = (from subjects in model.Subjects
                                          select new { Name = subjects.Name }).ToList();
             ShowAdminGrid(AdminSubjectsGrid);
@@ -111,7 +107,6 @@ namespace ElectronicDiary
 
         private void ShowSchedules()
         {
-            AdminHeaderLabel.Content = "Schedules";
 
             AdminDataGrid.ItemsSource = (from schedules in model.Schedules
                                          where schedules.Group.Name != null

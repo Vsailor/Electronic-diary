@@ -32,7 +32,7 @@ namespace ElectronicDiary
                     Logining.Visibility = Visibility.Hidden;
                     Exit.Visibility = Visibility.Visible;
                     AdminPanelShow();
-                    UserName.Content = "admin";
+                    UserName.Content = "Hello, admin";
                 }
                 else if (z.First().Role == role.student.ToString())
                 {
@@ -46,7 +46,7 @@ namespace ElectronicDiary
                         where st.User_Id == id
                         select st).FirstOrDefault();
                                             
-                    UserName.Content = selectedStudent.Name+" "+selectedStudent.Surname;
+                    UserName.Content = "Hello, " + selectedStudent.Name+" "+selectedStudent.Surname;
                     var groups = model.Groups.ToList();
                     foreach (var @group in groups)
                     {
@@ -81,7 +81,7 @@ namespace ElectronicDiary
                                            where st.UserId == id
                                            select st).FirstOrDefault();
 
-                        UserName.Content = selectedTeacher.Name + " " + selectedTeacher.Surname;
+                        UserName.Content = "Hello, " + selectedTeacher.Name + " " + selectedTeacher.Surname;
 
                         TeacherCalendar.Visibility = Visibility.Visible;
                         TeacherSchedule.Visibility = Visibility.Visible;
