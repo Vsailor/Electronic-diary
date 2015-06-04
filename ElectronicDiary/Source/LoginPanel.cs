@@ -36,6 +36,7 @@ namespace ElectronicDiary
                     Exit.Visibility = Visibility.Visible;
                     AdminPanelShow();
                     UserName.Content = "Hello, admin";
+                    StatusBar.Content = "Successfully logged in";
                 }
                 else if (z.First().Role == role.student.ToString())
                 {
@@ -70,6 +71,7 @@ namespace ElectronicDiary
 
                     StudentCalendar.SelectedDate = DateTime.Now.Date;
                     ShowSchedule(sender, null);
+                    StatusBar.Content = "Successfully logged in";
                 }
                 else
                     if (z.First().Role == role.teacher.ToString())
@@ -98,6 +100,7 @@ namespace ElectronicDiary
 
                         TeacherCalendar.SelectedDate = DateTime.Now.Date;
                         ShowTeacherSchedule(e, null);
+                        StatusBar.Content = "Successfully logged in";
                     }
             }
             else
