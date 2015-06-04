@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ElectronicDiary.MainWindow"
-        Title="Electronic diary" Height="483.052" Width="972.662">
+        Title="Electronic diary" Height="483.052" Width="972.662" ResizeMode="NoResize">
     <Grid Height="453" VerticalAlignment="Top">
         <Grid x:Name="Exit" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
             <Button Content="Logout" HorizontalAlignment="Left" Margin="876,10,0,0" VerticalAlignment="Top" Width="79" Click="logout" Height="40"/>
@@ -203,26 +203,27 @@
         </Grid>
         <Grid x:Name="Client" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Width="965">
             <Grid x:Name="Teacher" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965">
+                <Button Name="BackToTeacherScheduleButton" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="440,378,0,0" Click="BackToTeacherSchedule" Visibility="Hidden" />
                 <DataGrid x:Name="TeacherMarkSetter" HorizontalAlignment="Left" Margin="278,53,0,0" VerticalAlignment="Top" Height="302" Width="376" AutoGenerateColumns="False" CanUserAddRows="False" RowEditEnding="AddMarks" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" 
-                             Binding="{Binding Path=StudentName,UpdateSourceTrigger=PropertyChanged}"/>
                         <DataGridTextColumn Header="Surname"
-                             Binding="{Binding Path=StudentSurname,UpdateSourceTrigger=PropertyChanged}"/>
-                        <DataGridTextColumn Header="Mark" IsReadOnly="False" Binding="{Binding Path=Mark,UpdateSourceTrigger=PropertyChanged}"/>
-                        <DataGridTextColumn Header="Note" IsReadOnly="False" Binding="{Binding Path=Note,UpdateSourceTrigger=PropertyChanged}"/>
+            				Binding="{Binding StudentSurname, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Name" 
+            				Binding="{Binding StudentName, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True"/>                        
+                        <DataGridTextColumn Header="Mark" IsReadOnly="False" Binding="{Binding Mark, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Note" IsReadOnly="False" Binding="{Binding Note, UpdateSourceTrigger=PropertyChanged}" Width="230"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Calendar x:Name="TeacherCalendar" HorizontalAlignment="Left" Margin="758,48,0,0" VerticalAlignment="Top" SelectedDatesChanged="ShowTeacherSchedule" Loaded="ShowTeacherSchedule"/>
-                <DataGrid x:Name="TeacherSchedule" HorizontalAlignment="Left" Margin="58,46,0,0" VerticalAlignment="Top" Height="332" Width="672" SelectionChanged="SelectedRow"/>
-                <Button x:Name="BackToTeacherScheduleButton" Content="Back" Margin="434,300,456,12" Click="BackToTeacherSchedule" Visibility="Hidden"/>
+
+                <Calendar x:Name="TeacherCalendar" HorizontalAlignment="Left" Margin="758,48,0,0" VerticalAlignment="Top" SelectedDatesChanged="ShowTeacherSchedule" Loaded="LoadTeacherSchedule" d:IsHidden="True"/>
+                <DataGrid x:Name="TeacherSchedule" HorizontalAlignment="Left" Margin="58,46,0,0" VerticalAlignment="Top" Height="332" Width="672" SelectionChanged="SelectedRow" CanUserAddRows="False" IsReadOnly="True" d:IsHidden="True"/>
                 <Button x:Name="SetMarksButton" HorizontalAlignment="Left" Margin="800,250,0,0" VerticalAlignment="Top" Width="96" Click="SetMarks" Height="25" Content="Set marks"/>
             </Grid>
             <Grid x:Name="Student" HorizontalAlignment="Left" Height="452" VerticalAlignment="Top" Width="965" Margin="0,0,-865,-352" d:IsHidden="True">
-                <TabControl HorizontalAlignment="Left" Height="410" Margin="0,32,0,0" VerticalAlignment="Top" Width="955" d:IsHidden="True">
+                <TabControl HorizontalAlignment="Left" Height="410" Margin="0,32,0,0" VerticalAlignment="Top" Width="955">
                     <TabItem Header="Schedule">
                         <Grid Background="White" Margin="0,-5,0,0">
-                            <DataGrid x:Name="StudentSchedule" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top" Height="316" Width="524"/>
+                            <DataGrid x:Name="StudentSchedule" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top" Height="316" Width="524" CanUserAddRows="False" IsReadOnly="True"/>
                             <Calendar x:Name="StudentCalendar" HorizontalAlignment="Left" Margin="660,98,0,0" VerticalAlignment="Top" SelectedDatesChanged="ShowSchedule" Loaded="displaySchedule"/>
                             <ComboBox x:Name="StudentGroupList" HorizontalAlignment="Left" Margin="660,43,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="GroupSelected"/>
                             <Label Content="Group:" HorizontalAlignment="Left" Margin="660,10,0,0" VerticalAlignment="Top" Width="68"/>
@@ -231,7 +232,7 @@
                     <TabItem Header="Marks">
                         <Grid Background="White">
                             <ComboBox x:Name="SubjectList" HorizontalAlignment="Left" Margin="409,25,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ShowSubjects"/>
-                            <DataGrid x:Name="StudentMarkTable" HorizontalAlignment="Left" Margin="280,85,0,0" VerticalAlignment="Top" Height="252" Width="380"/>
+                            <DataGrid x:Name="StudentMarkTable" HorizontalAlignment="Left" Margin="280,85,0,0" VerticalAlignment="Top" Height="252" Width="380" CanUserAddRows="False" IsReadOnly="True"/>
                         </Grid>
                     </TabItem>
                 </TabControl>

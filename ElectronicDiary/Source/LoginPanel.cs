@@ -20,7 +20,10 @@ namespace ElectronicDiary
                 StatusBar.Content="Login or password is empty";
                 return;
             }
+            try
+            {
 
+         
             var z = ((from asd in model.Users
                       where asd.Login == Login.Text
                       where asd.Password == Password.Password
@@ -53,6 +56,7 @@ namespace ElectronicDiary
                         StudentGroupList.Items.Add(@group.Name);
                     }
                     StudentGroupList.SelectedItem=selectedStudent.Group.Name;
+                    SubjectList.Items.Clear();
                     var subjects = model.Subjects.ToList();
                     foreach (var @subject in subjects)
                     {
@@ -62,7 +66,7 @@ namespace ElectronicDiary
                     StudentSchedule.ItemsSource = null;
                     StudentMarkTable.ItemsSource = null;
                     SubjectList.SelectedItem = null;
-
+             
 
                     StudentCalendar.SelectedDate = DateTime.Now.Date;
                     ShowSchedule(sender, null);
@@ -100,6 +104,13 @@ namespace ElectronicDiary
             {
                 StatusBar.Content = "Login or password is wrong";
             }
+            }
+            catch (Exception)
+            {
+
+                StatusBar.Content = "Make sure server is running";
+            }
         }
+           
     }
 }

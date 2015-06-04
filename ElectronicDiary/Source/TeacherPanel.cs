@@ -23,7 +23,8 @@ namespace ElectronicDiary
         }
 
 
-        private void ShowTeacherSchedule(object sender, RoutedEventArgs e)
+
+        private void LoadTeacherSchedule(object sender, RoutedEventArgs e)
         {
             TeacherCalendar.SelectedDate = DateTime.Now.Date;
         }
@@ -31,8 +32,7 @@ namespace ElectronicDiary
         {
             var chosenRow = e.Row.DataContext;
             var response = client.AddMarkToGroup(JsonConvert.SerializeObject(chosenRow), TeacherCalendar.SelectedDate.Value.Date, subject, groupname);
-            if (response != "")
-                StatusBar.Content = response;
+            StatusBar.Content = response;
         }
 
         private void ShowTeacherSchedule(object sender, SelectionChangedEventArgs e)
@@ -57,7 +57,7 @@ namespace ElectronicDiary
                 {
                     string strEID = _DataGrid.SelectedCells[0].Item.ToString().Replace("\r\n", "").Replace(" ", "").Replace("\"", "");
                     int lpos = strEID.IndexOf("Group:", StringComparison.Ordinal);
-                    int rpos = strEID.IndexOf(",Auditory", StringComparison.Ordinal);
+                    int rpos = strEID.IndexOf(",Description", StringComparison.Ordinal);
                     groupname = strEID.Substring(lpos + 6, rpos - lpos - 6);
                     lpos = strEID.IndexOf("Subject:", StringComparison.Ordinal);
                     rpos = strEID.IndexOf(",Teacher", StringComparison.Ordinal);
