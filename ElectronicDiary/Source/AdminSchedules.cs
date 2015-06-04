@@ -249,6 +249,7 @@ namespace ElectronicDiary
                 StatusBar.Content = "Lesson added";
                 ClearAddScheduleForm();
                 AdminPanelSchedulesAddSchedule_Click(sender, e);
+                AdminPanelScheduleGroupCombobox.SelectedValue = groupName;
             }
             catch (Exception ex)
             {
@@ -276,6 +277,7 @@ namespace ElectronicDiary
         private void EditScheduleButtonBackPanel_Click(object sender, RoutedEventArgs e)
         {
             ShowAdminGrid(AdminSchedulesGrid);
+
             AdminColName.Content = String.Empty;
         }
 
@@ -285,6 +287,7 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminSchedulesGrid);
             AdminColName.Content = String.Empty;
+            ShowAllLessons();
         }
 
 
