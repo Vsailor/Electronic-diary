@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\user\Documents\GitHub\Electronic-diary\ElectronicDiary\obj\Debug\
+C:\Electronic-diary\ElectronicDiary\obj\Debug\
 ElectronicDiary
 none
 false
 DEBUG;TRACE
-C:\Users\user\Documents\GitHub\Electronic-diary\ElectronicDiary\App.xaml
+C:\Electronic-diary\ElectronicDiary\App.xaml
 131303564664
 
-29-2051093453
-24-1379492152
+29240741375
+241296792795
 MainWindow.xaml;Themes\BureauBlack.xaml;Themes\BureauBlue.xaml;Themes\ExpressionDark.xaml;Themes\ExpressionLight.xaml;Themes\Metro\Metro.MSControls.Core.Implicit.xaml;Themes\Metro\Metro.MSControls.Toolkit.Implicit.xaml;Themes\Metro\Styles.Shared.xaml;Themes\Metro\Styles.WPF.xaml;Themes\Metro\Theme.Colors.xaml;Themes\ShinyBlue.xaml;Themes\ShinyRed.xaml;Themes\WhistlerBlue.xaml;
 
 False
