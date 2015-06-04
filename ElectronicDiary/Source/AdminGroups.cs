@@ -109,6 +109,7 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminGroupsGrid);
             AdminColName.Content = String.Empty;
+            StatusBar.Content = String.Empty;
         }
 
         private void AdminPanelSaveEditGroup_Click(object sender, RoutedEventArgs e)
@@ -202,6 +203,7 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminGroupsGrid);
             AdminColName.Content = String.Empty;
+            StatusBar.Content = String.Empty;
         }
     }
 }

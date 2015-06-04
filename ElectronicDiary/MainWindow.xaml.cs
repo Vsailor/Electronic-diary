@@ -31,8 +31,8 @@ namespace ElectronicDiary
             Logining.Visibility = Visibility.Visible;
             Exit.Visibility = Visibility.Hidden;
             StatusBar.Content = "Use your login and password to authorizate";
-            Login.Text = "admin";
-            Password.Password = "admin";
+            Login.Text = "";
+            Password.Password = "";
         }
 
         private void logout(object sender, RoutedEventArgs e)

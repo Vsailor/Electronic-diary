@@ -391,6 +391,7 @@ namespace ElectronicDiary
             ShowSchedules();
             ClearEditScheduleForm();
             AdminColName.Content = String.Empty;
+            StatusBar.Content = String.Empty;
         }
 
 
@@ -399,6 +400,7 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminSchedulesGrid);
             AdminColName.Content = String.Empty;
+            StatusBar.Content = String.Empty;
             ShowAllLessons();
 
         }
@@ -408,6 +410,7 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminSchedulesGrid);
             AdminColName.Content = String.Empty;
+            StatusBar.Content = String.Empty;
             ShowAllLessons();
         }
 
@@ -504,6 +507,8 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminSchedulesGrid);
             AdminColName.Content = String.Empty;
+            StatusBar.Content = String.Empty;
+
             ShowAllLessons();
         }
 
@@ -511,6 +516,12 @@ namespace ElectronicDiary
         {
             try
             {
+                if (AdminPanelScheduleGroupCombobox.SelectedIndex == -1
+                    || AdminPanelRemoveScheduleLessonCombobox.SelectedIndex == -1)
+                {
+                    StatusBar.Content = "At least one combobox is emty";
+                    return;
+                }
                 string groupName = AdminPanelScheduleGroupCombobox.SelectedItem.ToString();
                 int lessonId = int.Parse(AdminPanelRemoveScheduleLessonCombobox.SelectedItem.ToString());
                 var schedule = (from schedules in model.Schedules

@@ -70,6 +70,7 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminStudentsGrid);
             AdminColName.Content = String.Empty;
+            StatusBar.Content = String.Empty;
         }
 
         private void AdminPanelAddStudent_Click(object sender, RoutedEventArgs e)
@@ -77,8 +78,21 @@ namespace ElectronicDiary
             string name = AdminStudentNameTextBox.Text;
             string surname = AdminStudentSurnameTextBox.Text;
             string login = AdminStudentLoginTextBox.Text;
-            string pass = AdminStudentPassTextBox.Password;
-            string groupName = AdminStudentGroupCombobox.SelectedValue.ToString();
+            string pass = AdminStudentPassTextBox.Password;         
+            string groupName = String.Empty;
+            if (!IsNameType(name) || !IsNameType(surname))
+            {
+                StatusBar.Content = "Wrong user name or user surname set";
+                return;
+            }
+            try
+            {
+                groupName = AdminStudentGroupCombobox.SelectedValue.ToString();
+            }
+            catch
+            {
+                StatusBar.Content = "Group name is empty";
+            }
             if (name == String.Empty || surname == String.Empty
                 || login == String.Empty || pass == String.Empty || groupName == String.Empty)
             {
@@ -139,6 +153,7 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminStudentsGrid);
             AdminColName.Content = "Remove student";
+            StatusBar.Content = String.Empty;
 
         }
 
@@ -182,6 +197,7 @@ namespace ElectronicDiary
             ShowAdminGrid(AdminStudentsGrid);
             AdminColName.Content = String.Empty;
             AdminStudentGroupEditCombobox.Items.Clear();
+            StatusBar.Content = String.Empty;
         }
 
         private void AdminStudentsIdCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)

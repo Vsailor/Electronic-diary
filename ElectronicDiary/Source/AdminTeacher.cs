@@ -23,6 +23,7 @@ namespace ElectronicDiary
             AdminTeacherSurnameTextBox.Text = String.Empty;
             AdminTeacherLoginTextBox.Text = String.Empty;
             AdminTeacherPasswordTextBox.Password = String.Empty;
+            StatusBar.Content = String.Empty;
 
         }
 
@@ -32,6 +33,11 @@ namespace ElectronicDiary
             string surname = AdminTeacherSurnameTextBox.Text;
             string login = AdminTeacherLoginTextBox.Text;
             string pass = AdminTeacherPasswordTextBox.Password;
+            if (!IsNameType(name) || !IsNameType(surname))
+            {
+                StatusBar.Content = "Wrong user name or user surname set";
+                return;
+            }
             if (name == String.Empty || surname == String.Empty
                 || login == String.Empty || pass == String.Empty)
             {
@@ -119,6 +125,7 @@ namespace ElectronicDiary
             AdminTeacherSurnameTextBoxEdit.Text = String.Empty;
             AdminTeacherLoginTextBoxEdit.Text = String.Empty;
             AdminTeacherPasswordTextBoxEdit.Password = String.Empty;
+            StatusBar.Content = String.Empty;
         }
 
         private void AdminPanelSaveTeacher_Click(object sender, RoutedEventArgs e)
@@ -198,6 +205,7 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminTeachersGrid);
             AdminColName.Content = String.Empty;
+            StatusBar.Content = String.Empty;
         }
 
         private void AdminPanelDeleteTeacher_Click(object sender, RoutedEventArgs e)

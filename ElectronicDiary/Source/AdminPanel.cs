@@ -16,6 +16,7 @@ namespace ElectronicDiary
             StatusBar.Content = "Administration panel";
             Admin.Visibility = Visibility.Visible;
             AdminGrids = new List<Grid>();
+            AdminGrids.Add(AdminImage);
             AdminGrids.Add(AdminStudentsGrid);
             AdminGrids.Add(AdminSubjectsGrid);
             AdminGrids.Add(AdminGroupsGrid);
@@ -67,7 +68,7 @@ namespace ElectronicDiary
         {
             AdminDataGrid.ItemsSource = (from users in model.Users
                                          select new { users.Login, users.Role }).ToList();
-            ShowAdminGrid(null);
+            ShowAdminGrid(AdminImage);
             AdminColName.Content = String.Empty;
         }
 
@@ -176,11 +177,22 @@ namespace ElectronicDiary
             }
             return false;
         }
-
+        private bool IsNameType(string word)
+        {
+            foreach (var item in word)
+            {
+                if (!((item>='a' && item<='z') || (item >= 'A' && item <= 'Z')))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         private void AdminComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             AdminColName.Content = String.Empty;
+            StatusBar.Content = String.Empty;
             switch (AdminComboBox.SelectedIndex)
             {
                 case 0:

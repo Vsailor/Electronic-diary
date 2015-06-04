@@ -13,6 +13,10 @@
             <ComboBox x:Name="AdminComboBox" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="206" SelectedIndex="0" SelectionChanged="AdminComboBox_SelectionChanged"/>
             <DataGrid x:Name="AdminDataGrid" HorizontalAlignment="Left" Margin="26,62,0,0" VerticalAlignment="Top" Height="332" Width="504"/>
             <Label x:Name="AdminColName" Content="Name" Margin="596,1,153,0" VerticalAlignment="Top" FontSize="22" Width="206" HorizontalAlignment="Center"/>
+            <Grid x:Name="AdminImage" HorizontalAlignment="Left" Height="332" Margin="558,62,0,0" VerticalAlignment="Top" Width="366" d:IsHidden="True">
+                <Image Margin="25,14,39,0" Source="administrative-tools.png" Stretch="Fill"/>
+                <Label Content="Welcome to administrator panel" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="5,0,0,0"/>
+            </Grid>
             <Grid x:Name="AdminGroupsAdd" HorizontalAlignment="Left" Height="382" Margin="570,67,0,-38" VerticalAlignment="Top" Width="327" d:IsHidden="True">
                 <TextBox x:Name="GroupNameTextBoxAdd" HorizontalAlignment="Left" Height="22" Margin="106,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
                 <TextBox x:Name="GroupYearTextBoxAdd" HorizontalAlignment="Left" Height="22" Margin="106,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
@@ -38,14 +42,14 @@
                 <Label Content="Group id:" HorizontalAlignment="Left" Margin="19,18,0,0" VerticalAlignment="Top"/>
             </Grid>
             <Grid x:Name="AdminGroupsGrid" HorizontalAlignment="Left" Height="343" Margin="570,62,0,0" VerticalAlignment="Top" Width="327" d:IsHidden="True">
-                <Button x:Name="AdminPanelGroupsEditGroup" Content="Edit" HorizontalAlignment="Left" Margin="60,84,0,0" VerticalAlignment="Top" Width="190" Height="51" Click="AdminPanelGroupsEditGroup_Click"/>
-                <Button x:Name="AdminPanelGroupsRemoveGroup" Content="Remove" HorizontalAlignment="Left" Margin="60,173,0,0" VerticalAlignment="Top" Width="190" Height="51" Click="AdminPanelGroupsRemoveGroup_Click"/>
-                <Button x:Name="AdminPanelGroupsAddGroup" Content="Add" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="190" Height="51" Click="AdminPanelGroupsAddGroup_Click"/>
+                <Button x:Name="AdminPanelGroupsEditGroup" Content="Edit" HorizontalAlignment="Left" Margin="96,97,0,0" VerticalAlignment="Top" Width="209" Height="51" Click="AdminPanelGroupsEditGroup_Click"/>
+                <Button x:Name="AdminPanelGroupsRemoveGroup" Content="Remove" HorizontalAlignment="Left" Margin="96,176,0,0" VerticalAlignment="Top" Width="209" Height="50" Click="AdminPanelGroupsRemoveGroup_Click"/>
+                <Button x:Name="AdminPanelGroupsAddGroup" Content="Add" HorizontalAlignment="Left" Margin="96,19,0,0" VerticalAlignment="Top" Width="209" Height="46" Click="AdminPanelGroupsAddGroup_Click"/>
             </Grid>
             <Grid x:Name="AdminStudentsGrid" HorizontalAlignment="Left" Height="343" Margin="583,68,0,0" VerticalAlignment="Top" Width="327" d:IsHidden="True">
-                <Button x:Name="AdminPanelStudentsEditStudent" Content="Edit" HorizontalAlignment="Left" Margin="63,80,0,0" VerticalAlignment="Top" Width="187" Height="51" Click="AdminPanelStudentsEditStudent_Click"/>
-                <Button x:Name="AdminPanelStudentsRemoveStudent" Content="Remove" HorizontalAlignment="Left" Margin="63,161,0,0" VerticalAlignment="Top" Width="187" Height="51" Click="AdminPanelStudentsRemoveStudent_Click"/>
-                <Button x:Name="AdminPanelStudentsAddStudent" Content="Add" HorizontalAlignment="Left" Margin="63,0,0,0" VerticalAlignment="Top" Width="187" Height="51" Click="AdminPanelStudentsAddStudent_Click"/>
+                <Button x:Name="AdminPanelStudentsEditStudent" Content="Edit" HorizontalAlignment="Left" Margin="81,88,0,0" VerticalAlignment="Top" Width="209" Height="51" Click="AdminPanelStudentsEditStudent_Click"/>
+                <Button x:Name="AdminPanelStudentsRemoveStudent" Content="Remove" HorizontalAlignment="Left" Margin="81,167,0,0" VerticalAlignment="Top" Width="209" Height="51" Click="AdminPanelStudentsRemoveStudent_Click"/>
+                <Button x:Name="AdminPanelStudentsAddStudent" Content="Add" HorizontalAlignment="Left" Margin="81,10,0,0" VerticalAlignment="Top" Width="209" Height="49" Click="AdminPanelStudentsAddStudent_Click"/>
             </Grid>
             <Grid x:Name="AdminStudentsAdd" HorizontalAlignment="Left" Height="343" Margin="558,62,0,0" VerticalAlignment="Top" Width="375" d:IsHidden="True">
                 <TextBox x:Name="AdminStudentNameTextBox" HorizontalAlignment="Left" Height="28" Margin="114,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221"/>
@@ -131,7 +135,7 @@
                 <Button x:Name="AdminPanelSchedulesRemoveSchedule" Content="Remove lesson" HorizontalAlignment="Left" Margin="82,188,0,0" VerticalAlignment="Top" Width="210" Height="51" Click="AdminPanelSchedulesRemoveSchedule_Click"/>
                 <Button x:Name="AdminPanelSchedulesAddSchedule" Content="Add lesson" HorizontalAlignment="Left" Margin="82,10,0,0" VerticalAlignment="Top" Width="210" Height="51" Click="AdminPanelSchedulesAddSchedule_Click"/>
             </Grid>
-            <Grid x:Name="AdminSchedulesPanel" HorizontalAlignment="Left" Height="349" Margin="558,62,0,0" VerticalAlignment="Top" Width="387">
+            <Grid x:Name="AdminSchedulesPanel" HorizontalAlignment="Left" Height="349" Margin="558,62,0,0" VerticalAlignment="Top" Width="387" d:IsHidden="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="95*"/>
                     <ColumnDefinition Width="10*"/>
