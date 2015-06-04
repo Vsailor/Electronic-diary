@@ -169,6 +169,9 @@ namespace ElectronicDiary
                         where students.User.Login == login &&
                         students.User.Role == "student"
                         select students).FirstOrDefault();
+            var marksdb = (from marks in model.Marks
+                         where marks.Student.Id == item.Id
+                         select marks).ToList();
             if (item == null)
             {
                 StatusBar.Content = "Student not found";
@@ -176,6 +179,13 @@ namespace ElectronicDiary
             }
             try
             {
+                if (marksdb.Count != 0)
+                {
+                    foreach (var items in marksdb)
+                    {
+                        model.Marks.Remove(items);
+                    }
+                }
                 model.Users.Remove(item.User);
                 model.Students.Remove(item);
                 model.SaveChanges();

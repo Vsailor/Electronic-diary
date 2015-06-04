@@ -198,7 +198,12 @@ namespace ElectronicDiary
             {
                 return;
             }
-            string groupName = AdminPanelScheduleGroupCombobox.SelectedValue.ToString();
+            string groupName = String.Empty;
+            try
+            {
+                groupName = AdminPanelScheduleGroupCombobox.SelectedValue.ToString();
+            }
+            catch { }
             var ids = (from schedules in model.Schedules
                        where groupName == schedules.Group.Name
                        select schedules.Id).ToList();
@@ -341,6 +346,19 @@ namespace ElectronicDiary
                              where teachers.Name == teacherName &&
                              teachers.Surname == teacherSurname
                              select teachers).FirstOrDefault();
+            var clone = (from schedules in model.Schedules
+                         where schedules.LessonNumber == lessonNumber
+                         && schedules.WeekDay == weekDay
+                         && schedules.Teacher.Surname == teacherSurname
+                         && schedules.Teacher.Name == teacherName
+                         select schedules).FirstOrDefault();
+            if (clone != null)
+            {
+
+                StatusBar.Content = "This teacher is busy or lesson for this group is already scheduled";
+                return;
+
+            }
             try
             {
 
@@ -434,8 +452,8 @@ namespace ElectronicDiary
                 description = AdminScheduleEditDescriptionTextBox.Text;
             }
             catch
-            { 
-                
+            {
+
             }
             if (groupName == String.Empty ||
                 weekDay == String.Empty || teacher == String.Empty ||
@@ -448,7 +466,8 @@ namespace ElectronicDiary
             string teacherSurname = teacher.Remove(0, teacher.IndexOf(" ") + 1);
 
             var subjectdb = (from subjects in model.Subjects
-                             where subjects.Name == subject select subjects).FirstOrDefault();
+                             where subjects.Name == subject
+                             select subjects).FirstOrDefault();
             var groupdb = (from groups in model.Groups
                            where groups.Name == groupName
                            select groups).FirstOrDefault();
