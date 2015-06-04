@@ -10,12 +10,7 @@ namespace ElectronicDiary
 {
     partial class MainWindow : Window
     {
-        private void ShowExistLessons()
-        {
-            AdminDataGrid.ItemsSource = (from schedules in model.Schedules
-                                         group schedules by schedules.Subject.Name into schedules
-                                         select new { Lesson = schedules.Key }).ToList();
-        }
+
         private void UpdateGroupsComboboxList()
         {
             AdminPanelScheduleGroupCombobox.Items.Clear();
@@ -35,7 +30,7 @@ namespace ElectronicDiary
                                          {
                                              Number = schedules.LessonNumber,
                                              Week_Day = schedules.WeekDay,
-                                             Group_Name = schedules.Group.Name,
+                                             Group = schedules.Group.Name,
                                              Subject = schedules.Subject.Name,
                                              Teacher_Name = schedules.Teacher.Name,
                                              Teacher_Surname = schedules.Teacher.Surname,
@@ -48,18 +43,38 @@ namespace ElectronicDiary
             try
             {
                 string combobox = AdminPanelScheduleGroupCombobox.SelectedItem.ToString();
-                AdminDataGrid.ItemsSource = (from schedules in model.Schedules
-                                             where schedules.Group.Name == combobox
-                                             select new
-                                             {
-                                                 Number = schedules.LessonNumber,
-                                                 Week_Day = schedules.WeekDay,
-                                                 Group_Name = schedules.Group.Name,
-                                                 Subject = schedules.Subject.Name,
-                                                 Teacher_Name = schedules.Teacher.Name,
-                                                 Teacher_Surname = schedules.Teacher.Surname,
-                                                 Description = schedules.Description
-                                             }).ToList();
+                if (EditScheduleForm.Visibility == Visibility.Visible)
+                {
+                    AdminDataGrid.ItemsSource = (from schedules in model.Schedules
+                                                 where schedules.Group.Name == combobox
+                                                 select new
+                                                 {
+                                                     Id = schedules.Id,
+                                                     Number = schedules.LessonNumber,
+                                                     Week_Day = schedules.WeekDay,
+                                                     Group_Name = schedules.Group.Name,
+                                                     Subject = schedules.Subject.Name,
+                                                     Teacher_Name = schedules.Teacher.Name,
+                                                     Teacher_Surname = schedules.Teacher.Surname,
+                                                     Description = schedules.Description
+                                                 }).ToList();
+
+                }
+                else
+                {
+                    AdminDataGrid.ItemsSource = (from schedules in model.Schedules
+                                                 where schedules.Group.Name == combobox
+                                                 select new
+                                                 {
+                                                     Number = schedules.LessonNumber,
+                                                     Week_Day = schedules.WeekDay,
+                                                     Group_Name = schedules.Group.Name,
+                                                     Subject = schedules.Subject.Name,
+                                                     Teacher_Name = schedules.Teacher.Name,
+                                                     Teacher_Surname = schedules.Teacher.Surname,
+                                                     Description = schedules.Description
+                                                 }).ToList();
+                }
             }
             catch
             { }
@@ -152,7 +167,7 @@ namespace ElectronicDiary
             }
             if (groupName == String.Empty || weekDay == String.Empty)
             {
-                for(int i = 1; i<=8; i++)
+                for (int i = 1; i <= 8; i++)
                 {
                     cb.Items.Add(i.ToString());
                 }
@@ -160,7 +175,7 @@ namespace ElectronicDiary
             else
             {
                 var usedNumbers = (from numbers in model.Schedules
-                                   where 
+                                   where
                                    numbers.WeekDay == weekDay
                                    && numbers.Group.Name == groupName
                                    select numbers.LessonNumber).ToList();
@@ -173,6 +188,63 @@ namespace ElectronicDiary
                 }
             }
         }
+        private void FillIdNumberComboboxEditSchedule()
+        {
+            if (AdminPanelScheduleGroupCombobox.Items.Count == 0)
+            {
+                return;
+            }
+            string groupName = AdminPanelScheduleGroupCombobox.SelectedValue.ToString();
+            var ids = (from schedules in model.Schedules
+                       where groupName == schedules.Group.Name
+                       select schedules.Id).ToList();
+            EditScheduleLessonIdCombobox.Items.Clear();
+            foreach (var item in ids)
+            {
+                EditScheduleLessonIdCombobox.Items.Add(item);
+            }
+
+
+
+        }
+        private void ClearEditScheduleForm()
+        {
+            EditScheduleLessonIdCombobox.Items.Clear();
+            AdminScheduleEditTextBox.Text = String.Empty;
+            AdminPanelEditScheduleWeekDayCombobox.Items.Clear();
+            AdminPanelEditScheduleTeacherCombobox.Items.Clear();
+            AdminPanelEditScheduleSubjectCombobox.Items.Clear();
+            AdminScheduleEditDescriptionTextBox.Text = String.Empty;
+        }
+        private void EditScheduleLessonIdCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (EditScheduleLessonIdCombobox.Items.Count == 0)
+            {
+                return;
+            }
+            int index = int.Parse(EditScheduleLessonIdCombobox.SelectedItem.ToString());
+            var schedule = (from schedules in model.Schedules
+                            where index == schedules.Id
+                            select schedules).FirstOrDefault();
+            AdminScheduleEditTextBox.Text = schedule.LessonNumber.ToString();
+            FillWeekDaysCombobox(AdminPanelEditScheduleWeekDayCombobox);
+            AdminPanelEditScheduleWeekDayCombobox.SelectedItem = schedule.WeekDay;
+            var teachersdb = (from teachers in model.Teachers
+                              select teachers).ToList();
+            foreach (var item in teachersdb)
+            {
+                AdminPanelEditScheduleTeacherCombobox.Items.Add(String.Format("{0} {1}", item.Name, item.Surname));
+            }
+            AdminPanelEditScheduleTeacherCombobox.SelectedItem = String.Format("{0} {1}", schedule.Teacher.Name, schedule.Teacher.Surname);
+            var subjectsdb = (from items in model.Subjects
+                              select items.Name).ToList();
+            foreach (var item in subjectsdb)
+            {
+                AdminPanelEditScheduleSubjectCombobox.Items.Add(item);
+            }
+            AdminPanelEditScheduleSubjectCombobox.SelectedItem = schedule.Subject.Name;
+            AdminScheduleEditDescriptionTextBox.Text = schedule.Description;
+        }
 
         private void AdminPanelAddScheduleWeekDayCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -181,21 +253,31 @@ namespace ElectronicDiary
                 FillLessonNumberComboboxByGroupOrWeekDay(AdminScheduleNumber, AdminPanelScheduleGroupCombobox.SelectedItem.ToString(), AdminPanelAddScheduleWeekDayCombobox.SelectedItem.ToString());
             }
             catch { }
-            
-                UpdateLessonsByWeekDaySelectedValue();
-            
+
+            UpdateLessonsByWeekDaySelectedValue();
+
         }
         private void AdminPanelScheduleGroupCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (EditScheduleButtonsForm.Visibility == Visibility.Visible)
+            {
+                ClearEditScheduleForm();
+                ShowAdminGrid(AdminSchedulesPanel, EditScheduleForm);
 
+            }
+            FillIdNumberComboboxEditSchedule();
             try
             {
                 FillLessonNumberComboboxByGroupOrWeekDay(AdminScheduleNumber, AdminPanelScheduleGroupCombobox.SelectedItem.ToString(), AdminPanelAddScheduleWeekDayCombobox.SelectedItem.ToString());
+
             }
-            catch{}
-                UpdateLessonsByGroupSelectedValue();
-            
+            catch { }
+            UpdateLessonsByGroupSelectedValue();
+
+
+
         }
+
 
         private void AddScheduleButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -220,17 +302,17 @@ namespace ElectronicDiary
                 return;
             }
             string teacherName = teacher.Remove(teacher.IndexOf(" "));
-            string teacherSurname = teacher.Remove(0, teacher.IndexOf(" ")+1);
+            string teacherSurname = teacher.Remove(0, teacher.IndexOf(" ") + 1);
             var subjectdb = (from subjects in model.Subjects
                              where subjects.Name == subject
                              select subjects).FirstOrDefault();
             var groupdb = (from groups in model.Groups
-                            where groups.Name == groupName
-                            select groups).FirstOrDefault();
+                           where groups.Name == groupName
+                           select groups).FirstOrDefault();
             var teacherdb = (from teachers in model.Teachers
-                              where teachers.Name == teacherName &&
-                              teachers.Surname == teacherSurname
-                              select teachers).FirstOrDefault();
+                             where teachers.Name == teacherName &&
+                             teachers.Surname == teacherSurname
+                             select teachers).FirstOrDefault();
             try
             {
 
@@ -261,8 +343,9 @@ namespace ElectronicDiary
         {
             ShowAdminGrid(AdminSchedulesPanel, EditScheduleButtonsForm);
             AdminColName.Content = "Edit lesson";
-            ShowExistLessons();
+            ShowAllLessons();
             UpdateGroupsComboboxList();
+
         }
 
         private void AdminPanelSchedulesRemoveSchedule_Click(object sender, RoutedEventArgs e)
@@ -270,14 +353,15 @@ namespace ElectronicDiary
             ShowAdminGrid(AdminSchedulesPanel, RemoveScheduleForm);
 
             AdminColName.Content = "Remove lesson";
-            ShowExistLessons();
+            ShowAllLessons();
             UpdateGroupsComboboxList();
         }
 
         private void EditScheduleButtonBackPanel_Click(object sender, RoutedEventArgs e)
         {
             ShowAdminGrid(AdminSchedulesGrid);
-
+            ShowSchedules();
+            ClearEditScheduleForm();
             AdminColName.Content = String.Empty;
         }
 
@@ -288,6 +372,7 @@ namespace ElectronicDiary
             ShowAdminGrid(AdminSchedulesGrid);
             AdminColName.Content = String.Empty;
             ShowAllLessons();
+
         }
 
 
